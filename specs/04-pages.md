@@ -16,7 +16,7 @@ Spec ini menjabarkan konten dan layout tiap route dari `01-overview.md`. Tampila
 ## Layout global
 
 - **Skip link** "Lompat ke konten" sebagai elemen pertama yang bisa difokuskan (tampil saat difokus).
-- **Navbar** (menempel di atas, tinggi 64px): logo `alvinreihans` (tautan ke `/`), tautan Pengalaman, Project, Kontak (sesuai urutan section), tautan **CV** (ke `/cv`), tombol tema (ikon), dan toggle bahasa. Tautan CV di navbar memastikan CV bisa dibuka dari halaman mana pun (G2 di `01-overview.md`).
+- **Navbar** (menempel di atas, tinggi 64px): logo `alvinreihans` (tautan ke `/`), tautan Pengalaman, Project, Kontak (sesuai urutan section), tautan **CV** (ke `/cv`), tombol tema (ikon), dan tombol bahasa (ikon bendera). Tautan CV di navbar memastikan CV bisa dibuka dari halaman mana pun (G2 di `01-overview.md`).
 - **Konten utama** di dalam `<main id="content">`.
 - **Footer** dengan section Contact (di halaman utama) atau footer ringkas (di halaman lain).
 
@@ -24,7 +24,7 @@ Spec ini menjabarkan konten dan layout tiap route dari `01-overview.md`. Tampila
 
 - Tautan navbar menuju section di halaman utama (`/#experience`, `/#works`, `/#contact`). Dari `/projects/:slug`, tautan itu membawa pengunjung ke `/` lalu menggulir ke section tujuan.
 - Penggulungan ke section halus (`smooth`), kecuali `prefers-reduced-motion` aktif (langsung loncat). Section memakai `scroll-margin-top` agar tidak tertutup navbar.
-- **Mobile (di bawah 640px):** tautan disembunyikan dan diganti tombol menu. Menu terbuka sebagai panel di bawah navbar dengan `aria-expanded`, bisa ditutup dengan `Esc`, menutup otomatis setelah memilih tautan, dan fokus kembali ke tombol menu saat ditutup. Tombol tema dan toggle bahasa tetap terlihat di navbar.
+- **Mobile (di bawah 640px):** tautan disembunyikan dan diganti tombol menu. Menu terbuka sebagai panel di bawah navbar dengan `aria-expanded`, bisa ditutup dengan `Esc`, menutup otomatis setelah memilih tautan, dan fokus kembali ke tombol menu saat ditutup. Tombol tema dan tombol bahasa tetap terlihat di navbar.
 - Tidak ada penanda section aktif (scrollspy) pada versi pertama.
 
 ### Perilaku antar halaman (SPA)

@@ -7,7 +7,7 @@ Spec ini menjabarkan G4 sampai G7 dari `01-overview.md`: tampilan, tema Day/Nigh
 ## Prinsip
 
 1. Minimal dan bersih; kesan "pixel" hanya sebagai aksen (heading, awan, matahari, bulan, bintang, berang-berang), bukan pada teks isi.
-2. Satu warna aksen (oranye). Tidak ada warna merek kedua.
+2. Satu warna aksen (oranye). Tidak ada warna merek kedua. Pengecualian: ikon bendera di tombol bahasa memakai warna asli benderanya (Q2.6).
 3. Satu tombol utama (oranye) per layar.
 4. Kontras WCAG AA adalah syarat, bukan pilihan. Angka di spec ini sudah dihitung, bukan perkiraan.
 
@@ -100,15 +100,15 @@ Hanya subset yang dibutuhkan (Latin) dan format `woff2` yang dimuat, agar ukuran
 
 | Komponen | Spesifikasi |
 |---|---|
-| **Navbar** | Latar `--nav`, tinggi 64px. Logo `alvinreihans` kiri; tautan Works, Experience, Contact kanan; lalu tombol tema (ikon) dan toggle bahasa (EN/ID). Di mobile tautan disembunyikan (menu akan dibahas di `04-pages.md`), kontrol tetap tampil. |
+| **Navbar** | Latar `--nav`, tinggi 64px. Logo `alvinreihans` kiri; tautan Works, Experience, Contact kanan; lalu tombol tema (ikon) dan tombol bahasa (ikon bendera). Di mobile tautan disembunyikan (menu akan dibahas di `04-pages.md`), kontrol tetap tampil. |
 | **Tombol utama** | Latar `--accent`, teks `--on-accent`, radius 6px, padding 12px 22px, ikon panah. Satu per layar. |
 | **Tombol sekunder** | Transparan, border 1px, teks `--ink`. |
 | **Tautan teks** | Garis bawah `--accent-text` 2px, offset 5px. |
 | **Kartu** | `--card`, radius 12px, padding 20px (16 di mobile), border 1px `--line`. |
 | **Tag** | `--chip` / `--card-band`, teks `--muted` 12px, radius 6px. |
 | **Diagram (node)** | `--chip`, radius 6px; node sorotan memakai `--accent` + `--on-accent`. Detail sintaks di `06-project-stories.md`. |
-| **Tombol tema** | Satu tombol ikon pixel yang bergantian antara matahari (Day) dan bulan (Night). Ikon menunjukkan tema yang sedang aktif. Nama aksesibel (`aria-label`) menyebut aksinya, misalnya "Ganti ke tema Night" / "Switch to Night theme", mengikuti bahasa yang dipilih; label berubah mengikuti keadaan, jadi tanpa `aria-pressed`. Area klik minimal **44x44px**, fokus terlihat. |
-| **Toggle bahasa** | Kontrol segmen "EN / ID". Area klik tiap segmen minimal **44x44px**, memakai `aria-pressed`, fokus terlihat. |
+| **Tombol tema** | Satu tombol ikon pixel yang bergantian antara matahari bersinar (Day) dan bulan sabit (Night), digambar di grid 11x11 dengan 2px per piksel. Ikon menunjukkan tema yang sedang aktif. Nama aksesibel (`aria-label`) menyebut aksinya, misalnya "Ganti ke tema Night" / "Switch to Night theme", mengikuti bahasa yang dipilih; label berubah mengikuti keadaan, jadi tanpa `aria-pressed`. Area klik minimal **44x44px**, fokus terlihat. |
+| **Tombol bahasa** | Satu tombol ikon yang menampilkan bendera pixel bahasa yang sedang aktif: bendera Indonesia untuk bahasa Indonesia, bendera Amerika Serikat untuk bahasa Inggris, tanpa teks kode. Menekannya berpindah ke bahasa lain. Nama aksesibel menyebut aksinya dalam bahasa aktif ("Ganti ke bahasa Inggris" / "Switch to Indonesian"), tanpa `aria-pressed`. Bendera digambar dengan 1px per piksel agar detailnya terbaca: bendera AS 25x13 piksel di dalam bingkai (13 garis masing-masing 1 piksel, kanton biru setinggi 7 garis, bintang selang-seling), bendera Indonesia 25x14 piksel (merah dan putih sama tinggi). Bingkai 1 piksel memakai warna teks agar bagian putih tetap terlihat di latar terang. Area klik minimal **44x44px**, fokus terlihat. |
 | **Footer** | Latar `--footer`, teks `--footer-ink`, heading Jersey 10. |
 
 ## Dekorasi langit (pixel art)
@@ -163,6 +163,7 @@ Aturan tambahan:
 - [ ] AC8. Tidak ada scroll horizontal di lebar 320px ke atas pada kedua tema.
 - [ ] AC9. Situs tidak membuat permintaan ke Google Fonts atau CDN font lain; font dimuat dari domain sendiri dalam format `woff2`.
 - [ ] AC10. Tombol tema bisa dioperasikan dengan keyboard (Enter dan Spasi), punya `aria-label` yang menyebut aksi dalam bahasa aktif, dan label itu ikut berubah saat bahasa atau tema berganti.
+- [ ] AC15. Tombol bahasa menampilkan bendera bahasa aktif, berpindah bahasa saat ditekan (mouse, Enter, Spasi), punya `aria-label` yang menyebut aksinya, dan area kliknya minimal 44x44px.
 - [ ] AC11. Teks lisensi OFL untuk Jersey 10 dan Manrope tersedia di repo (dan ikut dalam hasil build atau dirujuk dari halaman).
 - [ ] AC12. Kunjungan pertama (tanpa pilihan tersimpan) dengan sistem gelap menampilkan Night, dan dengan sistem terang menampilkan Day (diuji dengan emulasi `prefers-color-scheme` di Playwright).
 - [ ] AC13. Tanpa pilihan tersimpan, mengubah `prefers-color-scheme` saat halaman terbuka mengganti tema; dengan pilihan tersimpan, tema tidak berubah.
@@ -179,6 +180,7 @@ Aturan tambahan:
 - Q2.3. Judul hero Day memakai `--accent-display` `#d4430c` (kontras 3,97:1, memenuhi syarat teks besar). Keputusan diserahkan owner kepada pengusul spec; dipilih `#d4430c` karena masih terasa oranye cerah dan lolos AA, sedangkan `#b83a08` terlalu mendekati cokelat.
 - Q2.4. Teks tombol utama gelap (`--on-accent` `#101828`) di atas oranye, bukan putih.
 - Q2.5. Tema awal mengikuti `prefers-color-scheme` pengunjung (karena sebagian orang memilih mode gelap meski siang hari), dan pilihan manual disimpan di `localStorage`. Memilih tema yang sama dengan sistem mengembalikan situs ke mode "ikuti sistem".
+- Q2.6. Pilihan bahasa berupa satu tombol ikon bendera pixel (Indonesia dan Amerika Serikat), tanpa teks kode, menggantikan kontrol segmen "EN / ID". Warna asli bendera menjadi pengecualian dari aturan satu warna aksen. Ikon matahari diberi sinar agar jelas dibedakan dari bulatan.
 
 ## Pertanyaan terbuka
 
