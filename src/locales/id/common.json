@@ -4,6 +4,8 @@
     "nav.projects",
     "nav.contact",
     "nav.cv",
+    "nav.openMenu",
+    "nav.closeMenu",
     "skipToContent",
     "externalLink",
     "language.label",
@@ -17,7 +19,9 @@
     "experience": "Pengalaman",
     "projects": "Project",
     "contact": "Kontak",
-    "cv": "CV"
+    "cv": "CV",
+    "openMenu": "Buka menu",
+    "closeMenu": "Tutup menu"
   },
   "skipToContent": "Lompat ke konten",
   "externalLink": "(tautan eksternal)",
