@@ -4,7 +4,14 @@
     "hero.titleLine2",
     "hero.lead",
     "hero.cv",
-    "hero.contact",
+    "hero.actions",
+    "stack.heading",
+    "stack.groups.languages",
+    "stack.groups.backend",
+    "stack.groups.data",
+    "stack.groups.ai",
+    "stack.groups.cloud",
+    "stack.items.llm",
     "experience.heading",
     "experience.type.education",
     "experience.type.work",
@@ -24,7 +31,20 @@
     "titleLine2": "yang andal.",
     "lead": "Saya Alvin, full-stack developer lulusan Teknik Informatika Universitas Lampung. Saya tertarik pada perancangan sistem backend yang andal, teruji, dan mudah diaudit, dengan Node.js, TypeScript, React, Express.js, dan PostgreSQL, serta pengalaman men-deploy ke produksi di AWS dan Google Cloud melalui CI/CD terotomatisasi.",
     "cv": "Lihat CV",
-    "contact": "Hubungi saya"
+    "actions": "Navigasi cepat"
+  },
+  "stack": {
+    "heading": "Tech stack",
+    "groups": {
+      "languages": "Bahasa & Frontend",
+      "backend": "Backend",
+      "data": "Database & Storage",
+      "ai": "AI & OCR",
+      "cloud": "Cloud & DevOps"
+    },
+    "items": {
+      "llm": "Integrasi LLM"
+    }
   },
   "experience": {
     "heading": "Pengalaman",

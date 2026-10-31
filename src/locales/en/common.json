@@ -4,6 +4,7 @@
     "nav.projects",
     "nav.contact",
     "nav.cv",
+    "nav.label",
     "nav.openMenu",
     "nav.closeMenu",
     "skipToContent",
@@ -20,6 +21,7 @@
     "projects": "Projects",
     "contact": "Contact",
     "cv": "CV",
+    "label": "Main navigation",
     "openMenu": "Open menu",
     "closeMenu": "Close menu"
   },
