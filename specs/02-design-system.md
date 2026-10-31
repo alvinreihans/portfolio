@@ -1,6 +1,6 @@
 # 02 - Design system
 
-Status: **Approved** (disetujui owner, 2026-10-31)
+Status: **Approved** (disetujui owner, 2026-10-31; Q2.7 dan Q2.8 disetujui 2026-10-31)
 
 Spec ini menjabarkan G4 sampai G7 dari `01-overview.md`: tampilan, tema Day/Night, dan maskot. Referensi visual: `mockups/c-minimal-refero.html` (lokal) dan gaya Refero "Obscura".
 
@@ -63,7 +63,8 @@ Catatan: matahari, bulan, bintang, awan, dan berang-berang murni dekoratif (`ari
 
 ## Tipografi
 
-- **Jersey 10** (pixel): hanya untuk heading **36px ke atas**. Tidak untuk teks isi, tombol, navigasi, atau label.
+- **Jersey 10** (pixel): hanya untuk heading **36px ke atas**. Tidak untuk teks isi, tombol, navigasi, atau label. Satu pengecualian: teks bubble sapaan berang-berang memakai Jersey 10 20px (Q2.7, lihat `07-scenery.md`).
+- **Monospace sistem** (`ui-monospace`, tidak dihosting): hanya untuk chip bergaya git di roadmap Experience, yaitu label cabang (`pelatihan/bangkit`), `HEAD`, dan `init`, ukuran 12px (Q2.8).
 - **Manrope** (bobot 400 sampai 800): semua teks lainnya.
 - Kedua font dihosting sendiri (lihat bagian Lisensi font) dan keduanya berlisensi open source.
 - Skala (px / line-height / tracking): caption 12 / 1,5; body-sm 14 / 1,43; body 16 / 1,5; subheading 18 / 1,56; heading-sm 36 / 1,11 / -0,9px; heading 48 / 0,85 / -1,2px; heading-lg 60 / 0,85 / -1,5px; display 96 / 0,80 / -3px.
@@ -158,7 +159,7 @@ Aturan tambahan:
 ## Kriteria penerimaan
 
 - [ ] AC1. Seluruh warna teks dan kontrol memenuhi rasio di tabel kontras pada kedua tema (diverifikasi dengan skrip penghitung).
-- [ ] AC2. Heading Jersey 10 hanya muncul pada ukuran 36px ke atas.
+- [ ] AC2. Jersey 10 hanya muncul pada heading 36px ke atas dan pada bubble sapaan (20px).
 - [ ] AC3. Hanya ada satu tombol utama oranye per layar.
 - [ ] AC4. Semua kontrol interaktif punya area klik minimal 44x44px dan indikator fokus yang terlihat dengan kontras minimal 3:1.
 - [ ] AC5. Mengganti tema tidak menimbulkan layout shift, dan tidak ada kilatan tema salah saat halaman dimuat.
@@ -185,6 +186,8 @@ Aturan tambahan:
 - Q2.4. Teks tombol utama gelap (`--on-accent` `#101828`) di atas oranye, bukan putih.
 - Q2.5. Tema awal mengikuti `prefers-color-scheme` pengunjung (karena sebagian orang memilih mode gelap meski siang hari), dan pilihan manual disimpan di `localStorage`. Memilih tema yang sama dengan sistem mengembalikan situs ke mode "ikuti sistem".
 - Q2.6. Pilihan bahasa berupa satu tombol ikon bendera pixel (Indonesia dan Amerika Serikat), tanpa teks kode, menggantikan kontrol segmen "EN / ID". Warna asli bendera menjadi pengecualian dari aturan satu warna aksen. Ikon matahari diberi sinar agar jelas dibedakan dari bulatan.
+- Q2.7. Bubble sapaan berang-berang memakai Jersey 10 20px agar terasa seperti teks game pixel (permintaan owner, `07-scenery.md`). Teksnya pendek (satu kalimat), berwarna `#232629` di atas putih (15,21:1).
+- Q2.8. Chip bergaya git di roadmap (label cabang, `HEAD`, `init`) memakai monospace sistem, bukan font yang dihosting, sehingga tidak menambah unduhan font. Lihat `04-pages.md`, section 3.
 
 ## Pertanyaan terbuka
 

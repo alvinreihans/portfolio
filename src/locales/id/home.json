@@ -17,7 +17,6 @@
     "experience.type.work",
     "experience.type.internship",
     "experience.type.training",
-    "experience.type.certification",
     "experience.present",
     "works.heading",
     "contact.heading",
@@ -26,7 +25,12 @@
     "contact.copy",
     "contact.copied",
     "scene.greet",
-    "scene.lines"
+    "scene.lines",
+    "experience.certifications",
+    "experience.showAll",
+    "experience.otherCertifications",
+    "experience.allOnLinkedIn",
+    "experience.type.certification"
   ],
   "hero": {
     "titleLine1": "Membangun sistem backend",
@@ -57,7 +61,11 @@
       "training": "Pelatihan",
       "certification": "Sertifikasi"
     },
-    "present": "Sekarang"
+    "present": "Sekarang",
+    "certifications": "Sertifikasi",
+    "showAll": "Lihat semua ({{count}})",
+    "otherCertifications": "Sertifikat lainnya",
+    "allOnLinkedIn": "Lihat semua {{count}} sertifikat di LinkedIn"
   },
   "works": {
     "heading": "Project"
