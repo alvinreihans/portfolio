@@ -45,7 +45,7 @@ Urutan section: Hero, Tech stack, Experience, Works, Contact.
 - Paragraf pembuka singkat bersumber dari ringkasan di CV, dengan peran **full-stack developer** (lihat Draf teks). Bagian ringkasan CV yang menyebut hal spesifik tentang pekerjaan di PT Intramedika Global Digital **tidak** dipakai.
 - **Deretan tombol hero:** tombol utama **Lihat CV** (oranye, tautan internal ke `/cv`), lalu tombol sekunder **Pengalaman**, **Project**, dan **Kontak** (menggulir ke section-nya). Hanya ada satu tombol oranye. Di bawah 640px tombol tersusun 2×2, setiap tombol setinggi minimal 44px dengan jarak minimal 8px. Kontak menggantikan "Hubungi saya": section Kontak sudah menyediakan Kirim email dan Salin email.
 - Tautan sosial berupa ikon: LinkedIn, GitHub, dan Instagram.
-- Dekorasi langit di sisi kanan (matahari/awan di Day, bulan/bintang di Night). Tidak ada foto profil, tidak ada badge, dan tidak ada maskot di hero.
+- Dekorasi langit di sisi kanan (matahari di Day, bulan di Night); awan dan bintang berada di lapisan langit selebar halaman (`07-scenery.md`). Tidak ada foto profil, tidak ada badge, dan tidak ada maskot di hero.
 
 ### 2. Tech stack
 
@@ -208,7 +208,7 @@ Catatan:
 - Heading Jersey 10 dan satu kalimat yang menyatakan Alvin terbuka untuk peluang baru (G8 di `01-overview.md`), tanpa badge.
 - Tombol **Kirim email** (`mailto:` dengan subjek sesuai bahasa) dan tombol **Salin email** (menyalin alamat; setelah berhasil teksnya berubah sebentar menjadi "Email disalin" dan diumumkan lewat `aria-live="polite"`).
 - Tautan sosial (sama seperti di hero): LinkedIn, GitHub, Instagram.
-- Maskot berang-berang (sekitar 80px) duduk di tepi atas footer pada Day atau tidur telentang mengapung pada Night.
+- Tepat di atas section ini ada adegan pixel acak dengan berang-berang yang bisa disapa, dan section ini memakai tekstur tanah adegan sebagai latar (`07-scenery.md`).
 - Tidak ada form. Nomor telepon tidak ditampilkan di situs.
 
 ### Footer

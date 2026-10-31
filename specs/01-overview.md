@@ -115,7 +115,7 @@ Vite, React, TypeScript, React Router, Tailwind CSS, react-i18next. Di-hosting d
 - Q1.12. Cerita project: satu folder per project berisi `meta.json` (data bersama dan judul/ringkasan per bahasa), `en.md`, `id.md`, dan `images/`. Detailnya di `06-project-stories.md`.
 - Q1.13. Diagram arsitektur dibuat sebagai komponen React kecil bergaya pixel yang dirender dari code block markdown (bukan gambar statis dan bukan Mermaid). Detailnya di `06-project-stories.md`.
 - Q1.14. Markdown dirender dengan `react-markdown` + `remark-gfm` (izin memakai library sudah diberikan owner). Detailnya di `06-project-stories.md`.
-- Q1.15. Maskot berang-berang berukuran kecil dan dekoratif, bukan elemen utama di landing page. Pose mengikuti tema (duduk di Day, tidur di Night). Penempatan: footer/contact, halaman 404 (ukuran lebih besar), dan aksen kecil di tempat lain. Detail visual di `02-design-system.md`.
+- Q1.15. Maskot berang-berang berukuran kecil dan dekoratif, bukan elemen utama di landing page. Pose mengikuti tema (duduk di Day, tidur di Night). Penempatan: footer/contact, halaman 404 (ukuran lebih besar), dan aksen kecil di tempat lain. Detail visual di `02-design-system.md`. Diperbarui 2026-10-31: di halaman utama berang-berang tampil di adegan pixel acak di atas Contact dan bisa disapa; pose mengikuti adegan dan tema. Detailnya di `07-scenery.md`.
 
 - Q1.16. Foto profil tidak ditampilkan. Hero hanya berisi teks dan elemen dekoratif pixel.
 
@@ -130,3 +130,4 @@ Tidak ada. Spec ini siap ditinjau untuk ditandai **Approved**.
 - `04-pages.md` (konten dan layout per route)
 - `05-deployment.md` (konfigurasi Vercel, redirect `www` ke domain utama, alur preview, rencana cutover)
 - `06-project-stories.md` (format markdown, gambar, diagram, i18n cerita project)
+- `07-scenery.md` (langit selebar halaman, adegan acak, berang-berang yang bisa disapa, mode statis)
