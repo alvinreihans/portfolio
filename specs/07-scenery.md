@@ -1,6 +1,6 @@
 # 07 - Pemandangan pixel (langit, adegan, berang-berang)
 
-Status: **Draft** (menunggu tinjauan owner)
+Status: **Approved** (disetujui owner, 2026-10-31)
 
 Spec ini menjabarkan dekorasi pixel di halaman utama: langit yang membentang di seluruh halaman, satu adegan acak di atas section Contact, berang-berang yang bisa disapa, dan section Contact yang memakai tekstur tanah adegan. Spec ini menggantikan bagian "Dekorasi langit" dan "Maskot berang-berang pixel" di `02-design-system.md` untuk halaman utama. Referensi tampilan: `mockups/g-scenes.html` (lokal).
 
@@ -130,4 +130,4 @@ Dua slice, dikerjakan **sebelum** Experience (keputusan Q7.4):
 
 ## Pertanyaan terbuka
 
-Tidak ada. Spec ini siap ditinjau untuk ditandai **Approved**.
+Tidak ada.
