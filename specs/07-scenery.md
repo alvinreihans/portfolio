@@ -1,8 +1,8 @@
 # 07 - Pemandangan pixel (langit, adegan, berang-berang)
 
-Status: **Approved** (disetujui owner, 2026-10-31)
+Status: **Approved** (disetujui owner, 2026-10-31). Q7.9 (pemandangan di semua halaman) disetujui 2026-11-01.
 
-Spec ini menjabarkan dekorasi pixel di halaman utama: langit yang membentang di seluruh halaman, satu adegan acak di atas section Contact, berang-berang yang bisa disapa, dan section Contact yang memakai tekstur tanah adegan. Spec ini menggantikan bagian "Dekorasi langit" dan "Maskot berang-berang pixel" di `02-design-system.md` untuk halaman utama. Referensi tampilan: `mockups/g-scenes.html` (lokal).
+Spec ini menjabarkan dekorasi pixel di **semua halaman** (Q7.9): langit yang membentang di seluruh halaman, satu adegan acak di atas section Contact, berang-berang yang bisa disapa, dan section Contact yang memakai tekstur tanah adegan. Spec ini menggantikan bagian "Dekorasi langit" dan "Maskot berang-berang pixel" di `02-design-system.md` untuk halaman utama. Referensi tampilan: `mockups/g-scenes.html` (lokal).
 
 ## Tujuan
 
@@ -16,7 +16,7 @@ Spec ini menjabarkan dekorasi pixel di halaman utama: langit yang membentang di 
 
 ## 1. Langit selebar halaman
 
-- Satu lapisan langit di belakang seluruh isi halaman utama (`position: absolute`, setinggi halaman sampai tepi atas adegan), `pointer-events: none`, `aria-hidden="true"`.
+- Satu lapisan langit di belakang seluruh isi halaman, di setiap halaman (`position: absolute`, setinggi halaman sampai tepi atas adegan), `pointer-events: none`, `aria-hidden="true"`.
 - **Awan:** sprite awan pixel 18x7 sel (SVG rect, `shape-rendering: crispEdges`), warna dari token (Day: kontur `--muted`, isi putih, bayangan `--bg`; Night: kontur `--line`, isi `--card`, bayangan `--chip`).
   - Posisi diacak sekali saat halaman dimuat. Di layar lebar (gutter samping minimal 120px) awan diletakkan di gutter kiri dan kanan agar tidak menutupi teks; ukuran sel 5, 6, atau 8px. Di layar sempit awan lebih sedikit, ukuran sel 4px, dan berada di tepi kiri atau kanan (boleh terpotong tepi layar).
   - Jumlah: layar lebar sekitar satu awan per 260px tinggi halaman (minimal 6); layar sempit satu per 700px (minimal 3).
@@ -67,7 +67,7 @@ Adegan dipilih acak **sekali per kunjungan halaman** (setiap reload bisa berbeda
 
 ## 3. Contact di atas tekstur tanah
 
-- Section Contact dan footer di halaman utama memakai **tekstur tanah adegan** sebagai latar (tile 32x16 piksel yang diperbesar 4 kali), sehingga adegan dan Contact terlihat menyatu. Tekstur dibuat dari palet yang sama dengan tanah di kanvas.
+- Section Contact dan footer di setiap halaman memakai **tekstur tanah adegan** sebagai latar (tile 32x16 piksel yang diperbesar 4 kali), sehingga adegan dan Contact terlihat menyatu. Tekstur dibuat dari palet yang sama dengan tanah di kanvas.
 - Warna teks per tekstur. Kontras dihitung terhadap **setiap** warna yang ada di tekstur (yang terendah ditulis):
 
 | Tekstur | Day: teks / kontras terendah | Night: teks / kontras terendah |
@@ -79,7 +79,7 @@ Adegan dipilih acak **sekali per kunjungan halaman** (setiap reload bisa berbeda
 - Kerikil abu-abu di tanah Day tidak dipakai (hanya 2,54:1 terhadap teks).
 - Teks diberi bobot 600 dan halo tipis berwarna dasar tekstur (`text-shadow`) supaya tekstur tepat di belakang huruf terlihat lebih tenang. Halo ini hanya membantu keterbacaan; kontras di atas sudah lolos tanpa halo.
 - Tombol **Kirim email** (utama, `--accent`) dan **Salin email** (sekunder, latar `--nav`) tetap berlatar padat, jadi kontrasnya tidak dipengaruhi tekstur.
-- Halaman lain (`/cv`, `/projects/:slug`, 404) tetap memakai footer ringkas berlatar `--footer` seperti di `04-pages.md` (lihat Q7.5).
+- Semua halaman (`/`, `/cv`, `/projects/:slug`, 404) memakai adegan dan Contact yang sama (Q7.9). Adegannya satu per kunjungan, jadi tetap sama saat berpindah halaman.
 
 ## 4. Mode statis (gerak dimatikan)
 
@@ -125,9 +125,10 @@ Dua tahap di satu branch `feat/scenery` dan **satu PR** ke `react-rewrite` (Q7.8
 - Q7.3. Mode statis untuk `prefers-reduced-motion`, koneksi lambat atau hemat data, device lemah, dan FPS rendah (disetujui owner).
 - Q7.4. Urutan diserahkan owner; dipilih pemandangan sebelum Experience, dipecah dua slice, karena Contact dan footer ikut berubah dan lebih mudah ditinjau terpisah dari roadmap.
 - Q7.6. Warna adegan (pohon, laut, gedung, mobil, berang-berang) adalah ilustrasi dan dikecualikan dari aturan satu warna aksen, sama seperti bendera di Q2.6. Warna teks dan kontrol tetap memakai token.
-- Q7.5. Adegan hanya di halaman utama. Halaman lain (`/cv`, project, 404) memakai footer ringkas `--footer`; halaman 404 tetap memakai berang-berang besar seperti di `04-pages.md`, dengan sprite baru (disetujui owner).
+- Q7.5. Adegan hanya di halaman utama. Halaman lain (`/cv`, project, 404) memakai footer ringkas `--footer`; halaman 404 tetap memakai berang-berang besar seperti di `04-pages.md`, dengan sprite baru (disetujui owner). **Dibatalkan oleh Q7.9.**
 - Q7.7. Adegan digambar dengan Canvas 2D, bukan SVG, karena jumlah piksel per frame besar (selebar layar) dan animasinya berjalan per frame. Awan, bubble, dan ikon tetap SVG.
 - Q7.8. Kedua tahap pemandangan digabung dalam satu PR (permintaan owner, 2026-10-31); tiap tahap tetap commit terpisah.
+- Q7.9. Langit (awan, dan bintang di Night) serta adegan dengan Contact lengkap tampil di **semua halaman**, bukan hanya beranda (owner, 2026-11-01), menggantikan Q7.5. Recruiter bisa menghubungi dari halaman mana pun, misalnya setelah membaca CV atau cerita project. 404 tidak punya berang-berang besar lagi; berang-berang di adegan yang menemani (Q4.26 di `04-pages.md`). Footer ringkas berlatar `--footer` tidak dipakai lagi.
 
 ## Pertanyaan terbuka
 
