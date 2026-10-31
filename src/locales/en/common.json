@@ -4,6 +4,8 @@
     "nav.projects",
     "nav.contact",
     "nav.cv",
+    "nav.openMenu",
+    "nav.closeMenu",
     "skipToContent",
     "externalLink",
     "language.label",
@@ -17,7 +19,9 @@
     "experience": "Experience",
     "projects": "Projects",
     "contact": "Contact",
-    "cv": "CV"
+    "cv": "CV",
+    "openMenu": "Open menu",
+    "closeMenu": "Close menu"
   },
   "skipToContent": "Skip to content",
   "externalLink": "(external link)",
