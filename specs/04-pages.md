@@ -119,6 +119,8 @@ gitGraph BT:
   merge pelatihan-harisenin
 ```
 
+Diagram ini rencana awal. Yang berlaku adalah **Daftar kejadian** di bawah (14 kejadian): Harisenin dan MBKM masing-masing satu kejadian dengan rentang waktu, bukan dua commit (Q4.7, Q4.14).
+
 Pada rencana ini, paling banyak **tiga jalur** berjalan bersamaan (utama + dua cabang), pada Okt 2023 sampai Jan 2024 dan Apr 2025 sampai Des 2025.
 
 **Tampilan di situs**
@@ -160,6 +162,9 @@ Pada rencana ini, paling banyak **tiga jalur** berjalan bersamaan (utama + dua c
 
 - `branch` bernilai `main` atau id cabang. `type` bernilai `education`, `work`, `internship`, `training`, atau `certification`.
 - Cabang menyatu pada kejadian terakhirnya, kecuali diberi `ongoing: true`. Tanggal ditulis `YYYY-MM` dan ditampilkan dengan format bulan-tahun (lihat `03-i18n.md`). `summary` boleh dikosongkan.
+- `end` (opsional, `YYYY-MM`): kejadian berupa rentang waktu dalam **satu kartu**, misalnya Harisenin dan MBKM. Cabangnya bercabang tepat di bawah kartu itu dan menyatu tepat di atasnya; kartu menampilkan "Mei 2026 – Juli 2026" (Q4.14).
+- `current: true` (opsional): kejadian yang masih berjalan (pekerjaan saat ini). Kartu menampilkan "Februari 2026 – Sekarang" dan penanda HEAD.
+- Kejadian bertanggal sama ditampilkan sesuai urutan di berkas data.
 
 **Daftar kejadian** (dari CV dan keputusan owner; terbaru dulu):
 
@@ -403,6 +408,8 @@ Catatan: `project:noEnglish` hanya muncul saat bahasa Inggris dipilih dan `en.md
 - Q4.11. Nomor telepon dihapus dari CV publik; rincian PT Intramedika Global Digital diringkas.
 - Q4.12. CV ditampilkan di halaman sendiri `/cv` (pratinjau Google Docs di iframe, ditambah unduh PDF dan buka di tab baru), bukan langsung terunduh. Tombol hero menjadi "Lihat CV", dan navbar mendapat tautan CV.
 - Q4.13. Di beranda, tautan navigasi tampil dulu sebagai deretan tombol di hero (Lihat CV, Pengalaman, Project, Kontak) dan baru muncul di navbar desktop setelah deretan itu tergulir lewat; tautan navbar disembunyikan secara visual saja agar tetap terbaca screen reader. Tombol menu mobile selalu terlihat dan bisa ditutup dengan mengetuk di luar panel. `scroll-padding-top` dipasang untuk WCAG 2.2 Focus Not Obscured. Rekomendasi ini ditinjau dengan skill ui-ux-pro-max (2026-10-31); panduan "Focus Not Obscured", "Sticky Navigation", dan pola landing "Hero + Features + CTA" terverifikasi di basis datanya, sedangkan detail pola "muncul setelah digulir" dan menu mobile adalah panduan umum karena tidak ada entri yang cocok.
+- Q4.14. Tabel "Daftar kejadian" (14 kejadian) yang berlaku, bukan jumlah commit di diagram Mermaid. Kejadian berentang (Harisenin, MBKM) memakai kolom opsional `end` dalam satu kartu, dan pekerjaan saat ini memakai `current: true` untuk penanda HEAD. Diputuskan saat implementasi (2026-10-31) untuk menyelaraskan tabel dengan Q4.7; menunggu konfirmasi owner.
+- Q4.15. Experience dikerjakan dalam dua tahap di branch `feat/experience`: (1) data, algoritma penempatan jalur, dan daftar kartu yang aksesibel; (2) graph SVG, label cabang, legenda, dan penanda HEAD.
 - Maskot diganti dari kucing menjadi **berang-berang** (lihat `01-overview.md` dan `02-design-system.md`).
 
 ## Pertanyaan terbuka
