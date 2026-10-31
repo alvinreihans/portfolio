@@ -1,0 +1,8 @@
+{
+  "_review": ["back", "next", "readStory", "viewDemo", "viewRepo"],
+  "back": "Semua project",
+  "next": "Project berikutnya",
+  "readStory": "Baca ceritanya",
+  "viewDemo": "Lihat demo",
+  "viewRepo": "Lihat repo"
+}
