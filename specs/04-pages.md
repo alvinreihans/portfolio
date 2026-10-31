@@ -1,6 +1,6 @@
 # 04 - Pages
 
-Status: **Approved** (disetujui owner, 2026-10-31; revisi section 3 Experience, Q4.14 sampai Q4.21, disetujui 2026-10-31). Tautan kredensial sertifikat dan Q4.22 disetujui 2026-11-01.
+Status: **Approved** (disetujui owner, 2026-10-31; revisi section 3 Experience, Q4.14 sampai Q4.21, disetujui 2026-10-31). Tautan kredensial sertifikat dan Q4.22 disetujui 2026-11-01. Pemandangan dan Contact di semua halaman (Q7.9 di `07-scenery.md`), aset brand (Q4.24), dan 404 tanpa berang-berang besar (Q4.26) disetujui 2026-11-01.
 
 Spec ini menjabarkan konten dan layout tiap route dari `01-overview.md`. Tampilan visual mengikuti `02-design-system.md`, bahasa mengikuti `03-i18n.md`, dan cerita project mengikuti `06-project-stories.md`. Sumber data konten: CV owner (versi Indonesia dan Inggris) dan situs lama.
 
@@ -18,7 +18,7 @@ Spec ini menjabarkan konten dan layout tiap route dari `01-overview.md`. Tampila
 - **Skip link** "Lompat ke konten" sebagai elemen pertama yang bisa difokuskan (tampil saat difokus).
 - **Navbar** (menempel di atas, tinggi 64px): logo `alvinreihans` (tautan ke `/`), tautan Pengalaman, Project, Kontak (sesuai urutan section), tautan **CV** (ke `/cv`), tombol tema (ikon), dan tombol bahasa (ikon bendera). Tautan CV di navbar memastikan CV bisa dibuka dari halaman mana pun (G2 di `01-overview.md`).
 - **Konten utama** di dalam `<main id="content">`.
-- **Footer** dengan section Contact (di halaman utama) atau footer ringkas (di halaman lain).
+- **Langit, adegan, dan Contact** di setiap halaman: langit selebar halaman di belakang isi, lalu adegan acak dan section Contact di atas tekstur tanah, berakhir dengan baris copyright (`07-scenery.md`, Q7.9).
 
 ### Perilaku navbar
 
@@ -249,7 +249,7 @@ Urutan dari atas ke bawah:
 3. **Pemberitahuan bahasa** (hanya jika perlu): jika `en.md` belum ada saat bahasa Inggris dipilih, tampil di atas cerita: "This story isn't available in English yet. Showing the Indonesian version."
 4. **Cerita** (markdown): satu kolom dengan lebar baca maksimal sekitar 70 karakter. Gambar mengikuti lebar kolom, diagram `flow` dirender di tempatnya.
 5. **Project berikutnya:** tautan ke project berikutnya menurut `order` (project terakhir kembali ke yang pertama).
-6. Footer ringkas.
+6. Adegan dan Contact (sama dengan beranda).
 
 Slug yang tidak ada menampilkan halaman 404 yang sama.
 
@@ -264,7 +264,7 @@ Referensi tampilan: `mockups/d-cv-page.html` (lokal). Urutan dari atas ke bawah:
 5. Tombol utama **Unduh PDF** (tautan ekspor) dan tombol sekunder **Buka di tab baru** (tautan pratinjau). Keduanya ke dokumen sesuai bahasa aktif, membuka tab baru. Di bawah 640px kedua tombol selebar layar.
 6. **Bingkai pratinjau:** kartu berisi `<iframe>` ke tautan pratinjau Google Docs (lihat `03-i18n.md`), tinggi sekitar 80% layar (70% di mobile), dengan `title` deskriptif sesuai bahasa, `loading="lazy"`, dan teks "Memuat pratinjau…" sampai iframe selesai dimuat.
 7. Petunjuk kecil: jika pratinjau terlalu kecil di HP, gunakan "Buka di tab baru" atau unduh PDF.
-8. Footer ringkas.
+8. Adegan dan Contact (sama dengan beranda).
 
 Perilaku dan batasan:
 - Isi bingkai adalah tampilan pratinjau milik Google (latar dan kontrol kecil Google), tidak mengikuti tema Day/Night. Yang mengikuti tema adalah halaman di sekelilingnya.
@@ -274,9 +274,9 @@ Perilaku dan batasan:
 
 ## 404
 
-- Maskot berang-berang besar (sekitar 192px) dengan pose sesuai tema.
+- Tidak ada berang-berang besar (Q4.26). Berang-berang di adegan di bawah halaman sudah menemani, dan tetap bisa disapa.
 - Heading "404" (Jersey 10), pesan singkat, dan tombol utama **Kembali ke beranda**.
-- Muncul untuk path yang tidak dikenal dan slug project yang tidak ada, di dalam layout global (navbar dan footer tetap tampil).
+- Muncul untuk path yang tidak dikenal dan slug project yang tidak ada, di dalam layout global (navbar, langit, adegan, dan Contact tetap tampil).
 
 ## Responsif
 
@@ -327,7 +327,9 @@ Metadata statis di `index.html`, dalam **bahasa Inggris** (keputusan Q3.7 di `03
 - Dihasilkan dari templat HTML sekali jalan (tangkapan layar), lalu berkasnya yang disimpan. Pembuatan menunggu sprite berang-berang disetujui (lihat `02-design-system.md`).
 - Catatan: pratinjau tautan di LinkedIn dan platform lain menyimpan cache; perubahan gambar bisa baru terlihat setelah cache diperbarui.
 
-**Favicon:** kepala berang-berang pixel, dalam `public/favicon.svg` ditambah `favicon-32.png` dan `apple-touch-icon.png` (180x180).
+**Favicon:** kepala berang-berang pixel (baris kepala dari sprite yang sama, dibingkai di grid 16x16), dalam `public/favicon.svg` ditambah `favicon-32.png` dan `apple-touch-icon.png` (180x180, berlatar `--bg` Day karena iOS mengisi bagian transparan dengan hitam).
+
+**Pembuatan:** `npm run brand` (`scripts/generate-brand.mjs`) membuat favicon dan gambar Open Graph dari sprite di `src/components/beaver.ts` memakai Playwright (sudah menjadi devDependency), lalu hasilnya di-commit ke `public/`. Sprite yang sama dipakai adegan, favicon, dan gambar Open Graph, jadi semua tampilan berang-berang selalu sama (Q4.24).
 
 `robots.txt` dan `sitemap.xml` (berisi `/` dan URL project) dibahas di `05-deployment.md`.
 
@@ -404,7 +406,7 @@ Catatan: `project:noEnglish` hanya muncul saat bahasa Inggris dipilih dan `en.md
 - [ ] AC8. Halaman detail menampilkan tautan kembali, kotak fakta, cerita, dan tautan project berikutnya; slug tak dikenal menampilkan 404.
 - [ ] AC9. Tombol "Salin email" menyalin alamat yang benar dan memberi umpan balik yang dibacakan screen reader.
 - [ ] AC10. Footer menampilkan tahun berjalan otomatis.
-- [ ] AC11. Halaman 404 menampilkan maskot dan tombol kembali ke beranda, dan muncul untuk path yang tidak dikenal.
+- [ ] AC11. Halaman 404 menampilkan pesan, tombol kembali ke beranda, serta langit, adegan, dan Contact seperti halaman lain, dan muncul untuk path yang tidak dikenal.
 - [ ] AC12. Hero tidak memuat foto profil, badge, atau maskot.
 - [ ] AC13. Tidak ada scroll horizontal di 320px dan seterusnya, pada kedua bahasa dan kedua tema.
 - [ ] AC14. `index.html` memuat canonical `https://alvinreihans.web.id/`, metadata dasar berbahasa Inggris, dan tag Open Graph lengkap (`og:locale` `en_US`) dengan `og:image` yang mengarah ke berkas yang ada.
@@ -457,6 +459,9 @@ Catatan: `project:noEnglish` hanya muncul saat bahasa Inggris dipilih dan `en.md
 - Q4.21. Legenda di atas graph dihapus (owner, 2026-10-31): label jenis dan chip label cabang di kartu sudah membedakan jalur, legendanya tersembunyi dari screen reader sehingga tidak membawa informasi, dan tanpa legenda kartu terbaru tampil lebih cepat.
 - Q4.22. "Lihat semua (N)" diganti tombol "Lihat N lainnya" / "Sembunyikan" yang mengembangkan sisa sertifikat dengan animasi dan ikon panah, tanpa mengulang sorotan (owner: tombol lama terasa kaku, 2026-11-01).
 - Q4.23. Tinjauan kartu satu per satu selesai (owner, 2026-11-01). Mulai kuliah, Bangkit, Riset MBKM & Magang, Skripsi, AWS Back-End Academy, Lulus, dan Intramedika sesuai bentuk sekarang; Harisenin tetap satu kartu (Mei – Agu 2026), tidak dipecah menjadi mulai lalu selesai.
+- Q4.24. Maskot 404, favicon, dan gambar Open Graph dikerjakan dalam satu branch (owner, 2026-11-01), semuanya dari satu sprite di `src/components/beaver.ts`. 404 memakai pose Day duduk berkedip dan Night tidur dengan "z" melayang; favicon dan gambar Open Graph dibuat ulang dengan `npm run brand`. Bagian 404-nya dibatalkan oleh Q4.26.
+- Q4.25. Berang-berang di 404 memakai versi detail 40x34 supaya terlihat lebih halus di ukuran besar (owner, 2026-11-01). Versi ini dihitung dari sprite 20x17 (`beaverDetailRows` di `src/components/beaver.ts`), jadi bentuknya tetap sama dengan yang di adegan; adegan dan favicon tetap memakai 20x17. **Dibatalkan oleh Q4.26.**
+- Q4.26. Berang-berang besar di 404 dihapus (owner, 2026-11-01): sejak adegan tampil di semua halaman (Q7.9), dua berang-berang di satu layar terasa aneh. 404 cukup berisi pesan dan tombol kembali, dengan berang-berang di adegan di bawahnya. Komponen dan versi detail 40x34 ikut dihapus.
 - Maskot diganti dari kucing menjadi **berang-berang** (lihat `01-overview.md` dan `02-design-system.md`).
 
 ## Pertanyaan terbuka

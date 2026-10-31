@@ -110,7 +110,7 @@ Hanya subset yang dibutuhkan (Latin) dan format `woff2` yang dimuat, agar ukuran
 | **Diagram (node)** | `--chip`, radius 6px; node sorotan memakai `--accent` + `--on-accent`. Detail sintaks di `06-project-stories.md`. |
 | **Tombol tema** | Satu tombol ikon pixel yang bergantian antara matahari bersinar (Day) dan bulan sabit (Night), digambar di grid 11x11 dengan 2px per piksel. Ikon menunjukkan tema yang sedang aktif. Nama aksesibel (`aria-label`) menyebut aksinya, misalnya "Ganti ke tema Night" / "Switch to Night theme", mengikuti bahasa yang dipilih; label berubah mengikuti keadaan, jadi tanpa `aria-pressed`. Area klik minimal **44x44px**, fokus terlihat. |
 | **Tombol bahasa** | Satu tombol ikon yang menampilkan bendera pixel bahasa yang sedang aktif: bendera Indonesia untuk bahasa Indonesia, bendera Amerika Serikat untuk bahasa Inggris, tanpa teks kode. Menekannya berpindah ke bahasa lain. Nama aksesibel menyebut aksinya dalam bahasa aktif ("Ganti ke bahasa Inggris" / "Switch to Indonesian"), tanpa `aria-pressed`. Bendera digambar dengan 1px per piksel agar detailnya terbaca: bendera AS 25x13 piksel di dalam bingkai (13 garis masing-masing 1 piksel, kanton biru setinggi 7 garis, bintang selang-seling), bendera Indonesia 25x14 piksel (merah dan putih sama tinggi). Bingkai 1 piksel memakai warna teks agar bagian putih tetap terlihat di latar terang. Area klik minimal **44x44px**, fokus terlihat. |
-| **Footer** | Latar `--footer`, teks `--footer-ink`, heading Jersey 10. Di halaman utama, Contact dan footer memakai tekstur tanah adegan dengan warna teks per tekstur (lihat `07-scenery.md`). |
+| **Footer** | Latar `--footer`, teks `--footer-ink`, heading Jersey 10. Di setiap halaman, Contact dan footer memakai tekstur tanah adegan dengan warna teks per tekstur (lihat `07-scenery.md`). |
 
 ## Dekorasi langit (pixel art)
 
@@ -132,7 +132,7 @@ Hanya subset yang dibutuhkan (Latin) dan format `woff2` yang dimuat, agar ukuran
 | Tempat | Ukuran | Catatan |
 |---|---|---|
 | Footer / section contact | sekitar 80px | Duduk di tepi atas footer (Day) atau tidur telentang mengapung dengan "z z" (Night) |
-| Halaman 404 | sekitar 192px | Satu-satunya tempat berang-berang boleh besar |
+| Halaman 404 | – | Tidak ada berang-berang besar; berang-berang di adegan di setiap halaman sudah menemani (Q4.26 di `04-pages.md`) |
 | Aksen kecil (misalnya di samping judul section atau akhir halaman project) | 40 sampai 64px | Opsional, tidak lebih dari satu per layar |
 
 - **Pose mengikuti tema:** Day = duduk dan sesekali berkedip; Night = tidur telentang mengapung. Pose berganti seiring tema.
@@ -164,7 +164,7 @@ Aturan tambahan:
 - [ ] AC4. Semua kontrol interaktif punya area klik minimal 44x44px dan indikator fokus yang terlihat dengan kontras minimal 3:1.
 - [ ] AC5. Mengganti tema tidak menimbulkan layout shift, dan tidak ada kilatan tema salah saat halaman dimuat.
 - [ ] AC6. Dengan `prefers-reduced-motion` aktif, bintang, kedipan berang-berang, dan transisi tema berhenti.
-- [ ] AC7. Maskot tampil di adegan halaman utama (di atas Contact) dan di 404 pada kedua tema dengan pose yang sesuai, dan tidak muncul di hero.
+- [ ] AC7. Maskot tampil di adegan di atas Contact di setiap halaman (termasuk 404) pada kedua tema dengan pose yang sesuai, dan tidak muncul di hero.
 - [ ] AC8. Tidak ada scroll horizontal di lebar 320px ke atas pada kedua tema.
 - [ ] AC9. Situs tidak membuat permintaan ke Google Fonts atau CDN font lain; font dimuat dari domain sendiri dalam format `woff2`.
 - [ ] AC10. Tombol tema bisa dioperasikan dengan keyboard (Enter dan Spasi), punya `aria-label` yang menyebut aksi dalam bahasa aktif, dan label itu ikut berubah saat bahasa atau tema berganti.

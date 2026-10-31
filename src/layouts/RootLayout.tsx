@@ -1,15 +1,13 @@
 import { useTranslation } from 'react-i18next';
-import { Outlet, ScrollRestoration, useLocation } from 'react-router';
+import { Outlet, ScrollRestoration } from 'react-router';
 
 import { PageSky } from '../components/home/PageSky.tsx';
 import { SceneryFooter } from '../components/home/SceneryFooter.tsx';
-import { SiteFooter } from '../components/SiteFooter.tsx';
 import { SiteHeader } from '../components/SiteHeader.tsx';
 import { useRouteFocus } from '../hooks/useRouteFocus.ts';
 
 export function RootLayout() {
   const { t } = useTranslation();
-  const isHome = useLocation().pathname === '/';
   useRouteFocus();
 
   return (
@@ -21,10 +19,10 @@ export function RootLayout() {
         {t('skipToContent')}
       </a>
       <SiteHeader />
-      {/* The home page has a page-wide sky behind its content and ends in the pixel scene
-          (specs/07-scenery.md); other pages keep the plain footer (Q7.5). */}
+      {/* Every page has a page-wide sky behind its content and ends in the pixel scene with
+          Contact (specs/07-scenery.md, Q7.9). */}
       <div className="relative flex flex-1 flex-col">
-        {isHome && <PageSky />}
+        <PageSky />
         <main
           id="content"
           tabIndex={-1}
@@ -33,7 +31,7 @@ export function RootLayout() {
           <Outlet />
         </main>
       </div>
-      {isHome ? <SceneryFooter /> : <SiteFooter />}
+      <SceneryFooter />
       <ScrollRestoration />
     </div>
   );

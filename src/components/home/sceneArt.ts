@@ -1,6 +1,7 @@
 // Pixel scenes from specs/07-scenery.md, ported from mockups/g-scenes.html. Everything is
 // drawn in scene pixels on a small canvas that CSS scales up. Loaded lazily with the scene.
 import type { Theme } from '../../theme/theme.ts';
+import { BEAVER, BEAVER_COLORS, BEAVER_WIDTH, eyeRows, type Eyes } from '../beaver.ts';
 import { paintGround, sceneRows, type SceneName } from './scenery.ts';
 
 export interface SceneFrame {
@@ -171,40 +172,7 @@ function mulberry(seed: number) {
   };
 }
 
-// ---------- beaver mascot (after the owner's reference image) ----------
-// O outline, B fur, L belly, K eyes, T teeth, D tail, G sunglasses.
-const BEAVER_COLORS: Palette = {
-  O: '#6c3200',
-  B: '#e0832e',
-  L: '#f7c98b',
-  K: '#3b1c02',
-  T: '#ffffff',
-  D: '#a5541a',
-  G: '#101828',
-};
-const BEAVER = [
-  '.......OO....OO.....',
-  '......OBBOOOOBBO....',
-  '.....OBBBBBBBBBBO...',
-  '.....OBBBBBBBBBBO...',
-  '....OBBKBBBBBBKBBO..',
-  '....OBBBBBKKBBBBBO..',
-  '....OBBBBBTTBBBBBO..',
-  '.....OBBBBBBBBBBO...',
-  '....OBBBBBBBBBBBBO..',
-  '...OBBBOLLLLLOBBBO..',
-  '.OOOBBBLLLLLLLBBBO..',
-  'ODDDOBBLLLLLLLBBBO..',
-  'ODDDDOBLLLLLLLBBBO..',
-  'ODDDDOBBLLLLLBBBBO..',
-  '.ODDDOBBBBBBBBBBBO..',
-  '..OOOOBBBOOOOBBBOO..',
-  '.....OOOO....OOOO...',
-];
-const BEAVER_WIDTH = BEAVER[0].length;
-
-type Eyes = 'open' | 'closed' | 'wide' | 'shades';
-
+// ---------- beaver mascot (sprite in ../beaver.ts) ----------
 interface BeaverPose {
   eyes: Eyes;
   look?: number;
@@ -368,12 +336,12 @@ class Painter {
     // Greeted: a sleeping beaver wakes up, an awake one opens its eyes wide.
     if (surprise > 0) eyes = sleepy ? 'open' : 'wide';
     else if (eyes === 'open' && !still && frame % 28 < 2) eyes = 'closed';
-    const eyeRows = this.eyeRows(eyes, pose.look ?? 0);
+    const swapped = eyeRows(eyes, pose.look ?? 0);
     const wag = !still && (surprise > 0 ? frame % 2 === 0 : Math.floor(frame / 3) % 4 === 0);
     const x0 = Math.round(x);
     const y0 = Math.round(y + hop);
     for (let j = 0; j < BEAVER.length; j++) {
-      const row = eyeRows[j] ?? BEAVER[j];
+      const row = swapped[j] ?? BEAVER[j];
       for (let i = 0; i < row.length; i++) {
         const key = row[i];
         let color = BEAVER_COLORS[key];
@@ -394,23 +362,6 @@ class Painter {
     }
     // The resting position, so the greeting button does not jump with the hop.
     this.beaver = { x: x0, y: Math.round(y), w: BEAVER_WIDTH, h: BEAVER.length };
-  }
-
-  /** Rows 3 and 4 of the sprite for the given eyes; 'wide' adds a pixel above each eye. */
-  eyeRows(eyes: Eyes, look: number): Record<number, string> {
-    const row4 = '....OBBBBBBBBBBBBO..'.split('');
-    const row3 = BEAVER[3].split('');
-    if (eyes === 'shades') for (let i = 6; i <= 15; i++) row4[i] = 'G';
-    else if (eyes === 'closed') row4[7] = row4[8] = row4[13] = row4[14] = 'O';
-    else {
-      row4[7 + look] = 'K';
-      row4[14 + look] = 'K';
-      if (eyes === 'wide') {
-        row3[7 + look] = 'K';
-        row3[14 + look] = 'K';
-      }
-    }
-    return { 3: row3.join(''), 4: row4.join('') };
   }
 
   zz(x: number, y: number) {
