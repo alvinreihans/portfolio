@@ -1,0 +1,11 @@
+{
+  "_review": ["back", "badge", "intro", "download", "openNewTab", "loading", "hint", "frameTitle"],
+  "back": "Kembali ke beranda",
+  "badge": "Selalu versi terbaru",
+  "intro": "Full-stack developer. Pratinjau di bawah diambil langsung dari dokumen CV saya, jadi selalu versi terbaru.",
+  "download": "Unduh PDF",
+  "openNewTab": "Buka di tab baru",
+  "loading": "Memuat pratinjau…",
+  "hint": "Pratinjau terlalu kecil di HP? Gunakan \"Buka di tab baru\" atau unduh PDF-nya.",
+  "frameTitle": "Pratinjau CV Alvin Reihansyah Makarim (bahasa Indonesia)"
+}

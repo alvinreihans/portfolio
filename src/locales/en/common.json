@@ -1,0 +1,38 @@
+{
+  "_review": [
+    "nav.experience",
+    "nav.projects",
+    "nav.contact",
+    "nav.cv",
+    "skipToContent",
+    "externalLink",
+    "language.label",
+    "theme.switchToNight",
+    "theme.switchToDay",
+    "contact.mailSubject",
+    "title.home",
+    "title.page"
+  ],
+  "nav": {
+    "experience": "Experience",
+    "projects": "Projects",
+    "contact": "Contact",
+    "cv": "CV"
+  },
+  "skipToContent": "Skip to content",
+  "externalLink": "(external link)",
+  "language": {
+    "label": "Language"
+  },
+  "theme": {
+    "switchToNight": "Switch to Night theme",
+    "switchToDay": "Switch to Day theme"
+  },
+  "contact": {
+    "mailSubject": "Hello Alvin, I would like to get in touch"
+  },
+  "title": {
+    "home": "Alvin Reihansyah Makarim · Full-Stack Developer",
+    "page": "{{page}} · alvinreihans"
+  }
+}

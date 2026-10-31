@@ -1,0 +1,11 @@
+{
+  "_review": ["back", "badge", "intro", "download", "openNewTab", "loading", "hint", "frameTitle"],
+  "back": "Back to home",
+  "badge": "Always up to date",
+  "intro": "Full-stack developer. The preview below comes straight from my CV document, so it is always the latest version.",
+  "download": "Download PDF",
+  "openNewTab": "Open in new tab",
+  "loading": "Loading preview…",
+  "hint": "Preview too small on your phone? Use \"Open in new tab\" or download the PDF.",
+  "frameTitle": "CV preview of Alvin Reihansyah Makarim (English)"
+}

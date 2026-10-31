@@ -1,6 +1,8 @@
 import '@fontsource/jersey-10/latin.css';
 import '@fontsource-variable/manrope/wght.css';
 import './styles/index.css';
+// Must run before the first render so the initial language is already set.
+import './i18n/index.ts';
 
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';

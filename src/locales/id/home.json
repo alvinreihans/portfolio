@@ -1,0 +1,50 @@
+{
+  "_review": [
+    "hero.titleLine1",
+    "hero.titleLine2",
+    "hero.lead",
+    "hero.cv",
+    "hero.contact",
+    "experience.heading",
+    "experience.type.education",
+    "experience.type.work",
+    "experience.type.internship",
+    "experience.type.training",
+    "experience.type.certification",
+    "experience.present",
+    "works.heading",
+    "contact.heading",
+    "contact.body",
+    "contact.email",
+    "contact.copy",
+    "contact.copied"
+  ],
+  "hero": {
+    "titleLine1": "Membangun sistem backend",
+    "titleLine2": "yang andal.",
+    "lead": "Saya Alvin, full-stack developer lulusan Teknik Informatika Universitas Lampung. Saya tertarik pada perancangan sistem backend yang andal, teruji, dan mudah diaudit, dengan Node.js, TypeScript, React, Express.js, dan PostgreSQL, serta pengalaman men-deploy ke produksi di AWS dan Google Cloud melalui CI/CD terotomatisasi.",
+    "cv": "Lihat CV",
+    "contact": "Hubungi saya"
+  },
+  "experience": {
+    "heading": "Pengalaman",
+    "type": {
+      "education": "Kuliah",
+      "work": "Pekerjaan",
+      "internship": "Magang",
+      "training": "Pelatihan",
+      "certification": "Sertifikasi"
+    },
+    "present": "Sekarang"
+  },
+  "works": {
+    "heading": "Project"
+  },
+  "contact": {
+    "heading": "Mari berdiskusi.",
+    "body": "Saya terbuka untuk peluang baru. Untuk pekerjaan, kolaborasi, atau sekadar menyapa, silakan kirim email.",
+    "email": "Kirim email",
+    "copy": "Salin email",
+    "copied": "Email disalin"
+  }
+}

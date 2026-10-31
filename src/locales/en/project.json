@@ -1,0 +1,9 @@
+{
+  "_review": ["back", "next", "readStory", "viewDemo", "viewRepo", "noEnglish"],
+  "back": "All projects",
+  "next": "Next project",
+  "readStory": "Read the story",
+  "viewDemo": "View demo",
+  "viewRepo": "View repo",
+  "noEnglish": "This story isn't available in English yet. Showing the Indonesian version."
+}

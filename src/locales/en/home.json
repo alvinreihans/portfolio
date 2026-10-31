@@ -1,0 +1,50 @@
+{
+  "_review": [
+    "hero.titleLine1",
+    "hero.titleLine2",
+    "hero.lead",
+    "hero.cv",
+    "hero.contact",
+    "experience.heading",
+    "experience.type.education",
+    "experience.type.work",
+    "experience.type.internship",
+    "experience.type.training",
+    "experience.type.certification",
+    "experience.present",
+    "works.heading",
+    "contact.heading",
+    "contact.body",
+    "contact.email",
+    "contact.copy",
+    "contact.copied"
+  ],
+  "hero": {
+    "titleLine1": "Building backend systems",
+    "titleLine2": "that stay reliable.",
+    "lead": "I'm Alvin, a full-stack developer with a degree in Informatics Engineering from the University of Lampung. I'm interested in designing backend systems that are reliable, well-tested, and auditable, working with Node.js, TypeScript, React, Express.js, and PostgreSQL, and I have deployed to production on AWS and Google Cloud through automated CI/CD.",
+    "cv": "View CV",
+    "contact": "Contact me"
+  },
+  "experience": {
+    "heading": "Experience",
+    "type": {
+      "education": "Education",
+      "work": "Work",
+      "internship": "Internship",
+      "training": "Training",
+      "certification": "Certification"
+    },
+    "present": "Present"
+  },
+  "works": {
+    "heading": "Projects"
+  },
+  "contact": {
+    "heading": "Let's talk.",
+    "body": "I'm open to new opportunities. For a job, a collaboration, or just to say hello, feel free to send an email.",
+    "email": "Send email",
+    "copy": "Copy email",
+    "copied": "Email copied"
+  }
+}
