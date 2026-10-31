@@ -1,5 +1,8 @@
 @import 'tailwindcss';
 
+/* `night:` styles apply under the Night theme (data-theme on <html>). */
+@custom-variant night (&:where([data-theme='night'], [data-theme='night'] *));
+
 /* Design tokens from specs/02-design-system.md. Contrast ratios are verified there. */
 :root,
 [data-theme='day'] {
@@ -19,6 +22,7 @@
   --footer: #6c3200;
   --footer-ink: #f5e6dc;
   --focus: #b83a08;
+  --cloud-outline: var(--muted);
   color-scheme: light;
 }
 
@@ -39,6 +43,7 @@
   --footer: #1d0e03;
   --footer-ink: #f5e6dc;
   --focus: #ff5e24;
+  --cloud-outline: var(--line);
   color-scheme: dark;
 }
 
@@ -69,6 +74,12 @@
 }
 
 @layer base {
+  /* Keeps keyboard focus and #section targets clear of the 64px sticky navbar
+     (WCAG 2.2 Focus Not Obscured). */
+  html {
+    scroll-padding-top: 5rem;
+  }
+
   body {
     @apply theme-fade bg-bg font-sans text-ink antialiased;
   }
@@ -88,5 +99,20 @@
 
   @media (prefers-reduced-motion: reduce) {
     transition: none;
+  }
+}
+
+/* Night stars blink in two steps; they stay still for reduced motion. */
+@keyframes twinkle {
+  50% {
+    opacity: 0.25;
+  }
+}
+
+.star {
+  animation: twinkle 3s steps(2) infinite;
+
+  @media (prefers-reduced-motion: reduce) {
+    animation: none;
   }
 }

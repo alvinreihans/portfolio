@@ -24,7 +24,10 @@ Spec ini menjabarkan konten dan layout tiap route dari `01-overview.md`. Tampila
 
 - Tautan navbar menuju section di halaman utama (`/#experience`, `/#works`, `/#contact`). Dari `/projects/:slug`, tautan itu membawa pengunjung ke `/` lalu menggulir ke section tujuan.
 - Penggulungan ke section halus (`smooth`), kecuali `prefers-reduced-motion` aktif (langsung loncat). Section memakai `scroll-margin-top` agar tidak tertutup navbar.
-- **Mobile (di bawah 640px):** tautan disembunyikan dan diganti tombol menu. Menu terbuka sebagai panel di bawah navbar dengan `aria-expanded`, bisa ditutup dengan `Esc`, menutup otomatis setelah memilih tautan, dan fokus kembali ke tombol menu saat ditutup. Tombol tema dan tombol bahasa tetap terlihat di navbar.
+- **Fokus tidak tertutup navbar** (WCAG 2.2 AA, Focus Not Obscured): `<html>` memakai `scroll-padding-top` setinggi navbar ditambah jarak, sehingga elemen yang difokus dengan keyboard tidak bersembunyi di balik navbar yang menempel, di semua halaman.
+- **Tautan navbar di beranda (desktop, 640px ke atas):** selama deretan tombol hero masih terlihat di layar, tautan Pengalaman, Project, Kontak, dan CV di navbar **disembunyikan secara visual saja** (opacity 0, tidak bisa diklik mouse), tetapi tetap ada di pohon aksesibilitas sehingga dibacakan screen reader. Tautan langsung terlihat begitu fokus keyboard masuk ke salah satunya. Setelah deretan tombol hero tergulir keluar layar, tautan muncul dengan efek pudar (hanya opacity, sekitar 200ms masuk dan 140ms keluar); saat pengunjung menggulir kembali ke atas, tautan memudar lagi. Posisi deretan tombol dipantau dengan IntersectionObserver. Efek pudar mati saat `prefers-reduced-motion` aktif. Status akhir selalu benar walau pengunjung menggulir naik-turun dengan cepat.
+- **Di halaman selain beranda**, tautan navbar selalu terlihat.
+- **Mobile (di bawah 640px):** tautan disembunyikan dan diganti tombol menu, yang **selalu terlihat** di semua halaman dan semua posisi gulir (screen reader di HP menyorot elemen satu per satu, jadi tombol yang tersembunyi secara visual akan membingungkan). Menu terbuka sebagai panel di bawah navbar dengan `aria-expanded`, bisa ditutup dengan `Esc`, dengan mengetuk di luar panel, dan otomatis setelah memilih tautan; fokus kembali ke tombol menu saat ditutup lewat `Esc`. Tombol tema dan tombol bahasa tetap terlihat di navbar.
 - Tidak ada penanda section aktif (scrollspy) pada versi pertama.
 
 ### Perilaku antar halaman (SPA)
@@ -40,7 +43,7 @@ Urutan section: Hero, Tech stack, Experience, Works, Contact.
 
 - Heading Jersey 10 dua baris; baris kedua beraksen (`--accent-display`).
 - Paragraf pembuka singkat bersumber dari ringkasan di CV, dengan peran **full-stack developer** (lihat Draf teks). Bagian ringkasan CV yang menyebut hal spesifik tentang pekerjaan di PT Intramedika Global Digital **tidak** dipakai.
-- Tombol utama **Lihat CV** (tautan internal ke halaman `/cv`) dan tombol sekunder **Hubungi saya** (`mailto:`).
+- **Deretan tombol hero:** tombol utama **Lihat CV** (oranye, tautan internal ke `/cv`), lalu tombol sekunder **Pengalaman**, **Project**, dan **Kontak** (menggulir ke section-nya). Hanya ada satu tombol oranye. Di bawah 640px tombol tersusun 2×2, setiap tombol setinggi minimal 44px dengan jarak minimal 8px. Kontak menggantikan "Hubungi saya": section Kontak sudah menyediakan Kirim email dan Salin email.
 - Tautan sosial berupa ikon: LinkedIn, GitHub, dan Instagram.
 - Dekorasi langit di sisi kanan (matahari/awan di Day, bulan/bintang di Night). Tidak ada foto profil, tidak ada badge, dan tidak ada maskot di hero.
 
@@ -319,7 +322,7 @@ Teks Indonesia adalah sumber. Semua entri di bawah ditandai `_review` sampai own
 | `home:hero.titleLine2` | yang andal. | that stay reliable. |
 | `home:hero.lead` | Saya Alvin, full-stack developer lulusan Teknik Informatika Universitas Lampung. Saya tertarik pada perancangan sistem backend yang andal, teruji, dan mudah diaudit, dengan Node.js, TypeScript, React, Express.js, dan PostgreSQL, serta pengalaman men-deploy ke produksi di AWS dan Google Cloud melalui CI/CD terotomatisasi. | I'm Alvin, a full-stack developer with a degree in Informatics Engineering from the University of Lampung. I'm interested in designing backend systems that are reliable, well-tested, and auditable, working with Node.js, TypeScript, React, Express.js, and PostgreSQL, and I have deployed to production on AWS and Google Cloud through automated CI/CD. |
 | `home:hero.cv` | Lihat CV | View CV |
-| `home:hero.contact` | Hubungi saya | Contact me |
+| `home:hero.actions` | Navigasi cepat | Quick links |
 | `home:experience.heading` | Pengalaman | Experience |
 | `home:experience.type.education` | Kuliah | Education |
 | `home:experience.type.work` | Pekerjaan | Work |
@@ -378,6 +381,12 @@ Catatan: `project:noEnglish` hanya muncul saat bahasa Inggris dipilih dan `en.md
 - [ ] AC21. Teks kedua CV publik tidak memuat kata kunci terlarang (`E-Klaim`, `INA-CBG`, `iDRG`, `SIMRS`, `BPJS`) dan rincian Intramedika sesuai versi ringkas.
 - [ ] AC22. Tombol "Lihat CV" di hero dan tautan CV di navbar membuka halaman `/cv`; di sana tautan unduh kedua bahasa menjawab 200 bertipe PDF.- [ ] AC23. `public/og-image.png` berukuran 1200x630 dan di bawah 300 KB; favicon (`favicon.svg`, `favicon-32.png`, `apple-touch-icon.png`) tersedia.
 - [ ] AC24. Halaman `/cv` menampilkan iframe pratinjau dari `docs.google.com` sesuai bahasa aktif, dengan `title` yang sesuai bahasa; teks "Memuat pratinjau…" hilang setelah iframe dimuat; tidak ada scroll horizontal di 320px.
+- [ ] AC25. Hero menampilkan deretan tombol Lihat CV (satu-satunya tombol oranye), Pengalaman, Project, dan Kontak; di bawah 640px tersusun 2×2 dengan tinggi minimal 44px dan jarak minimal 8px.
+- [ ] AC26. Di beranda pada lebar 640px ke atas: saat deretan tombol hero terlihat, tautan navbar tidak terlihat dan tidak bisa diklik mouse, tetapi tetap ada di pohon aksesibilitas dan langsung terlihat saat difokus keyboard; setelah deretan tombol hero tergulir keluar, tautan navbar terlihat dan bisa diklik; saat digulir kembali ke atas, tautan memudar lagi.
+- [ ] AC27. Di halaman selain beranda, tautan navbar selalu terlihat; di bawah 640px tombol menu selalu terlihat di semua halaman dan posisi gulir.
+- [ ] AC28. Mengetuk atau mengklik di luar panel menu mobile menutupnya.
+- [ ] AC29. Elemen yang difokus dengan keyboard tidak pernah tertutup navbar yang menempel (`scroll-padding-top`).
+- [ ] AC30. Efek pudar tautan navbar mati saat `prefers-reduced-motion` aktif.
 
 ## Keputusan
 
@@ -393,6 +402,7 @@ Catatan: `project:noEnglish` hanya muncul saat bahasa Inggris dipilih dan `en.md
 - Q4.10. Hero memakai "full-stack developer".
 - Q4.11. Nomor telepon dihapus dari CV publik; rincian PT Intramedika Global Digital diringkas.
 - Q4.12. CV ditampilkan di halaman sendiri `/cv` (pratinjau Google Docs di iframe, ditambah unduh PDF dan buka di tab baru), bukan langsung terunduh. Tombol hero menjadi "Lihat CV", dan navbar mendapat tautan CV.
+- Q4.13. Di beranda, tautan navigasi tampil dulu sebagai deretan tombol di hero (Lihat CV, Pengalaman, Project, Kontak) dan baru muncul di navbar desktop setelah deretan itu tergulir lewat; tautan navbar disembunyikan secara visual saja agar tetap terbaca screen reader. Tombol menu mobile selalu terlihat dan bisa ditutup dengan mengetuk di luar panel. `scroll-padding-top` dipasang untuk WCAG 2.2 Focus Not Obscured. Rekomendasi ini ditinjau dengan skill ui-ux-pro-max (2026-10-31); panduan "Focus Not Obscured", "Sticky Navigation", dan pola landing "Hero + Features + CTA" terverifikasi di basis datanya, sedangkan detail pola "muncul setelah digulir" dan menu mobile adalah panduan umum karena tidak ada entri yang cocok.
 - Maskot diganti dari kucing menjadi **berang-berang** (lihat `01-overview.md` dan `02-design-system.md`).
 
 ## Pertanyaan terbuka

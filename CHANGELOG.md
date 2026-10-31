@@ -9,6 +9,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- Hero: heading, intro, an action row (View CV, Experience, Projects, Contact), social links (LinkedIn, GitHub, Instagram, icons from Font Awesome Free under CC BY 4.0), and a pixel sky (sun and clouds by day; moon, twinkling stars, and darker clouds by night).
+- Tech stack section with five groups from the CV.
+- On the home page, the desktop navbar links stay visually hidden while the hero action row is on screen and fade in once it scrolls away; they remain available to screen readers and appear on keyboard focus. Tapping outside the mobile menu closes it, and keyboard focus is no longer hidden behind the sticky navbar.
 - Pixel icons: the theme button shows a sun with rays or a crescent moon, and the language control is now a single button with a pixel flag (Indonesia or the United States) that switches to the other language. This also frees up space in the navbar on small phones.
 - Site layout: sticky navbar with links to the Experience, Projects, and Contact sections and the CV page (they also work from other pages), a mobile menu below 640px (closes with Esc or after choosing a link), a skip link, a footer with the current year, and focus moving to the new page heading or section after navigation.
 - Day/Night theme: the first visit follows the system light or dark setting (and follows live changes), the sun/moon button saves a different choice, and picking the system theme again clears it. A small inline script applies the theme before first paint, and the color transition is off for visitors who prefer reduced motion.

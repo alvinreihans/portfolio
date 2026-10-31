@@ -4,6 +4,7 @@
     "nav.projects",
     "nav.contact",
     "nav.cv",
+    "nav.label",
     "nav.openMenu",
     "nav.closeMenu",
     "skipToContent",
@@ -20,6 +21,7 @@
     "projects": "Project",
     "contact": "Kontak",
     "cv": "CV",
+    "label": "Navigasi utama",
     "openMenu": "Buka menu",
     "closeMenu": "Tutup menu"
   },

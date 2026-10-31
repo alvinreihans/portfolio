@@ -4,7 +4,14 @@
     "hero.titleLine2",
     "hero.lead",
     "hero.cv",
-    "hero.contact",
+    "hero.actions",
+    "stack.heading",
+    "stack.groups.languages",
+    "stack.groups.backend",
+    "stack.groups.data",
+    "stack.groups.ai",
+    "stack.groups.cloud",
+    "stack.items.llm",
     "experience.heading",
     "experience.type.education",
     "experience.type.work",
@@ -24,7 +31,20 @@
     "titleLine2": "that stay reliable.",
     "lead": "I'm Alvin, a full-stack developer with a degree in Informatics Engineering from the University of Lampung. I'm interested in designing backend systems that are reliable, well-tested, and auditable, working with Node.js, TypeScript, React, Express.js, and PostgreSQL, and I have deployed to production on AWS and Google Cloud through automated CI/CD.",
     "cv": "View CV",
-    "contact": "Contact me"
+    "actions": "Quick links"
+  },
+  "stack": {
+    "heading": "Tech stack",
+    "groups": {
+      "languages": "Languages & Frontend",
+      "backend": "Backend",
+      "data": "Database & Storage",
+      "ai": "AI & OCR",
+      "cloud": "Cloud & DevOps"
+    },
+    "items": {
+      "llm": "LLM integration"
+    }
   },
   "experience": {
     "heading": "Experience",

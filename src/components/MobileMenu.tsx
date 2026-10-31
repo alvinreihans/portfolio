@@ -31,6 +31,7 @@ export function MobileMenu() {
   const { t } = useTranslation();
   const [open, setOpen] = useState(false);
   const buttonRef = useRef<HTMLButtonElement>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
   const panelId = useId();
 
   useEffect(() => {
@@ -40,12 +41,20 @@ export function MobileMenu() {
       setOpen(false);
       buttonRef.current?.focus();
     }
+    // A tap or click outside the button and panel closes the menu.
+    function onPointerDown(event: PointerEvent) {
+      if (!containerRef.current?.contains(event.target as Node)) setOpen(false);
+    }
     document.addEventListener('keydown', onKeyDown);
-    return () => document.removeEventListener('keydown', onKeyDown);
+    document.addEventListener('pointerdown', onPointerDown);
+    return () => {
+      document.removeEventListener('keydown', onKeyDown);
+      document.removeEventListener('pointerdown', onPointerDown);
+    };
   }, [open]);
 
   return (
-    <div className="sm:hidden">
+    <div ref={containerRef} className="sm:hidden">
       <button
         ref={buttonRef}
         type="button"

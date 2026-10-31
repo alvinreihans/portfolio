@@ -91,3 +91,37 @@ function usFlag(): PixelIconData {
 }
 
 export const FLAG_US = usFlag();
+
+// Cloud for the hero sky: O outline, F fill, S shade. Colors follow the theme tokens.
+const CLOUD_ROWS = [
+  '.....OOOO.........',
+  '....OFFFFO..OOO...',
+  '..OOFFFFFFOOFFFO..',
+  '.OFFFFFFFFFFFFFFO.',
+  'OFFFFFFFFFFFFFFFFO',
+  'OSSSSSSSSSSSSSSSSO',
+  '.OOOOOOOOOOOOOOOO.',
+];
+const CLOUD_FILL: Record<string, string> = {
+  O: 'var(--cloud-outline)',
+  F: 'var(--card)',
+  S: 'var(--chip)',
+};
+
+function fromRows(rows: string[], colors: Record<string, string>, cell: number): PixelIconData {
+  const rects: PixelRect[] = [];
+  rows.forEach((row, y) => {
+    // Merge runs of the same color on a row into one rect.
+    let x = 0;
+    while (x < row.length) {
+      const color = colors[row[x]];
+      let end = x + 1;
+      while (end < row.length && row[end] === row[x]) end++;
+      if (color) rects.push([x, y, end - x, 1, color]);
+      x = end;
+    }
+  });
+  return { width: rows[0].length, height: rows.length, cell, rects };
+}
+
+export const CLOUD = fromRows(CLOUD_ROWS, CLOUD_FILL, 6);
