@@ -12,7 +12,10 @@ export function TechStack() {
       </h2>
       <ul className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
         {STACK.map(({ group, items }) => (
-          <li key={group} className="theme-fade rounded-xl border border-line bg-card p-5">
+          <li
+            key={group}
+            className="theme-fade rounded-xl border border-line bg-card p-5 shadow-card"
+          >
             <h3 className="text-xs font-bold tracking-[0.06em] text-accent-text uppercase">
               {t(`stack.groups.${group}`)}
             </h3>

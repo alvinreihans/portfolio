@@ -1,15 +1,18 @@
-// Experience roadmap data and lane layout (specs/04-pages.md, section 3 and Q4.14).
+// Experience roadmap data and lane layout (specs/04-pages.md, section 3, Q4.14 and Q4.16 to Q4.19).
 import data from './experience.json';
 
 export type Lang = 'id' | 'en';
 type Localized = Record<Lang, string>;
 
+/** `certification` is a commit's label only; certifications have no lane of their own (Q4.16). */
 export type EventType = 'education' | 'work' | 'internship' | 'training' | 'certification';
 
 export interface Branch {
   id: string;
-  kind: 'internship' | 'training' | 'certification';
+  kind: 'education' | 'work' | 'internship' | 'training' | 'thesis';
   label: Localized;
+  /** The branch it forks from and merges back into; `main` when left out. */
+  parent?: string;
   ongoing?: boolean;
 }
 
@@ -26,50 +29,101 @@ export interface ExperienceEvent {
   org: string;
   title: Localized;
   summary?: Localized;
+  /** Results: repositories and publications. */
+  links?: ResultLink[];
+  /** Certificates earned in this program; `highlight` ones are always shown. */
+  certifications?: Certification[];
+}
+
+export interface ResultLink {
+  kind: 'github' | 'orcid' | 'credential';
+  href: string;
+  label: string;
+}
+
+export interface Certification {
+  /** Proper names, shown as issued (not translated). */
+  title: string;
+  issuer: string;
+  /** `YYYY-MM` */
+  date: string;
+  highlight?: boolean;
+  /** Credential page (Credly, Dicoding, Google Cloud Skills Boost, ...). */
+  href?: string;
 }
 
 export interface Experience {
   branches: Branch[];
   events: ExperienceEvent[];
+  /** Certificates that do not belong to a program. */
+  otherCertifications?: Certification[];
 }
 
 export type Row =
   | { kind: 'event'; event: ExperienceEvent; lane: number; lanes: number[] }
-  | { kind: 'merge'; branch: Branch; lane: number; lanes: number[] };
+  | { kind: 'merge'; branch: Branch; lane: number; lanes: number[] }
+  | { kind: 'init'; lane: 0; lanes: number[] };
 
 export interface Layout {
-  /** Newest first. Merge rows sit right above a branch's newest event. */
+  /** Newest first, ending with the `init` commit on main. */
   rows: Row[];
   /** Lanes needed at the widest row, main included. */
   laneCount: number;
+  /** For each branch, the lane it forks from and merges back into. */
+  parentLane: Record<string, number>;
 }
 
 export const MAIN = 'main';
 
 /**
- * Places every event in a lane. Lane 0 is main; a branch takes the smallest free lane right
- * of main from its first event until it merges, and the lane is free again afterwards.
- * `lanes` on each row lists the lanes with a line through that row, for drawing the graph.
+ * Places every event in a lane. Lane 0 is main; a branch takes the smallest free lane from its
+ * first event until it merges, and the lane is free again afterwards. `lanes` on each row lists
+ * the lanes with a line through that row, for drawing the graph.
  */
 export function layoutExperience({ branches, events }: Experience): Layout {
   const byId = new Map(branches.map((branch) => [branch.id, branch]));
-  // Newest first; Array.prototype.sort is stable, so equal dates keep the file's order.
-  const sorted = [...events].sort((a, b) => b.date.localeCompare(a.date));
+  const depth = (id: string, seen = new Set<string>()): number => {
+    if (id === MAIN) return 0;
+    const branch = byId.get(id);
+    if (!branch) throw new Error(`Unknown branch "${id}"`);
+    if (seen.has(id)) throw new Error(`Branch "${id}" is its own ancestor`);
+    seen.add(id);
+    return 1 + depth(branch.parent ?? MAIN, seen);
+  };
 
-  const rows: ({ kind: 'event'; event: ExperienceEvent } | { kind: 'merge'; branch: Branch })[] =
-    [];
-  const seen = new Set<string>();
-  for (const event of sorted) {
-    const branch = byId.get(event.branch);
-    if (event.branch !== MAIN && !branch) throw new Error(`Unknown branch "${event.branch}"`);
-    // The first time a branch shows up (its newest event), it merges right above it.
-    if (branch && !seen.has(branch.id) && !branch.ongoing) rows.push({ kind: 'merge', branch });
-    seen.add(event.branch);
-    rows.push({ kind: 'event', event });
-  }
+  type Pending = { kind: 'event'; event: ExperienceEvent } | { kind: 'merge'; branch: Branch };
+  const items: { row: Pending; date: string; rank: number; order: number }[] = [];
+
+  // A branch merges back when it ends: the latest `end` (or date) among its events.
+  const ends = new Map<string, string>();
+  events.forEach((event, order) => {
+    const d = depth(event.branch);
+    if (event.branch !== MAIN) {
+      const end = event.end ?? event.date;
+      if (end > (ends.get(event.branch) ?? '')) ends.set(event.branch, end);
+    }
+    items.push({ row: { kind: 'event', event }, date: event.date, rank: 2 * d, order });
+  });
+  branches.forEach((branch, order) => {
+    const end = ends.get(branch.id);
+    if (end && !branch.ongoing)
+      items.push({
+        row: { kind: 'merge', branch },
+        date: end,
+        rank: 2 * depth(branch.id) - 1,
+        order,
+      });
+  });
+
+  // Newest first. On the same date, shallower branches come first: a branch's merge, then its
+  // events, then its child branches' merges and events. So the thesis merges into its parent
+  // before graduating, and the parent merges into main after it. File order breaks ties.
+  items.sort((a, b) => b.date.localeCompare(a.date) || a.rank - b.rank || a.order - b.order);
+  const rows = items.map((item) => item.row);
 
   // Walk from the oldest row up, so branches open in the order they started.
   const laneOf = new Map<string, number>();
+  const parentLane: Record<string, number> = {};
   const placed: Row[] = new Array(rows.length);
   let laneCount = 1;
   for (let i = rows.length - 1; i >= 0; i--) {
@@ -86,11 +140,14 @@ export function layoutExperience({ branches, events }: Experience): Layout {
       let lane = 1;
       while (used.has(lane)) lane++;
       laneOf.set(id, lane);
+      // A parent that is not open (yet, or any more) falls back to main.
+      parentLane[id] = laneOf.get(byId.get(id)?.parent ?? MAIN) ?? 0;
     }
     placed[i] = { ...row, lane: laneOf.get(id) ?? 0, lanes: activeLanes(laneOf) };
     laneCount = Math.max(laneCount, laneOf.size + 1);
   }
-  return { rows: placed, laneCount };
+  placed.push({ kind: 'init', lane: 0, lanes: [0] });
+  return { rows: placed, laneCount, parentLane };
 }
 
 function activeLanes(laneOf: Map<string, number>): number[] {

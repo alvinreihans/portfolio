@@ -1,6 +1,6 @@
 # 04 - Pages
 
-Status: **Approved** (disetujui owner, 2026-10-31)
+Status: **Approved** (disetujui owner, 2026-10-31; revisi section 3 Experience, Q4.14 sampai Q4.21, disetujui 2026-10-31)
 
 Spec ini menjabarkan konten dan layout tiap route dari `01-overview.md`. Tampilan visual mengikuti `02-design-system.md`, bahasa mengikuti `03-i18n.md`, dan cerita project mengikuti `06-project-stories.md`. Sumber data konten: CV owner (versi Indonesia dan Inggris) dan situs lama.
 
@@ -63,142 +63,162 @@ Nama teknologi tidak diterjemahkan. Data disimpan sebagai konstanta di kode (`sr
 
 ### 3. Experience (roadmap bergaya graph GitHub)
 
-Section ini menampilkan perjalanan kuliah, kerja, dan belajar sebagai **graph commit vertikal**, seperti graph riwayat di GitHub atau VS Code: satu jalur utama dengan cabang-cabang yang bercabang lalu menyatu kembali.
+> Direvisi dan disetujui 2026-10-31 (Q4.14 sampai Q4.21). Bagian ini menggambarkan keadaan terbaru; riwayat keputusannya ada di bagian **Keputusan**.
 
-**Aturan jalur**
-- Jalur **utama** (`main`) berisi perjalanan inti: **Kuliah** dan **Pekerjaan**.
-- Jalur **cabang** berisi hal yang berjalan di samping jalur utama: **Magang (MBKM)**, **Pelatihan**, dan **Sertifikasi**. Cabang dimulai dari jalur utama saat kegiatannya dimulai dan menyatu kembali (merge) saat selesai. Cabang yang masih berjalan tidak punya penyatuan.
+Section ini menampilkan perjalanan kuliah, kerja, dan belajar sebagai **graph commit vertikal**, seperti graph riwayat di GitHub atau VS Code: `main` dengan commit `init`, lalu cabang yang bercabang dan menyatu kembali.
+
+**Aturan cabang**
+- **`main`** hanya berisi commit **`init`** di baris paling bawah dan simpul merge. Tidak ada kartu kejadian di `main` (Q4.19).
+- **Kuliah** (`kuliah`) dan **Pekerjaan** (`kerja/intramedika`) masing-masing cabang sendiri yang bercabang dari `main`.
+- Cabang boleh punya **induk** (`parent`): ia bercabang dari induknya saat kegiatan dimulai dan menyatu kembali ke induk itu **pada tanggal selesainya**, sehingga cabang terlihat berjalan melewati kejadian lain di periode itu.
+  - Induk `kuliah`: **Bangkit** (`pelatihan/bangkit`), **Riset MBKM & Magang** (`magang/mbkm`), dan **Skripsi** (`kuliah/skripsi`).
+  - Induk `main`: **Kuliah**, **AWS Back-End Academy** (`pelatihan/aws-backend`, selesai setelah lulus sehingga tidak bisa menyatu ke `kuliah`), **Harisenin** (`pelatihan/harisenin`), dan **Pekerjaan**.
+- Cabang yang masih berjalan (`ongoing`, yaitu pekerjaan saat ini) tidak punya merge.
+- Sebuah cabang boleh berisi lebih dari satu commit, model **mulai lalu selesai** (Q4.17). Contohnya Bangkit: commit "Mulai" lalu commit sertifikasi Google ACE, baru merge.
+- **Sertifikasi bukan cabang** (Q4.16). Sertifikat tampil di dalam kartu program asalnya; sertifikat yang paling penting boleh menjadi commit sendiri di cabang programnya (jenis `certification`, label saja).
 - Urutan dari terbaru di atas ke terlama di bawah, seperti `git log`. Posisi mengikuti urutan kejadian, bukan skala waktu.
 
-**Rencana graph** (diagram Mermaid sebagai rencana saja; situs memakai SVG buatan sendiri yang mengikuti tema dan bahasa, bukan Mermaid, sejalan dengan keputusan diagram di `06-project-stories.md`). Pada Mermaid ini kejadian tertua ada di bawah dan terbaru di atas (`BT`):
+**Gambaran graph** (Mermaid sebagai gambaran saja; situs memakai SVG buatan sendiri yang mengikuti tema dan bahasa, dan urutan barisnya dihitung oleh algoritma di bawah). Kejadian tertua di bawah (`BT`):
 
 ```mermaid
 gitGraph BT:
-  commit id: "Mulai kuliah: Teknik Informatika, Universitas Lampung" tag: "Agu 2021"
-  branch pelatihan-bangkit
-  checkout pelatihan-bangkit
-  commit id: "Bangkit Academy: mulai (Cloud Computing)" tag: "Agu 2023"
+  commit id: "init"
+  branch kuliah
+  checkout kuliah
+  commit id: "Mulai kuliah Teknik Informatika" tag: "Agu 2021"
+  branch pelatihan/bangkit
+  checkout pelatihan/bangkit
+  commit id: "Mulai: Bangkit Academy Cloud Computing" tag: "Agu 2023"
+  commit id: "Google Cloud Associate Cloud Engineer" tag: "Mar 2024"
+  checkout kuliah
+  merge pelatihan/bangkit
+  branch magang/mbkm
+  checkout magang/mbkm
+  commit id: "Riset MBKM & Magang" tag: "Jul 2024"
+  checkout kuliah
+  merge magang/mbkm
   checkout main
-  branch sertifikasi
-  checkout sertifikasi
-  commit id: "Coursera: System Administration and IT Infrastructure Services" tag: "Okt 2023"
-  checkout pelatihan-bangkit
-  commit id: "Bangkit Academy: selesai (proyek akhir backend pertanian)" tag: "Jan 2024"
+  branch pelatihan/aws-backend
+  checkout pelatihan/aws-backend
+  commit id: "AWS Back-End Academy" tag: "Apr 2025"
+  checkout kuliah
+  branch kuliah/skripsi
+  checkout kuliah/skripsi
+  commit id: "Skripsi" tag: "Mei 2025"
+  checkout kuliah
+  merge kuliah/skripsi
+  commit id: "Lulus Sarjana Teknik Informatika" tag: "Okt 2025"
   checkout main
-  merge pelatihan-bangkit
-  checkout sertifikasi
-  commit id: "Google Associate Cloud Engineer" tag: "Mar 2024"
+  merge kuliah
+  merge pelatihan/aws-backend
+  branch kerja/intramedika
+  checkout kerja/intramedika
+  commit id: "Junior Software Developer" tag: "Feb 2026" type: HIGHLIGHT
   checkout main
-  branch magang-mbkm
-  checkout magang-mbkm
-  commit id: "MBKM penelitian: magang di Gita Persada Butterfly Park" tag: "Jul 2024"
-  commit id: "API klasifikasi tanaman selesai" tag: "Agu 2024"
+  branch pelatihan/harisenin
+  checkout pelatihan/harisenin
+  commit id: "FullStack Developer Academy" tag: "Mei 2026"
   checkout main
-  merge magang-mbkm
-  branch pelatihan-aws-backend
-  checkout pelatihan-aws-backend
-  commit id: "AWS Back-End Academy: mulai" tag: "Apr 2025"
-  checkout sertifikasi
-  commit id: "Dicoding: Cloud dan Gen AI di AWS" tag: "Jun 2025"
-  commit id: "Dicoding: Building Cloud Architecture on AWS" tag: "Sep 2025"
-  checkout main
-  commit id: "Lulus Sarjana Teknik Informatika, IPK 3,88" tag: "Okt 2025"
-  checkout pelatihan-aws-backend
-  commit id: "AWS Back-End Academy: selesai (forum obrolan gim)" tag: "Des 2025"
-  checkout sertifikasi
-  commit id: "Dicoding: Expert Back-End Developer with JavaScript" tag: "Des 2025"
-  checkout main
-  merge pelatihan-aws-backend
-  merge sertifikasi
-  commit id: "Bekerja: Junior Software Developer, PT Intramedika Global Digital" tag: "Feb 2026" type: HIGHLIGHT
-  branch pelatihan-harisenin
-  checkout pelatihan-harisenin
-  commit id: "Harisenin FullStack Developer Academy: mulai" tag: "Mei 2026"
-  commit id: "Proyek akhir Video Belajar selesai" tag: "Jul 2026"
-  checkout main
-  merge pelatihan-harisenin
+  merge pelatihan/harisenin
 ```
 
-Diagram ini rencana awal. Yang berlaku adalah **Daftar kejadian** di bawah (14 kejadian): Harisenin dan MBKM masing-masing satu kejadian dengan rentang waktu, bukan dua commit (Q4.7, Q4.14).
-
-Pada rencana ini, paling banyak **tiga jalur** berjalan bersamaan (utama + dua cabang), pada Okt 2023 sampai Jan 2024 dan Apr 2025 sampai Des 2025.
+Dengan data ini paling banyak **empat jalur** berjalan bersamaan (`main`, `kuliah`, AWS Back-End Academy, Skripsi), pada Mei sampai Okt 2025.
 
 **Tampilan di situs**
-- Setiap kejadian adalah satu "commit": simpul persegi pixel di jalurnya, dengan kartu di sampingnya berisi organisasi, judul kejadian, bulan dan tahun, dan (jika ada) satu kalimat ringkasan.
-- Simpul penyatuan (merge) berupa simpul kecil berongga di jalur utama, tanpa kartu.
-- Kejadian terbaru yang masih berjalan (pekerjaan saat ini) diberi penanda "HEAD" dengan teks "Sekarang" / "Present", mirip penanda di graph acuan.
-- Setiap cabang punya label berbentuk chip di dekat awal cabangnya, mirip label branch di GitHub: ID `pelatihan/bangkit`, EN `training/bangkit` (teks label ada di data tiap bahasa).
-- Warna tidak ditambah (tetap satu aksen). Jalur utama memakai `--accent` bergaris solid. Cabang memakai warna netral (`--muted` dan `--ink`) dengan pola garis dan bentuk simpul yang berbeda per jenis (Pelatihan putus-putus, Magang titik-titik, Sertifikasi garis tipis dengan simpul kecil). Pembeda utamanya tetap label teks.
-- Legenda singkat di atas graph: Kuliah dan Pekerjaan (utama), Magang, Pelatihan, Sertifikasi.
-- Garis dan simpul adalah SVG dekoratif (`aria-hidden`), bergaya pixel (`crispEdges`).
+- Setiap kejadian adalah satu "commit": simpul persegi pixel di jalurnya, dengan kartu di sampingnya berisi label jenis, judul, organisasi, periode, dan (jika ada) ringkasan.
+- Simpul **merge** berupa persegi kecil berongga di jalur induknya, tanpa kartu.
+- Commit **`init`** berupa persegi berongga di dasar `main` dengan chip teks `init`, tanpa kartu.
+- **Ujung atas** `main` dan cabang yang masih berjalan naik sedikit di atas baris teratas dan diakhiri persegi penuh, seperti ujung cabang yang terbuka.
+- Pekerjaan saat ini diberi chip **HEAD**, dan periodenya berakhir "Sekarang" / "Present".
+- Kartu pertama tiap cabang memuat **chip label cabang**, mirip label branch di GitHub (misalnya ID `pelatihan/bangkit`, EN `training/bangkit`; teks label ada di data tiap bahasa).
+- Warna tidak ditambah (tetap satu aksen). `main` dan Pekerjaan memakai `--accent` bergaris solid; cabang lain memakai warna netral (`--muted`, simpul `--ink`) dengan pola berbeda: Kuliah solid, Magang titik-titik, Pelatihan putus-putus, Skripsi putus-titik. Pembeda utamanya tetap label teks.
+- Tidak ada legenda (Q4.21): label jenis dan chip label cabang di setiap kartu sudah menjelaskan setiap jalur.
+- Kartu dapat memuat **tautan hasil** berupa chip yang dibuka di tab baru: repo GitHub, ORCID, atau halaman kredensial (Credly). Kartu program dapat memuat daftar **sertifikasi** (tiga sorotan dan "Lihat semua (N)"); judul sertifikat menjadi tautan bila punya `href`.
+- Kartu **Sertifikat lainnya** berisi sertifikat di luar program dan tautan "Lihat semua N sertifikat di LinkedIn". Mulai lebar 1024px kartu ini berada di kolom kanan di samping graph dan menempel (sticky) di bawah navbar saat digulir; di bawah 1024px kartu ini berada di bawah graph.
+- Kartu memakai bayangan kartu dari `02-design-system.md`.
+- Garis dan simpul adalah SVG dekoratif (`aria-hidden`), bergaya pixel (`crispEdges`). Chip `init` juga dekoratif.
 
 **Aksesibilitas dan responsif**
-- Strukturnya daftar berurutan (`<ol>`) berisi kejadian saja; tiap item membawa label teks jenisnya ("Kuliah", "Pekerjaan", "Magang", "Pelatihan", "Sertifikasi") dan tanggal dalam elemen `<time>`.
-- Di mobile, graph menyempit menjadi gutter di sisi kiri selebar jumlah jalur aktif (maksimal tiga) dan kartu memenuhi sisa lebar.
+- Strukturnya daftar berurutan (`<ol>`) berisi kejadian saja (tanpa merge dan `init`); tiap item membawa label teks jenisnya ("Kuliah", "Pekerjaan", "Magang", "Pelatihan", "Sertifikasi") dan tanggal dalam elemen `<time>`.
+- "Lihat semua (N)" memakai `<details>`/`<summary>`, jadi bisa dibuka dengan keyboard. Semua tautan eksternal punya nama aksesibel yang menyebutkan bahwa tautan itu eksternal.
+- Di mobile, jarak antarjalur menyempit (18px) dan kartu memenuhi sisa lebar; tanpa scroll horizontal di 320px.
 - Tidak ada animasi garis; jika nanti ditambahkan, berhenti saat `prefers-reduced-motion` aktif.
 
 **Algoritma penempatan jalur** (agar data baru tidak perlu mengatur posisi manual):
-1. Urutkan kejadian dari terbaru ke terlama.
-2. Jalur 0 selalu jalur utama.
-3. Setiap cabang menempati jalur bebas terkecil di sebelah kanan jalur utama selama ia berjalan (dari kejadian "mulai" sampai "selesai/merge"), dan jalur itu dipakai ulang setelah cabang menyatu.
-4. Kartu selalu ditempatkan di sebelah kanan jalur paling kanan yang aktif pada barisnya.
+1. Setiap cabang menyatu pada tanggal selesainya: `end` terbesar (atau tanggal) di antara kejadiannya. Cabang `ongoing` tidak menyatu.
+2. Kejadian dan baris merge diurutkan dari terbaru ke terlama. Pada **tanggal yang sama**, urutan dari atas mengikuti kedalaman cabang: merge sebuah cabang, lalu kejadian di cabang itu, lalu merge dan kejadian cabang anaknya. Akibatnya Skripsi menyatu ke `kuliah` sebelum Lulus, dan `kuliah` menyatu ke `main` setelah Lulus. Sisa seri diurutkan menurut urutan di berkas data.
+3. Jalur 0 selalu `main`. Dari baris terbawah ke atas, setiap cabang menempati jalur bebas terkecil di kanan `main` sejak kejadian pertamanya sampai merge, dan jalur itu dipakai ulang setelahnya. Jalur induk dicatat saat cabang dibuka; induk yang tidak sedang terbuka jatuh ke `main`.
+4. Baris `init` selalu yang terakhir.
+5. Kartu ditempatkan di sebelah kanan jalur paling kanan yang aktif pada barisnya.
 
 **Data** disimpan di `src/content/experience.json`:
 
 ```json
 {
   "branches": [
-    { "id": "bangkit", "kind": "training",
+    { "id": "bangkit", "kind": "training", "parent": "kuliah",
       "label": { "id": "pelatihan/bangkit", "en": "training/bangkit" } }
   ],
   "events": [
-    { "date": "2023-08", "branch": "bangkit", "type": "training",
-      "org": "Bangkit Academy",
-      "title": { "id": "Mulai: Siswa Cloud Computing", "en": "Start: Cloud Computing Student" },
-      "summary": { "id": "…", "en": "…" } }
+    { "date": "2024-03", "branch": "bangkit", "type": "certification",
+      "org": "Google Cloud",
+      "title": { "id": "Google Cloud Associate Cloud Engineer", "en": "Google Cloud Associate Cloud Engineer" },
+      "links": [{ "kind": "credential", "href": "https://www.credly.com/badges/…", "label": "Credly" }] }
+  ],
+  "otherCertifications": [
+    { "title": "SQL (Basic)", "issuer": "HackerRank", "date": "2024-03" }
   ]
 }
 ```
 
-- `branch` bernilai `main` atau id cabang. `type` bernilai `education`, `work`, `internship`, `training`, atau `certification`.
-- Cabang menyatu pada kejadian terakhirnya, kecuali diberi `ongoing: true`. Tanggal ditulis `YYYY-MM` dan ditampilkan dengan format bulan-tahun (lihat `03-i18n.md`). `summary` boleh dikosongkan.
-- `end` (opsional, `YYYY-MM`): kejadian berupa rentang waktu dalam **satu kartu**, misalnya Harisenin dan MBKM. Cabangnya bercabang tepat di bawah kartu itu dan menyatu tepat di atasnya; kartu menampilkan "Mei 2026 – Juli 2026" (Q4.14).
-- `current: true` (opsional): kejadian yang masih berjalan (pekerjaan saat ini). Kartu menampilkan "Februari 2026 – Sekarang" dan penanda HEAD.
-- Kejadian bertanggal sama ditampilkan sesuai urutan di berkas data.
+- Cabang: `kind` bernilai `education`, `work`, `internship`, `training`, atau `thesis`; `parent` (opsional, bawaan `main`); `ongoing: true` untuk cabang yang masih berjalan.
+- Kejadian: `branch` bernilai id cabang. `type` bernilai `education`, `work`, `internship`, `training`, atau `certification`.
+- Tanggal ditulis `YYYY-MM` dan ditampilkan dengan format bulan-tahun (lihat `03-i18n.md`). `summary` boleh dikosongkan.
+- `end` (opsional, `YYYY-MM`): kejadian berupa rentang waktu dalam **satu kartu**, misalnya "Mei 2026 – Agustus 2026" (Q4.14).
+- `current: true` (opsional): kejadian yang masih berjalan (pekerjaan saat ini); kartu menampilkan "Februari 2026 – Sekarang" dan chip HEAD.
+- `links` (opsional): daftar `{ "kind": "github" | "orcid" | "credential", "href", "label" }`.
+- `certifications` (opsional): daftar `{ "title", "issuer", "date", "highlight"?, "href"? }`; tiga yang bertanda `highlight` selalu terlihat. Judul sertifikat ditulis persis seperti di penerbitnya (tidak diterjemahkan). Sertifikat di luar program disimpan di `otherCertifications`.
 
-**Daftar kejadian** (dari CV dan keputusan owner; terbaru dulu):
+**Daftar kejadian** (timeline owner, 2026-10-31; terbaru dulu):
 
-| Tanggal | Jalur | Jenis | Judul (Indonesia) |
-|---|---|---|---|
-| Mei 2026 sampai Jul 2026 | `pelatihan/harisenin` | Pelatihan | Harisenin FullStack Developer Academy (mulai, lalu proyek akhir Video Belajar) |
-| Feb 2026 | main | Pekerjaan | Junior Software Developer, PT Intramedika Global Digital (sekarang) |
-| Des 2025 | `sertifikasi` | Sertifikasi | Dicoding: Expert Back-End Developer with JavaScript |
-| Des 2025 | `pelatihan/aws-backend` | Pelatihan | AWS Back-End Academy (selesai) |
-| Okt 2025 | main | Kuliah | Lulus Sarjana Teknik Informatika, Universitas Lampung (IPK 3,88) |
-| Sep 2025 | `sertifikasi` | Sertifikasi | Dicoding: Building Cloud Architecture on AWS |
-| Jun 2025 | `sertifikasi` | Sertifikasi | Dicoding: Learning the Basics of Cloud and Gen AI on AWS |
-| Apr 2025 | `pelatihan/aws-backend` | Pelatihan | AWS Back-End Academy (mulai) |
-| Jul 2024 sampai Agu 2024 | `magang-mbkm` | Magang | MBKM penelitian: magang di Gita Persada Butterfly Park |
-| Mar 2024 | `sertifikasi` | Sertifikasi | Google Associate Cloud Engineer (berlaku sampai Mar 2027) |
-| Jan 2024 | `pelatihan/bangkit` | Pelatihan | Bangkit Academy (selesai, proyek akhir backend pertanian) |
-| Okt 2023 | `sertifikasi` | Sertifikasi | Coursera: System Administration and IT Infrastructure Services |
-| Agu 2023 | `pelatihan/bangkit` | Pelatihan | Bangkit Academy (mulai, Cloud Computing) |
-| Agu 2021 | main | Kuliah | Mulai kuliah Teknik Informatika, Universitas Lampung |
+| Periode | Cabang (induk) | Jenis | Judul (Indonesia) | Hasil |
+|---|---|---|---|---|
+| Mei 2026 – Agu 2026 | `pelatihan/harisenin` (`main`) | Pelatihan | FullStack Developer Academy (bootcamp), Harisenin | repo `videobelajar-react` |
+| Feb 2026 – sekarang | `kerja/intramedika` (`main`, masih berjalan) | Pekerjaan | Junior Software Developer, PT Intramedika Global Digital | – |
+| Okt 2025 | `kuliah` (`main`) | Kuliah | Lulus Sarjana Teknik Informatika, Universitas Lampung | – |
+| Mei 2025 – Okt 2025 (perkiraan owner) | `kuliah/skripsi` (`kuliah`) | Kuliah | Skripsi: backend pemantauan Smart Stick IoT real-time | repo `teman-jalan` |
+| Apr 2025 – Des 2025 | `pelatihan/aws-backend` (`main`) | Pelatihan | AWS Back-End Academy (Dicoding × AWS) | repo `dicoding-garuda-games-chat-forum` |
+| Jul 2024 – Agu 2024 | `magang/mbkm` (`kuliah`) | Magang | Riset MBKM & Magang, Gita Persada Butterfly Park | repo `ImageClassificationAPI-MBKMP`, ORCID |
+| Mar 2024 | `pelatihan/bangkit` (`kuliah`) | Sertifikasi | Google Cloud Associate Cloud Engineer (berlaku sampai Mar 2027) | kredensial Credly |
+| Agu 2023 – Jan 2024 | `pelatihan/bangkit` (`kuliah`) | Pelatihan | Mulai: Bangkit Academy Cloud Computing (Studi Independen MBKM bersama Google, GoTo, Traveloka) | repo `CropOptima-Fullteam` |
+| Agu 2021 | `kuliah` (`main`) | Kuliah | Mulai kuliah Teknik Informatika, Universitas Lampung | – |
 
 Catatan:
 - **PT Intramedika Global Digital:** kartu hanya menampilkan organisasi, peran, dan periode, tanpa ringkasan. Owner menyatakan belum ada hal dari pekerjaan ini yang bisa dipublikasikan.
-- **MBKM penelitian** adalah magang di Gita Persada Butterfly Park (keputusan owner), sehingga satu kejadian di cabang `magang-mbkm`, bukan dua entri terpisah.
-- **Sertifikasi** tidak punya ringkasan; judulnya sudah cukup.
+- **Riset MBKM & Magang** adalah satu kejadian di Gita Persada Butterfly Park (Q4.7). Di sini owner menerapkan ilmu dari Bangkit; hasil risetnya terbit di tiga publikasi (ORCID `0009-0005-6629-9783`).
+- **Bangkit Academy** adalah program Studi Independen Bersertifikat (MSIB Kampus Merdeka) jalur Cloud Computing. Sebagian besar sertifikat owner berasal dari sini, termasuk Google Associate Cloud Engineer.
+- **Tanggal** Bangkit, Harisenin, kuliah, dan Intramedika dari owner; MBKM dan AWS dari CV (cocok dengan riwayat commit repo hasilnya); Skripsi perkiraan owner.
+
+**Sertifikasi** (Q4.16, Q4.17). Sumber: daftar Licenses & certifications di LinkedIn owner (43 sertifikat, 2026-10-31). Tautan kredensial per sertifikat menyusul dari daftar LinkedIn owner; saat ini baru Google ACE (Credly).
+
+| Kelompok | Jumlah | Sorotan / isi |
+|---|---|---|
+| Bangkit Academy (commit "Mulai") | 29 (24 skill badge Google Cloud Skills Boost, 3 kelas Dicoding, 2 Coursera) | Menjadi Google Cloud Engineer (Dicoding, Okt 2023); System Administration and IT Infrastructure Services (Coursera, Okt 2023); Essential Google Cloud Infrastructure: Core Services (Google Cloud Skills Boost, Okt 2023) |
+| Bangkit Academy (commit sendiri) | 1 | Google Cloud Associate Cloud Engineer (Mar 2024, berlaku sampai Mar 2027) |
+| AWS Back-End Academy | 6 (kelas Dicoding) | Menjadi Back-End Developer Expert dengan JavaScript (Des 2025); Architecting on AWS (Sep 2025); Belajar Fundamental Back-End dengan JavaScript (Agu 2025) |
+| Sertifikat lainnya | 7 | HackerRank JavaScript, SQL, Python, React (Basic); EF SET English Certificate 72/100 (C2 Proficient); English Proficiency Test (Language Center Universitas Lampung); Responsive Web Design (freeCodeCamp) |
 
 **Ringkasan kejadian** (dari CV tulisan owner; ditandai `_review` sampai ditinjau):
 
 | Kejadian | Indonesia | Inggris |
 |---|---|---|
-| Kuliah (lulus) | Sarjana Teknik Informatika, IPK 3,88/4,00. Skripsi: Pengembangan Backend Aplikasi Pemantauan Smart Stick IoT Real-time Berbasis MQTT dan Node.js. | Bachelor of Engineering in Informatics Engineering, GPA 3.88/4.00. Thesis: Backend Development for a Real-time IoT Smart Stick Monitoring Application Based on MQTT and Node.js. |
-| Bangkit Academy (selesai) | Proyek akhir: layanan backend untuk aplikasi Android pertanian yang terintegrasi dengan model machine learning, di-deploy di Google Cloud (Compute Engine dan Cloud SQL). | Final project: a backend service for an agriculture Android application integrated with machine learning models, deployed on Google Cloud using Compute Engine and Cloud SQL. |
-| Magang MBKM (Gita Persada Butterfly Park) | Mengembangkan RESTful API berbasis Flask untuk aplikasi klasifikasi tanaman yang terintegrasi dengan model machine learning, di-deploy di Google Compute Engine dengan Cloud SQL dan Cloud Storage. | Developed a Flask-based RESTful API for a plant classification application integrated with a machine learning model, deployed on Google Compute Engine with Cloud SQL and Cloud Storage. |
-| AWS Back-End Academy (selesai) | Membangun layanan backend forum obrolan gim dengan clean architecture dan TDD, pipeline CI/CD GitHub Actions, serta deployment ke Amazon EC2 dan Amazon RDS. | Built a backend service for a gaming chat forum using clean architecture and TDD, a GitHub Actions CI/CD pipeline, and deployment to Amazon EC2 and Amazon RDS. |
-| Harisenin (proyek akhir) | Proyek akhir Video Belajar: platform kursus online berbentuk monorepo dengan SPA React (Vite, Tailwind CSS, Redux) dan REST API Express.js dengan MySQL. | Final project Video Belajar: an online course platform structured as a monorepo, with a React SPA (Vite, Tailwind CSS, Redux) and an Express.js and MySQL REST API. |
+| Lulus | Sarjana Teknik Informatika, IPK 3,88/4,00. | Bachelor of Engineering in Informatics Engineering, GPA 3.88/4.00. |
+| Skripsi | Backend aplikasi pemantauan Smart Stick IoT real-time berbasis MQTT dan Node.js: data perangkat masuk tiap 5 detik lewat MQTT, disimpan ke database, dan status terkininya disimpan di Redis. | Backend for a real-time IoT Smart Stick monitoring app built on MQTT and Node.js: device data arrives every 5 seconds over MQTT, is stored in a database, and its latest state is kept in Redis. |
+| Mulai: Bangkit Academy | Studi independen Kampus Merdeka selama satu semester di jalur Cloud Computing (Google Cloud). Proyek akhir CropOptima: layanan backend untuk aplikasi Android pertanian yang terhubung dengan model machine learning, di-deploy di Compute Engine dan Cloud SQL. | A one-semester Kampus Merdeka independent study on the Cloud Computing path (Google Cloud). Final project CropOptima: a backend service for an agriculture Android app connected to machine learning models, deployed on Compute Engine and Cloud SQL. |
+| Google ACE | Sertifikasi profesional Google Cloud dari program Bangkit. Berlaku sampai Maret 2027. | Professional Google Cloud certification through the Bangkit program. Valid until March 2027. |
+| Riset MBKM & Magang | Menerapkan ilmu dari Bangkit ke riset: RESTful API Flask untuk klasifikasi tanaman dengan model CNN, di-deploy di Google Compute Engine dengan Cloud SQL dan Cloud Storage. Hasil risetnya terbit di tiga publikasi. | Applied what I learned at Bangkit to research: a Flask RESTful API for plant classification with a CNN model, deployed on Google Compute Engine with Cloud SQL and Cloud Storage. The research was published in three papers. |
+| AWS Back-End Academy | Membangun layanan backend forum obrolan gim dengan clean architecture dan TDD, pipeline CI/CD GitHub Actions, serta deployment ke Amazon EC2 dan Amazon RDS. | Built a backend service for a gaming chat forum using clean architecture and TDD, a GitHub Actions CI/CD pipeline, and deployment to Amazon EC2 and Amazon RDS. |
+| Harisenin | Proyek akhir Video Belajar: platform kursus online berbentuk monorepo dengan SPA React (Vite, Tailwind CSS, Redux) dan REST API Express.js dengan MySQL. | Final project Video Belajar: an online course platform structured as a monorepo, with a React SPA (Vite, Tailwind CSS, Redux) and an Express.js and MySQL REST API. |
 
 ### 4. Works
 
@@ -335,6 +355,16 @@ Teks Indonesia adalah sumber. Semua entri di bawah ditandai `_review` sampai own
 | `home:experience.type.training` | Pelatihan | Training |
 | `home:experience.type.certification` | Sertifikasi | Certification |
 | `home:experience.present` | Sekarang | Present |
+| `home:experience.legend.main` | main | main |
+| `home:experience.legend.education` | Kuliah | Education |
+| `home:experience.legend.work` | Pekerjaan | Work |
+| `home:experience.legend.internship` | Magang | Internship |
+| `home:experience.legend.training` | Pelatihan | Training |
+| `home:experience.legend.thesis` | Skripsi | Thesis |
+| `home:experience.certifications` | Sertifikasi | Certifications |
+| `home:experience.showAll` | Lihat semua ({{count}}) | Show all ({{count}}) |
+| `home:experience.otherCertifications` | Sertifikat lainnya | Other certificates |
+| `home:experience.allOnLinkedIn` | Lihat semua {{count}} sertifikat di LinkedIn | See all {{count}} certificates on LinkedIn |
 | `home:works.heading` | Project | Projects |
 | `home:contact.heading` | Mari berdiskusi. | Let's talk. |
 | `home:contact.body` | Saya terbuka untuk peluang baru. Untuk pekerjaan, kolaborasi, atau sekadar menyapa, silakan kirim email. | I'm open to new opportunities. For a job, a collaboration, or just to say hello, feel free to send an email. |
@@ -378,7 +408,7 @@ Catatan: `project:noEnglish` hanya muncul saat bahasa Inggris dipilih dan `en.md
 - [ ] AC13. Tidak ada scroll horizontal di 320px dan seterusnya, pada kedua bahasa dan kedua tema.
 - [ ] AC14. `index.html` memuat canonical `https://alvinreihans.web.id/`, metadata dasar berbahasa Inggris, dan tag Open Graph lengkap (`og:locale` `en_US`) dengan `og:image` yang mengarah ke berkas yang ada.
 - [ ] AC15. Roadmap menampilkan semua kejadian dari `experience.json`, urut dari terbaru, dan setiap item punya label teks jenis serta tanggal dalam `<time>`.
-- [ ] AC16. Jalur utama memuat Kuliah dan Pekerjaan; Magang, Pelatihan, dan Sertifikasi berada di cabang yang bercabang saat mulai dan menyatu ke jalur utama saat selesai (cabang `ongoing` tidak menyatu).
+- [ ] AC16. `main` hanya memuat commit `init` dan simpul merge; Kuliah dan Pekerjaan punya cabang sendiri; Magang, Pelatihan, dan Skripsi bercabang dari induknya (`kuliah` atau `main`) saat mulai dan menyatu ke induk itu pada tanggal selesai; cabang `ongoing` (pekerjaan saat ini) tidak menyatu (Q4.19). Sertifikasi tidak punya garis sendiri dan tampil di kartu program asalnya, dengan "Lihat semua (N)" yang bisa dibuka dengan keyboard.
 - [ ] AC17. Garis dan simpul roadmap tidak dibacakan screen reader (`aria-hidden`) dan pembedaan jenis tetap terbaca tanpa warna.
 - [ ] AC18. Roadmap tetap terbaca (tanpa teks terpotong atau scroll horizontal) di 320px pada kedua bahasa dan kedua tema, dengan jalur yang tidak saling menimpa.
 - [ ] AC19. Kartu PT Intramedika Global Digital hanya memuat organisasi, peran, dan periode.
@@ -392,6 +422,8 @@ Catatan: `project:noEnglish` hanya muncul saat bahasa Inggris dipilih dan `en.md
 - [ ] AC28. Mengetuk atau mengklik di luar panel menu mobile menutupnya.
 - [ ] AC29. Elemen yang difokus dengan keyboard tidak pernah tertutup navbar yang menempel (`scroll-padding-top`).
 - [ ] AC30. Efek pudar tautan navbar mati saat `prefers-reduced-motion` aktif.
+- [ ] AC31. Ke-43 sertifikat tampil: tiga sorotan per kartu program, sisanya lewat "Lihat semua (N)" yang bisa dibuka dengan keyboard, dan tujuh sertifikat lain di kartu "Sertifikat lainnya" dengan tautan ke LinkedIn yang menyebut jumlah 43. Kartu itu berada di kolom kanan mulai 1024px dan di bawah graph di bawah 1024px.
+- [ ] AC32. Graph memiliki commit `init` di dasar `main`, dan ujung atas `main` serta cabang yang masih berjalan diakhiri persegi; tautan hasil (GitHub, ORCID, Credly) dibuka di tab baru dengan nama aksesibel yang menyebut tautan eksternal.
 
 ## Keputusan
 
@@ -408,8 +440,20 @@ Catatan: `project:noEnglish` hanya muncul saat bahasa Inggris dipilih dan `en.md
 - Q4.11. Nomor telepon dihapus dari CV publik; rincian PT Intramedika Global Digital diringkas.
 - Q4.12. CV ditampilkan di halaman sendiri `/cv` (pratinjau Google Docs di iframe, ditambah unduh PDF dan buka di tab baru), bukan langsung terunduh. Tombol hero menjadi "Lihat CV", dan navbar mendapat tautan CV.
 - Q4.13. Di beranda, tautan navigasi tampil dulu sebagai deretan tombol di hero (Lihat CV, Pengalaman, Project, Kontak) dan baru muncul di navbar desktop setelah deretan itu tergulir lewat; tautan navbar disembunyikan secara visual saja agar tetap terbaca screen reader. Tombol menu mobile selalu terlihat dan bisa ditutup dengan mengetuk di luar panel. `scroll-padding-top` dipasang untuk WCAG 2.2 Focus Not Obscured. Rekomendasi ini ditinjau dengan skill ui-ux-pro-max (2026-10-31); panduan "Focus Not Obscured", "Sticky Navigation", dan pola landing "Hero + Features + CTA" terverifikasi di basis datanya, sedangkan detail pola "muncul setelah digulir" dan menu mobile adalah panduan umum karena tidak ada entri yang cocok.
-- Q4.14. Tabel "Daftar kejadian" (14 kejadian) yang berlaku, bukan jumlah commit di diagram Mermaid. Kejadian berentang (Harisenin, MBKM) memakai kolom opsional `end` dalam satu kartu, dan pekerjaan saat ini memakai `current: true` untuk penanda HEAD. Diputuskan saat implementasi (2026-10-31) untuk menyelaraskan tabel dengan Q4.7; menunggu konfirmasi owner.
+- Q4.14. Tabel "Daftar kejadian" (14 kejadian) yang berlaku, bukan jumlah commit di diagram Mermaid. Kejadian berentang (Harisenin, MBKM) memakai kolom opsional `end` dalam satu kartu, dan pekerjaan saat ini memakai `current: true` untuk penanda HEAD. Diputuskan saat implementasi (2026-10-31) untuk menyelaraskan tabel dengan Q4.7; dikonfirmasi owner bersama revisi section 3.
 - Q4.15. Experience dikerjakan dalam dua tahap di branch `feat/experience`: (1) data, algoritma penempatan jalur, dan daftar kartu yang aksesibel; (2) graph SVG, label cabang, legenda, dan penanda HEAD.
+- Q4.16. Timeline diganti mengikuti timeline owner (2026-10-31): 8 kejadian, dengan Skripsi di jalur utama, Bangkit, Riset MBKM & Magang, AWS Back-End Academy, dan Harisenin sebagai cabang satu kartu, serta tautan hasil (repo, ORCID). Sertifikasi tidak lagi menjadi cabang (permintaan owner: "certification jangan disambung linenya"); 43 sertifikat dari LinkedIn ditampilkan di kartu program asalnya dengan tiga sorotan dan "Lihat semua", sisanya di kartu "Sertifikat lainnya" dengan tautan ke LinkedIn. Owner memilih tetap memakai graph bergaya GitHub, bukan garis lurus sederhana (`mockups/h-experience.html` ditolak).
+- Q4.17. Owner meninjau roadmap satu per satu (2026-10-31) dan memilih model **mulai lalu selesai**: sebuah cabang boleh berisi lebih dari satu commit. Untuk Bangkit: commit "Mulai: Bangkit Academy Cloud Computing" (Agu 2023, kartu menampilkan periode program Agu 2023 – Jan 2024, penjelasan program, dan daftar sertifikatnya), lalu commit "Google Cloud Associate Cloud Engineer" (Mar 2024) dengan tautan kredensial Credly, lalu merge ke main. Sertifikat yang dijadikan commit sendiri memakai jenis `certification` (label saja, bukan jalur). Setiap sertifikat boleh punya tautan kredensial (`href`); tautan sertifikat lain menyusul dari daftar LinkedIn owner. Kejadian lain menunggu tinjauan berikutnya.
+- Q4.18. Skripsi (Mei – Okt 2025, perkiraan owner) adalah cabang sendiri, bukan bagian jalur utama, berjalan sejajar dengan AWS Back-End Academy (Apr – Des 2025) karena keduanya selesai hampir bersamaan (owner, 2026-10-31). Graph memakai tiga jalur pada periode itu.
+- Q4.19. Kuliah dan pekerjaan masing-masing jadi cabang sendiri (owner, 2026-10-31), supaya graph punya commit `init` dan commit merge seperti riwayat git. Ini menggantikan aturan "jalur utama berisi Kuliah dan Pekerjaan":
+  - `main` hanya berisi commit `init` di baris paling bawah (simpul kecil berlabel `init`, dekoratif, tanpa kartu dan tidak masuk daftar) dan simpul merge.
+  - Cabang `kuliah` (Agu 2021 – Okt 2025) berisi Mulai kuliah dan Lulus, lalu merge ke `main`.
+  - Cabang boleh punya induk (`parent`). Bangkit, Riset MBKM & Magang, dan Skripsi bercabang dari `kuliah` dan merge kembali ke `kuliah`. AWS Back-End Academy dan Harisenin bercabang dari `main` (AWS selesai setelah lulus).
+  - Cabang `kerja/intramedika` (Feb 2026 – sekarang) bercabang dari `main`, masih berjalan (`ongoing`), jadi tidak punya merge dan memakai penanda HEAD.
+  - Pada tanggal yang sama, urutan dari atas mengikuti kedalaman cabang: merge sebuah cabang, kejadian di cabang itu, lalu merge dan kejadian cabang anaknya. Jadi Skripsi merge ke `kuliah` sebelum Lulus, dan `kuliah` merge ke `main` setelah Lulus.
+  - Gaya garis: `main` oranye solid; Kuliah netral solid; Pekerjaan oranye solid tipis; Magang titik-titik; Pelatihan putus-putus; Skripsi putus-titik. Legenda memuat main, Kuliah, Pekerjaan, Magang, Pelatihan, dan Skripsi.
+- Q4.20. Penyempurnaan tampilan setelah tinjauan owner (2026-10-31): ujung atas `main` dan cabang yang masih berjalan naik sedikit dan diakhiri persegi; kartu "Sertifikat lainnya" mengisi kolom kanan yang kosong mulai 1024px (sticky), bukan di bawah graph; semua kartu memakai bayangan kartu dari `02-design-system.md`. Bagian Experience ditulis ulang menjadi satu versi terbaru agar tidak bertentangan dengan keputusan Q4.14 sampai Q4.19.
+- Q4.21. Legenda di atas graph dihapus (owner, 2026-10-31): label jenis dan chip label cabang di kartu sudah membedakan jalur, legendanya tersembunyi dari screen reader sehingga tidak membawa informasi, dan tanpa legenda kartu terbaru tampil lebih cepat.
 - Maskot diganti dari kucing menjadi **berang-berang** (lihat `01-overview.md` dan `02-design-system.md`).
 
 ## Pertanyaan terbuka

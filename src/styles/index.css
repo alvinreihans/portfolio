@@ -23,6 +23,8 @@
   --footer-ink: #f5e6dc;
   --focus: #b83a08;
   --cloud-outline: var(--muted);
+  /* Card shadow from specs/02-design-system.md: four thin layers of dark blue. */
+  --shadow: 0 2px 4px #0f223408, 0 6px 12px #0f223408, 0 14px 24px #0f22340a, 0 27px 40px #0f22340a;
   color-scheme: light;
 }
 
@@ -44,6 +46,8 @@
   --footer-ink: #f5e6dc;
   --focus: #ff5e24;
   --cloud-outline: var(--line);
+  /* Night: three layers of transparent black. */
+  --shadow: 0 2px 4px #00000030, 0 8px 16px #00000030, 0 20px 36px #00000035;
   color-scheme: dark;
 }
 
@@ -95,6 +99,11 @@
   [tabindex='-1']:focus-visible {
     outline: none;
   }
+}
+
+/* One shadow set per card (specs/02-design-system.md, "Spasi, radius, bayangan"). */
+@utility shadow-card {
+  box-shadow: var(--shadow);
 }
 
 /* Day/Night color change; switched off for visitors who prefer reduced motion. */

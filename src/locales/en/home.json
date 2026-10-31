@@ -17,7 +17,6 @@
     "experience.type.work",
     "experience.type.internship",
     "experience.type.training",
-    "experience.type.certification",
     "experience.present",
     "works.heading",
     "contact.heading",
@@ -26,7 +25,12 @@
     "contact.copy",
     "contact.copied",
     "scene.greet",
-    "scene.lines"
+    "scene.lines",
+    "experience.certifications",
+    "experience.showAll",
+    "experience.otherCertifications",
+    "experience.allOnLinkedIn",
+    "experience.type.certification"
   ],
   "hero": {
     "titleLine1": "Building backend systems",
@@ -57,7 +61,11 @@
       "training": "Training",
       "certification": "Certification"
     },
-    "present": "Present"
+    "present": "Present",
+    "certifications": "Certifications",
+    "showAll": "Show all ({{count}})",
+    "otherCertifications": "Other certificates",
+    "allOnLinkedIn": "See all {{count}} certificates on LinkedIn"
   },
   "works": {
     "heading": "Projects"
