@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- Pixel scenery on the home page: a page-wide sky with slowly drifting clouds (kept in the side margins on wide screens) and night stars, and one of four scenes picked at random per visit (park, beach, city, mountain) with an idle beaver mascot above the Contact section. Contact and the footer continue the scene's ground texture, with Send email (subject in the active language), Copy email (announced to screen readers), and social links. The scene loads separately, pauses when off screen or in a hidden tab, and stays still for reduced motion, data saver, 2G connections, low-memory or 2-core devices, and browsers that cannot keep 30 fps. `?scene=` and `?seed=` pin a scene for review.
 - Hero: heading, intro, an action row (View CV, Experience, Projects, Contact), social links (LinkedIn, GitHub, Instagram, icons from Font Awesome Free under CC BY 4.0), and a pixel sky (sun and clouds by day; moon, twinkling stars, and darker clouds by night).
 - Tech stack section with five groups from the CV.
 - On the home page, the desktop navbar links stay visually hidden while the hero action row is on screen and fade in once it scrolls away; they remain available to screen readers and appear on keyboard focus. Tapping outside the mobile menu closes it, and keyboard focus is no longer hidden behind the sticky navbar.

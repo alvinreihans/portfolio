@@ -116,3 +116,27 @@
     animation: none;
   }
 }
+
+/* Page-wide sky clouds drift left and right (specs/07-scenery.md); duration and delay are
+   set per cloud. */
+@keyframes drift {
+  from {
+    transform: translateX(calc(var(--range) * -1));
+  }
+  to {
+    transform: translateX(var(--range));
+  }
+}
+
+.cloud {
+  animation: drift 25s ease-in-out infinite alternate;
+
+  @media (prefers-reduced-motion: reduce) {
+    animation: none;
+  }
+}
+
+/* Static mode (slow device or connection) stops the whole sky. */
+[data-still] :is(.cloud, .star) {
+  animation: none;
+}
