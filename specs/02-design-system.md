@@ -7,7 +7,7 @@ Spec ini menjabarkan G4 sampai G7 dari `01-overview.md`: tampilan, tema Day/Nigh
 ## Prinsip
 
 1. Minimal dan bersih; kesan "pixel" hanya sebagai aksen (heading, awan, matahari, bulan, bintang, berang-berang), bukan pada teks isi.
-2. Satu warna aksen (oranye). Tidak ada warna merek kedua. Pengecualian: ikon bendera di tombol bahasa memakai warna asli benderanya (Q2.6).
+2. Satu warna aksen (oranye). Tidak ada warna merek kedua. Pengecualian: ikon bendera di tombol bahasa memakai warna asli benderanya (Q2.6), dan ilustrasi adegan pixel di halaman utama (Q7.6 di `07-scenery.md`).
 3. Satu tombol utama (oranye) per layar.
 4. Kontras WCAG AA adalah syarat, bukan pilihan. Angka di spec ini sudah dihitung, bukan perkiraan.
 
@@ -109,9 +109,11 @@ Hanya subset yang dibutuhkan (Latin) dan format `woff2` yang dimuat, agar ukuran
 | **Diagram (node)** | `--chip`, radius 6px; node sorotan memakai `--accent` + `--on-accent`. Detail sintaks di `06-project-stories.md`. |
 | **Tombol tema** | Satu tombol ikon pixel yang bergantian antara matahari bersinar (Day) dan bulan sabit (Night), digambar di grid 11x11 dengan 2px per piksel. Ikon menunjukkan tema yang sedang aktif. Nama aksesibel (`aria-label`) menyebut aksinya, misalnya "Ganti ke tema Night" / "Switch to Night theme", mengikuti bahasa yang dipilih; label berubah mengikuti keadaan, jadi tanpa `aria-pressed`. Area klik minimal **44x44px**, fokus terlihat. |
 | **Tombol bahasa** | Satu tombol ikon yang menampilkan bendera pixel bahasa yang sedang aktif: bendera Indonesia untuk bahasa Indonesia, bendera Amerika Serikat untuk bahasa Inggris, tanpa teks kode. Menekannya berpindah ke bahasa lain. Nama aksesibel menyebut aksinya dalam bahasa aktif ("Ganti ke bahasa Inggris" / "Switch to Indonesian"), tanpa `aria-pressed`. Bendera digambar dengan 1px per piksel agar detailnya terbaca: bendera AS 25x13 piksel di dalam bingkai (13 garis masing-masing 1 piksel, kanton biru setinggi 7 garis, bintang selang-seling), bendera Indonesia 25x14 piksel (merah dan putih sama tinggi). Bingkai 1 piksel memakai warna teks agar bagian putih tetap terlihat di latar terang. Area klik minimal **44x44px**, fokus terlihat. |
-| **Footer** | Latar `--footer`, teks `--footer-ink`, heading Jersey 10. |
+| **Footer** | Latar `--footer`, teks `--footer-ink`, heading Jersey 10. Di halaman utama, Contact dan footer memakai tekstur tanah adegan dengan warna teks per tekstur (lihat `07-scenery.md`). |
 
 ## Dekorasi langit (pixel art)
+
+> Diperbarui 2026-10-31: di halaman utama awan dan bintang pindah ke lapisan langit selebar halaman; matahari dan bulan tetap di hero. Detailnya di `07-scenery.md`, yang berlaku bila bertentangan dengan bagian ini.
 
 - Dibuat sebagai komponen SVG (rect berbasis grid, `shape-rendering: crispEdges`), bukan gambar bitmap, supaya tajam di semua layar dan ikut token warna.
 - **Day:** matahari oranye pixel dan awan putih berkontur. **Night:** bulan sabit krem, bintang berkedip, awan gelap.
@@ -120,6 +122,8 @@ Hanya subset yang dibutuhkan (Latin) dan format `woff2` yang dimuat, agar ukuran
 - Pergantian Day/Night memakai transisi warna sekitar 0,4 detik; juga dimatikan saat `prefers-reduced-motion`.
 
 ## Maskot berang-berang pixel
+
+> Diperbarui 2026-10-31: sprite baru 20x17 piksel mengikuti gambar referensi owner, **dengan outline** dan palet sendiri (lihat `07-scenery.md`). Aturan "tanpa outline" dan tiga token `--mascot-*` di bawah diganti olehnya. Di halaman utama berang-berang tampil di adegan acak di atas Contact, menggantikan pose "duduk di tepi footer / tidur mengapung".
 
 - **Peran:** dekoratif dan pemanis, bukan elemen utama. Tidak ada berang-berang besar di hero.
 - **Ukuran dan tempat:**
@@ -159,7 +163,7 @@ Aturan tambahan:
 - [ ] AC4. Semua kontrol interaktif punya area klik minimal 44x44px dan indikator fokus yang terlihat dengan kontras minimal 3:1.
 - [ ] AC5. Mengganti tema tidak menimbulkan layout shift, dan tidak ada kilatan tema salah saat halaman dimuat.
 - [ ] AC6. Dengan `prefers-reduced-motion` aktif, bintang, kedipan berang-berang, dan transisi tema berhenti.
-- [ ] AC7. Maskot tampil di footer dan 404 pada kedua tema dengan pose yang sesuai, dan tidak muncul di hero.
+- [ ] AC7. Maskot tampil di adegan halaman utama (di atas Contact) dan di 404 pada kedua tema dengan pose yang sesuai, dan tidak muncul di hero.
 - [ ] AC8. Tidak ada scroll horizontal di lebar 320px ke atas pada kedua tema.
 - [ ] AC9. Situs tidak membuat permintaan ke Google Fonts atau CDN font lain; font dimuat dari domain sendiri dalam format `woff2`.
 - [ ] AC10. Tombol tema bisa dioperasikan dengan keyboard (Enter dan Spasi), punya `aria-label` yang menyebut aksi dalam bahasa aktif, dan label itu ikut berubah saat bahasa atau tema berganti.

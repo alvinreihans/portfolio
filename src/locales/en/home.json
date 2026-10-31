@@ -24,7 +24,9 @@
     "contact.body",
     "contact.email",
     "contact.copy",
-    "contact.copied"
+    "contact.copied",
+    "scene.greet",
+    "scene.lines"
   ],
   "hero": {
     "titleLine1": "Building backend systems",
@@ -66,5 +68,51 @@
     "email": "Send email",
     "copy": "Copy email",
     "copied": "Email copied"
+  },
+  "scene": {
+    "greet": "Say hi to the beaver",
+    "lines": {
+      "park": {
+        "day": {
+          "1": "Relax first, code later.",
+          "2": "This coffee is so warm...",
+          "3": "Hi! Just taking a break."
+        },
+        "night": {
+          "1": "Zzz...",
+          "2": "Five more minutes..."
+        }
+      },
+      "beach": {
+        "day": {
+          "1": "My sandcastle is almost done!",
+          "2": "Hot, but fun!"
+        },
+        "night": {
+          "1": "Zzz...",
+          "2": "The waves make me sleepy..."
+        }
+      },
+      "city": {
+        "day": {
+          "1": "Coffee first.",
+          "2": "Let's code!"
+        },
+        "night": {
+          "1": "Working late again?",
+          "2": "Late-night coffee is the best."
+        }
+      },
+      "mountain": {
+        "day": {
+          "1": "The marshmallow is almost ready!",
+          "2": "Fresh mountain air!"
+        },
+        "night": {
+          "1": "Warm and cozy...",
+          "2": "Look at the stars!"
+        }
+      }
+    }
   }
 }
