@@ -1,0 +1,171 @@
+{
+  "_review": "TODO(owner): all titles, summaries, and branch labels are drafts from the CV and specs/04-pages.md until the owner reviews them.",
+  "branches": [
+    {
+      "id": "harisenin",
+      "kind": "training",
+      "label": { "id": "pelatihan/harisenin", "en": "training/harisenin" }
+    },
+    {
+      "id": "aws-backend",
+      "kind": "training",
+      "label": { "id": "pelatihan/aws-backend", "en": "training/aws-backend" }
+    },
+    {
+      "id": "mbkm",
+      "kind": "internship",
+      "label": { "id": "magang/mbkm", "en": "internship/mbkm" }
+    },
+    {
+      "id": "bangkit",
+      "kind": "training",
+      "label": { "id": "pelatihan/bangkit", "en": "training/bangkit" }
+    },
+    {
+      "id": "certifications",
+      "kind": "certification",
+      "label": { "id": "sertifikasi", "en": "certifications" }
+    }
+  ],
+  "events": [
+    {
+      "date": "2026-05",
+      "end": "2026-07",
+      "branch": "harisenin",
+      "type": "training",
+      "org": "Harisenin",
+      "title": { "id": "FullStack Developer Academy", "en": "FullStack Developer Academy" },
+      "summary": {
+        "id": "Proyek akhir Video Belajar: platform kursus online berbentuk monorepo dengan SPA React (Vite, Tailwind CSS, Redux) dan REST API Express.js dengan MySQL.",
+        "en": "Final project Video Belajar: an online course platform structured as a monorepo, with a React SPA (Vite, Tailwind CSS, Redux) and an Express.js and MySQL REST API."
+      }
+    },
+    {
+      "date": "2026-02",
+      "branch": "main",
+      "type": "work",
+      "current": true,
+      "org": "PT Intramedika Global Digital",
+      "title": { "id": "Junior Software Developer", "en": "Junior Software Developer" }
+    },
+    {
+      "date": "2025-12",
+      "branch": "certifications",
+      "type": "certification",
+      "org": "Dicoding",
+      "title": {
+        "id": "Expert Back-End Developer with JavaScript",
+        "en": "Expert Back-End Developer with JavaScript"
+      }
+    },
+    {
+      "date": "2025-12",
+      "branch": "aws-backend",
+      "type": "training",
+      "org": "AWS Back-End Academy",
+      "title": { "id": "Selesai: Back-End Developer", "en": "Completed: Back-End Developer" },
+      "summary": {
+        "id": "Membangun layanan backend forum obrolan gim dengan clean architecture dan TDD, pipeline CI/CD GitHub Actions, serta deployment ke Amazon EC2 dan Amazon RDS.",
+        "en": "Built a backend service for a gaming chat forum using clean architecture and TDD, a GitHub Actions CI/CD pipeline, and deployment to Amazon EC2 and Amazon RDS."
+      }
+    },
+    {
+      "date": "2025-10",
+      "branch": "main",
+      "type": "education",
+      "org": "Universitas Lampung",
+      "title": {
+        "id": "Lulus Sarjana Teknik Informatika",
+        "en": "Graduated in Informatics Engineering (Bachelor)"
+      },
+      "summary": {
+        "id": "Sarjana Teknik Informatika, IPK 3,88/4,00. Skripsi: Pengembangan Backend Aplikasi Pemantauan Smart Stick IoT Real-time Berbasis MQTT dan Node.js.",
+        "en": "Bachelor of Engineering in Informatics Engineering, GPA 3.88/4.00. Thesis: Backend Development for a Real-time IoT Smart Stick Monitoring Application Based on MQTT and Node.js."
+      }
+    },
+    {
+      "date": "2025-09",
+      "branch": "certifications",
+      "type": "certification",
+      "org": "Dicoding",
+      "title": {
+        "id": "Building Cloud Architecture on AWS",
+        "en": "Building Cloud Architecture on AWS"
+      }
+    },
+    {
+      "date": "2025-06",
+      "branch": "certifications",
+      "type": "certification",
+      "org": "Dicoding",
+      "title": {
+        "id": "Learning the Basics of Cloud and Gen AI on AWS",
+        "en": "Learning the Basics of Cloud and Gen AI on AWS"
+      }
+    },
+    {
+      "date": "2025-04",
+      "branch": "aws-backend",
+      "type": "training",
+      "org": "AWS Back-End Academy",
+      "title": { "id": "Mulai: Back-End Developer", "en": "Started: Back-End Developer" }
+    },
+    {
+      "date": "2024-07",
+      "end": "2024-08",
+      "branch": "mbkm",
+      "type": "internship",
+      "org": "Gita Persada Butterfly Park",
+      "title": { "id": "Magang MBKM penelitian", "en": "MBKM research internship" },
+      "summary": {
+        "id": "Mengembangkan RESTful API berbasis Flask untuk aplikasi klasifikasi tanaman yang terintegrasi dengan model machine learning, di-deploy di Google Compute Engine dengan Cloud SQL dan Cloud Storage.",
+        "en": "Developed a Flask-based RESTful API for a plant classification application integrated with a machine learning model, deployed on Google Compute Engine with Cloud SQL and Cloud Storage."
+      }
+    },
+    {
+      "date": "2024-03",
+      "branch": "certifications",
+      "type": "certification",
+      "org": "Google Cloud",
+      "title": {
+        "id": "Associate Cloud Engineer (berlaku sampai Maret 2027)",
+        "en": "Associate Cloud Engineer (valid until March 2027)"
+      }
+    },
+    {
+      "date": "2024-01",
+      "branch": "bangkit",
+      "type": "training",
+      "org": "Bangkit Academy",
+      "title": { "id": "Lulus: Cloud Computing", "en": "Completed: Cloud Computing" },
+      "summary": {
+        "id": "Proyek akhir: layanan backend untuk aplikasi Android pertanian yang terintegrasi dengan model machine learning, di-deploy di Google Cloud (Compute Engine dan Cloud SQL).",
+        "en": "Final project: a backend service for an agriculture Android application integrated with machine learning models, deployed on Google Cloud using Compute Engine and Cloud SQL."
+      }
+    },
+    {
+      "date": "2023-10",
+      "branch": "certifications",
+      "type": "certification",
+      "org": "Coursera",
+      "title": {
+        "id": "System Administration and IT Infrastructure Services",
+        "en": "System Administration and IT Infrastructure Services"
+      }
+    },
+    {
+      "date": "2023-08",
+      "branch": "bangkit",
+      "type": "training",
+      "org": "Bangkit Academy",
+      "title": { "id": "Mulai: Siswa Cloud Computing", "en": "Started: Cloud Computing Student" }
+    },
+    {
+      "date": "2021-08",
+      "branch": "main",
+      "type": "education",
+      "org": "Universitas Lampung",
+      "title": { "id": "Mulai kuliah Teknik Informatika", "en": "Started Informatics Engineering" }
+    }
+  ]
+}
