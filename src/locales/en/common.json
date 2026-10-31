@@ -8,7 +8,7 @@
     "nav.closeMenu",
     "skipToContent",
     "externalLink",
-    "language.label",
+    "language.switch",
     "theme.switchToNight",
     "theme.switchToDay",
     "contact.mailSubject",
@@ -26,7 +26,7 @@
   "skipToContent": "Skip to content",
   "externalLink": "(external link)",
   "language": {
-    "label": "Language"
+    "switch": "Switch to Indonesian"
   },
   "theme": {
     "switchToNight": "Switch to Night theme",

@@ -1,35 +1,32 @@
 import { useTranslation } from 'react-i18next';
 
-import { LANGUAGES, type Language } from '../i18n/detect.ts';
+import type { Language } from '../i18n/detect.ts';
 import { saveLanguage } from '../i18n/storage.ts';
+import { PixelIcon } from './PixelIcon.tsx';
+import { FLAG_ID, FLAG_US } from './pixelIcons.ts';
 
-// Language names stay in their own language, so they are not translated.
-const NAMES: Record<Language, string> = { id: 'Bahasa Indonesia', en: 'English' };
-
+// One button showing the flag of the active language; pressing it switches to the other
+// language. The label names the action (specs/02-design-system.md, Q2.6).
 export function LanguageToggle() {
   const { t, i18n } = useTranslation();
+  const current: Language = i18n.resolvedLanguage === 'en' ? 'en' : 'id';
+  const label = t('language.switch');
 
-  function choose(language: Language) {
-    saveLanguage(language);
-    void i18n.changeLanguage(language);
+  function switchLanguage() {
+    const next: Language = current === 'id' ? 'en' : 'id';
+    saveLanguage(next);
+    void i18n.changeLanguage(next);
   }
 
   return (
-    <div role="group" aria-label={t('language.label')} className="flex rounded-md bg-chip p-[3px]">
-      {LANGUAGES.map((language) => (
-        <button
-          key={language}
-          type="button"
-          lang={language}
-          // The accessible name keeps the visible code so voice control users can say it.
-          aria-label={`${language.toUpperCase()} (${NAMES[language]})`}
-          aria-pressed={i18n.resolvedLanguage === language}
-          onClick={() => choose(language)}
-          className="min-h-10 min-w-11 cursor-pointer rounded text-xs font-semibold text-muted aria-pressed:bg-card aria-pressed:text-ink aria-pressed:shadow-sm"
-        >
-          {language.toUpperCase()}
-        </button>
-      ))}
-    </div>
+    <button
+      type="button"
+      onClick={switchLanguage}
+      aria-label={label}
+      title={label}
+      className="grid size-11 cursor-pointer place-items-center rounded-md hover:bg-chip"
+    >
+      <PixelIcon icon={current === 'id' ? FLAG_ID : FLAG_US} />
+    </button>
   );
 }

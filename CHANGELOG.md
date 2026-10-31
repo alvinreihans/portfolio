@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- Pixel icons: the theme button shows a sun with rays or a crescent moon, and the language control is now a single button with a pixel flag (Indonesia or the United States) that switches to the other language. This also frees up space in the navbar on small phones.
 - Site layout: sticky navbar with links to the Experience, Projects, and Contact sections and the CV page (they also work from other pages), a mobile menu below 640px (closes with Esc or after choosing a link), a skip link, a footer with the current year, and focus moving to the new page heading or section after navigation.
 - Day/Night theme: the first visit follows the system light or dark setting (and follows live changes), the sun/moon button saves a different choice, and picking the system theme again clears it. A small inline script applies the theme before first paint, and the color transition is off for visitors who prefer reduced motion.
 - Indonesian and English support (i18next): the first visit follows the browser language (Indonesian or English, else English), the ID/EN toggle saves the choice, and `<html lang>` and the page title follow the active language. All draft copy is marked `_review` until the owner reviews it.
