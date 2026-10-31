@@ -70,11 +70,23 @@
 
 @layer base {
   body {
-    @apply bg-bg font-sans text-ink antialiased;
+    @apply theme-fade bg-bg font-sans text-ink antialiased;
   }
 
   :focus-visible {
     outline: 2px solid var(--focus);
     outline-offset: 2px;
+  }
+}
+
+/* Day/Night color change; switched off for visitors who prefer reduced motion. */
+@utility theme-fade {
+  transition:
+    background-color 0.4s,
+    color 0.4s,
+    border-color 0.4s;
+
+  @media (prefers-reduced-motion: reduce) {
+    transition: none;
   }
 }
