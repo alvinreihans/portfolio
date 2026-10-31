@@ -6,6 +6,12 @@ node_modules/
 
 # Build output
 dist/
+*.tsbuildinfo
+
+# Test output
+playwright-report/
+test-results/
+coverage/
 
 # Environment variables
 .env

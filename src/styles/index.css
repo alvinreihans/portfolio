@@ -1,0 +1,80 @@
+@import 'tailwindcss';
+
+/* Design tokens from specs/02-design-system.md. Contrast ratios are verified there. */
+:root,
+[data-theme='day'] {
+  --bg: #e3f1fe;
+  --nav: #ffffff;
+  --band: #ffffff;
+  --card: #ffffff;
+  --card-band: #f4f9fe;
+  --ink: #232629;
+  --muted: #5c6066;
+  --line: #e3f1fe;
+  --chip: #e3f1fe;
+  --accent: #ff5e24;
+  --on-accent: #101828;
+  --accent-text: #b83a08;
+  --accent-display: #d4430c;
+  --footer: #6c3200;
+  --footer-ink: #f5e6dc;
+  --focus: #b83a08;
+  color-scheme: light;
+}
+
+[data-theme='night'] {
+  --bg: #0b1226;
+  --nav: #0f1730;
+  --band: #0f1830;
+  --card: #141e3b;
+  --card-band: #131d3a;
+  --ink: #e8edf7;
+  --muted: #a3afcb;
+  --line: #26335a;
+  --chip: #1e2a50;
+  --accent: #ff5e24;
+  --on-accent: #101828;
+  --accent-text: #ff8a5c;
+  --accent-display: #ff5e24;
+  --footer: #1d0e03;
+  --footer-ink: #f5e6dc;
+  --focus: #ff5e24;
+  color-scheme: dark;
+}
+
+@theme inline {
+  --color-bg: var(--bg);
+  --color-nav: var(--nav);
+  --color-band: var(--band);
+  --color-card: var(--card);
+  --color-card-band: var(--card-band);
+  --color-ink: var(--ink);
+  --color-muted: var(--muted);
+  --color-line: var(--line);
+  --color-chip: var(--chip);
+  --color-accent: var(--accent);
+  --color-on-accent: var(--on-accent);
+  --color-accent-text: var(--accent-text);
+  --color-accent-display: var(--accent-display);
+  --color-footer: var(--footer);
+  --color-footer-ink: var(--footer-ink);
+
+  /* Mascot colors stay the same in both themes */
+  --color-mascot-body: #6c3200;
+  --color-mascot-light: #f5e6dc;
+  --color-mascot-dark: #232629;
+
+  --font-display: 'Jersey 10', ui-monospace, monospace;
+  --font-sans: 'Manrope Variable', system-ui, sans-serif;
+}
+
+@layer base {
+  body {
+    @apply bg-bg font-sans text-ink antialiased;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--focus);
+    outline-offset: 2px;
+  }
+}
