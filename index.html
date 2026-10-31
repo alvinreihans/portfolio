@@ -9,6 +9,19 @@
       content="Full-stack developer focused on reliable backend systems. Works with Node.js, React, and PostgreSQL, with production deployment experience on AWS and Google Cloud."
     />
     <link rel="canonical" href="https://alvinreihans.web.id/" />
+    <script>
+      // Sets the theme before first paint so there is no flash of the wrong theme.
+      // Same rules as src/theme/theme.ts: saved choice, then the system preference, then Day.
+      (function () {
+        var saved = null;
+        try {
+          saved = localStorage.getItem('theme');
+        } catch (e) {}
+        var prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        document.documentElement.dataset.theme =
+          saved === 'day' || saved === 'night' ? saved : prefersDark ? 'night' : 'day';
+      })();
+    </script>
   </head>
   <body>
     <div id="root"></div>

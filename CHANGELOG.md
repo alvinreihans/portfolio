@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- Day/Night theme: the first visit follows the system light or dark setting (and follows live changes), the sun/moon button saves a different choice, and picking the system theme again clears it. A small inline script applies the theme before first paint, and the color transition is off for visitors who prefer reduced motion.
 - Indonesian and English support (i18next): the first visit follows the browser language (Indonesian or English, else English), the ID/EN toggle saves the choice, and `<html lang>` and the page title follow the active language. All draft copy is marked `_review` until the owner reviews it.
 - React SPA scaffold: Vite, React, TypeScript, React Router, and Tailwind CSS, with design tokens for Day and Night, self-hosted Jersey 10 and Manrope fonts, and placeholder routes for `/`, `/cv`, `/projects/:slug`, and 404.
 - `vercel.json` with the Vite build, SPA rewrite, security headers, and long caching for hashed assets.
