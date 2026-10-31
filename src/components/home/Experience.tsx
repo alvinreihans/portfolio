@@ -1,4 +1,4 @@
-import { useLayoutEffect, useRef, useState, type ReactNode } from 'react';
+import { useId, useLayoutEffect, useRef, useState, type ReactNode } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import {
@@ -432,7 +432,7 @@ function CertificateItem({ cert, lang }: { cert: Certification; lang: Lang }) {
   );
 }
 
-// Three highlights stay visible; the full list opens on demand (Q4.16).
+// Three highlights stay visible; the rest unfolds below them on demand (Q4.16, Q4.22).
 function CertificationList({
   certifications,
   lang,
@@ -441,7 +441,10 @@ function CertificationList({
   lang: Lang;
 }) {
   const { t } = useTranslation('home');
+  const [open, setOpen] = useState(false);
+  const restId = useId();
   const highlights = certifications.filter((cert) => cert.highlight);
+  const rest = certifications.filter((cert) => !cert.highlight);
   return (
     <div className="mt-5">
       <h4 className="text-xs font-bold tracking-[0.06em] text-muted uppercase">
@@ -452,19 +455,54 @@ function CertificationList({
           <CertificateItem key={cert.title} cert={cert} lang={lang} />
         ))}
       </ul>
-      {certifications.length > highlights.length && (
-        <details className="mt-2">
-          <summary className="inline-flex min-h-11 cursor-pointer items-center font-semibold text-accent-text">
-            {t('experience.showAll', { count: certifications.length })}
-          </summary>
-          <ul className="mt-1 grid gap-1.5 text-sm">
-            {certifications.map((cert) => (
-              <CertificateItem key={cert.title} cert={cert} lang={lang} />
-            ))}
-          </ul>
-        </details>
+      {rest.length > 0 && (
+        <>
+          {/* Grid rows animate from 0fr to 1fr, so the list grows to its real height.
+              While closed it is inert: hidden links stay out of the Tab order. */}
+          <div
+            id={restId}
+            inert={!open}
+            className="grid transition-[grid-template-rows,opacity] duration-300 ease-out motion-reduce:transition-none"
+            style={{ gridTemplateRows: open ? '1fr' : '0fr', opacity: open ? 1 : 0 }}
+          >
+            <div className="overflow-hidden">
+              <ul className="grid gap-1.5 pt-1.5 text-[0.95rem]">
+                {rest.map((cert) => (
+                  <CertificateItem key={cert.title} cert={cert} lang={lang} />
+                ))}
+              </ul>
+            </div>
+          </div>
+          <button
+            type="button"
+            aria-expanded={open}
+            aria-controls={restId}
+            onClick={() => setOpen((value) => !value)}
+            className="mt-2 -ml-2 inline-flex min-h-11 cursor-pointer items-center gap-2 rounded-md px-2 font-semibold text-accent-text transition-colors hover:bg-chip"
+          >
+            {open ? t('experience.showLess') : t('experience.showMore', { count: rest.length })}
+            <PixelChevron open={open} />
+          </button>
+        </>
       )}
     </div>
+  );
+}
+
+// A small pixel arrow that points down when closed and turns up when open.
+function PixelChevron({ open }: { open: boolean }) {
+  return (
+    <svg
+      viewBox="0 0 7 4"
+      width={14}
+      height={8}
+      shapeRendering="crispEdges"
+      fill="currentColor"
+      aria-hidden="true"
+      className={`transition-transform duration-300 motion-reduce:transition-none ${open ? 'rotate-180' : ''}`}
+    >
+      <path d="M0 0h1v1h1v1h1v1h1V2h1V1h1V0h1v1H6v1H5v1H4v1H3V3H2V2H1V1H0z" />
+    </svg>
   );
 }
 

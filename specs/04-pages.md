@@ -1,6 +1,6 @@
 # 04 - Pages
 
-Status: **Approved** (disetujui owner, 2026-10-31; revisi section 3 Experience, Q4.14 sampai Q4.21, disetujui 2026-10-31)
+Status: **Approved** (disetujui owner, 2026-10-31; revisi section 3 Experience, Q4.14 sampai Q4.21, disetujui 2026-10-31). Tautan kredensial sertifikat dan Q4.22 disetujui 2026-11-01.
 
 Spec ini menjabarkan konten dan layout tiap route dari `01-overview.md`. Tampilan visual mengikuti `02-design-system.md`, bahasa mengikuti `03-i18n.md`, dan cerita project mengikuti `06-project-stories.md`. Sumber data konten: CV owner (versi Indonesia dan Inggris) dan situs lama.
 
@@ -63,7 +63,7 @@ Nama teknologi tidak diterjemahkan. Data disimpan sebagai konstanta di kode (`sr
 
 ### 3. Experience (roadmap bergaya graph GitHub)
 
-> Direvisi dan disetujui 2026-10-31 (Q4.14 sampai Q4.21). Bagian ini menggambarkan keadaan terbaru; riwayat keputusannya ada di bagian **Keputusan**.
+> Direvisi dan disetujui 2026-10-31 (Q4.14 sampai Q4.21); tautan kredensial sertifikat dan Q4.22 disetujui 2026-11-01. Bagian ini menggambarkan keadaan terbaru; riwayat keputusannya ada di bagian **Keputusan**.
 
 Section ini menampilkan perjalanan kuliah, kerja, dan belajar sebagai **graph commit vertikal**, seperti graph riwayat di GitHub atau VS Code: `main` dengan commit `init`, lalu cabang yang bercabang dan menyatu kembali.
 
@@ -133,14 +133,14 @@ Dengan data ini paling banyak **empat jalur** berjalan bersamaan (`main`, `kulia
 - Kartu pertama tiap cabang memuat **chip label cabang**, mirip label branch di GitHub (misalnya ID `pelatihan/bangkit`, EN `training/bangkit`; teks label ada di data tiap bahasa).
 - Warna tidak ditambah (tetap satu aksen). `main` dan Pekerjaan memakai `--accent` bergaris solid; cabang lain memakai warna netral (`--muted`, simpul `--ink`) dengan pola berbeda: Kuliah solid, Magang titik-titik, Pelatihan putus-putus, Skripsi putus-titik. Pembeda utamanya tetap label teks.
 - Tidak ada legenda (Q4.21): label jenis dan chip label cabang di setiap kartu sudah menjelaskan setiap jalur.
-- Kartu dapat memuat **tautan hasil** berupa chip yang dibuka di tab baru: repo GitHub, ORCID, atau halaman kredensial (Credly). Kartu program dapat memuat daftar **sertifikasi** (tiga sorotan dan "Lihat semua (N)"); judul sertifikat menjadi tautan bila punya `href`.
+- Kartu dapat memuat **tautan hasil** berupa chip yang dibuka di tab baru: repo GitHub, ORCID, atau halaman kredensial (Credly). Kartu program dapat memuat daftar **sertifikasi** (tiga sorotan, lalu tombol "Lihat N lainnya" yang mengembangkan sisanya dengan animasi; Q4.22); judul sertifikat menjadi tautan bila punya `href`.
 - Kartu **Sertifikat lainnya** berisi sertifikat di luar program dan tautan "Lihat semua N sertifikat di LinkedIn". Mulai lebar 1024px kartu ini berada di kolom kanan di samping graph dan menempel (sticky) di bawah navbar saat digulir; di bawah 1024px kartu ini berada di bawah graph.
 - Kartu memakai bayangan kartu dari `02-design-system.md`.
 - Garis dan simpul adalah SVG dekoratif (`aria-hidden`), bergaya pixel (`crispEdges`). Chip `init` juga dekoratif.
 
 **Aksesibilitas dan responsif**
 - Strukturnya daftar berurutan (`<ol>`) berisi kejadian saja (tanpa merge dan `init`); tiap item membawa label teks jenisnya ("Kuliah", "Pekerjaan", "Magang", "Pelatihan", "Sertifikasi") dan tanggal dalam elemen `<time>`.
-- "Lihat semua (N)" memakai `<details>`/`<summary>`, jadi bisa dibuka dengan keyboard. Semua tautan eksternal punya nama aksesibel yang menyebutkan bahwa tautan itu eksternal.
+- "Lihat N lainnya" adalah `<button>` dengan `aria-expanded` dan `aria-controls`. Sisa sertifikat muncul di bawah sorotan tanpa mengulangnya; selama tertutup daftar itu `inert` (tautannya tidak terkena Tab). Daftar mengembang dengan transisi tinggi dan opacity sekitar 0,3 detik dan ikon panah pixel berputar; transisi mati saat `prefers-reduced-motion` aktif. Saat terbuka teks tombol menjadi "Sembunyikan". Semua tautan eksternal punya nama aksesibel yang menyebutkan bahwa tautan itu eksternal.
 - Di mobile, jarak antarjalur menyempit (18px) dan kartu memenuhi sisa lebar; tanpa scroll horizontal di 320px.
 - Tidak ada animasi garis; jika nanti ditambahkan, berhenti saat `prefers-reduced-motion` aktif.
 
@@ -199,7 +199,7 @@ Catatan:
 - **Bangkit Academy** adalah program Studi Independen Bersertifikat (MSIB Kampus Merdeka) jalur Cloud Computing. Sebagian besar sertifikat owner berasal dari sini, termasuk Google Associate Cloud Engineer.
 - **Tanggal** Bangkit, Harisenin, kuliah, dan Intramedika dari owner; MBKM dan AWS dari CV (cocok dengan riwayat commit repo hasilnya); Skripsi perkiraan owner.
 
-**Sertifikasi** (Q4.16, Q4.17). Sumber: daftar Licenses & certifications di LinkedIn owner (43 sertifikat, 2026-10-31). Tautan kredensial per sertifikat menyusul dari daftar LinkedIn owner; saat ini baru Google ACE (Credly).
+**Sertifikasi** (Q4.16, Q4.17). Sumber: daftar Licenses & certifications di LinkedIn owner (43 sertifikat, 2026-10-31). Tautan kredensial diambil dari tombol "Show credential" di halaman LinkedIn owner yang disimpan (2026-11-01): 42 dari 43 sertifikat punya tautan langsung ke penerbit (pengalih LinkedIn dan parameter `utm_` dibuang). English Proficiency Test tidak punya halaman kredensial (hanya lampiran gambar di LinkedIn), jadi tanpa tautan.
 
 | Kelompok | Jumlah | Sorotan / isi |
 |---|---|---|
@@ -362,7 +362,8 @@ Teks Indonesia adalah sumber. Semua entri di bawah ditandai `_review` sampai own
 | `home:experience.legend.training` | Pelatihan | Training |
 | `home:experience.legend.thesis` | Skripsi | Thesis |
 | `home:experience.certifications` | Sertifikasi | Certifications |
-| `home:experience.showAll` | Lihat semua ({{count}}) | Show all ({{count}}) |
+| `home:experience.showMore` | Lihat {{count}} lainnya | Show {{count}} more |
+| `home:experience.showLess` | Sembunyikan | Show less |
 | `home:experience.otherCertifications` | Sertifikat lainnya | Other certificates |
 | `home:experience.allOnLinkedIn` | Lihat semua {{count}} sertifikat di LinkedIn | See all {{count}} certificates on LinkedIn |
 | `home:works.heading` | Project | Projects |
@@ -422,7 +423,7 @@ Catatan: `project:noEnglish` hanya muncul saat bahasa Inggris dipilih dan `en.md
 - [ ] AC28. Mengetuk atau mengklik di luar panel menu mobile menutupnya.
 - [ ] AC29. Elemen yang difokus dengan keyboard tidak pernah tertutup navbar yang menempel (`scroll-padding-top`).
 - [ ] AC30. Efek pudar tautan navbar mati saat `prefers-reduced-motion` aktif.
-- [ ] AC31. Ke-43 sertifikat tampil: tiga sorotan per kartu program, sisanya lewat "Lihat semua (N)" yang bisa dibuka dengan keyboard, dan tujuh sertifikat lain di kartu "Sertifikat lainnya" dengan tautan ke LinkedIn yang menyebut jumlah 43. Kartu itu berada di kolom kanan mulai 1024px dan di bawah graph di bawah 1024px.
+- [ ] AC31. Ke-43 sertifikat tampil: tiga sorotan per kartu program, sisanya lewat tombol "Lihat N lainnya" yang bisa dibuka dan ditutup dengan keyboard (tanpa mengulang sorotan), dan tujuh sertifikat lain di kartu "Sertifikat lainnya" dengan tautan ke LinkedIn yang menyebut jumlah 43. Kartu itu berada di kolom kanan mulai 1024px dan di bawah graph di bawah 1024px.
 - [ ] AC32. Graph memiliki commit `init` di dasar `main`, dan ujung atas `main` serta cabang yang masih berjalan diakhiri persegi; tautan hasil (GitHub, ORCID, Credly) dibuka di tab baru dengan nama aksesibel yang menyebut tautan eksternal.
 
 ## Keputusan
@@ -454,6 +455,8 @@ Catatan: `project:noEnglish` hanya muncul saat bahasa Inggris dipilih dan `en.md
   - Gaya garis: `main` oranye solid; Kuliah netral solid; Pekerjaan oranye solid tipis; Magang titik-titik; Pelatihan putus-putus; Skripsi putus-titik. Legenda memuat main, Kuliah, Pekerjaan, Magang, Pelatihan, dan Skripsi.
 - Q4.20. Penyempurnaan tampilan setelah tinjauan owner (2026-10-31): ujung atas `main` dan cabang yang masih berjalan naik sedikit dan diakhiri persegi; kartu "Sertifikat lainnya" mengisi kolom kanan yang kosong mulai 1024px (sticky), bukan di bawah graph; semua kartu memakai bayangan kartu dari `02-design-system.md`. Bagian Experience ditulis ulang menjadi satu versi terbaru agar tidak bertentangan dengan keputusan Q4.14 sampai Q4.19.
 - Q4.21. Legenda di atas graph dihapus (owner, 2026-10-31): label jenis dan chip label cabang di kartu sudah membedakan jalur, legendanya tersembunyi dari screen reader sehingga tidak membawa informasi, dan tanpa legenda kartu terbaru tampil lebih cepat.
+- Q4.22. "Lihat semua (N)" diganti tombol "Lihat N lainnya" / "Sembunyikan" yang mengembangkan sisa sertifikat dengan animasi dan ikon panah, tanpa mengulang sorotan (owner: tombol lama terasa kaku, 2026-11-01).
+- Q4.23. Tinjauan kartu satu per satu selesai (owner, 2026-11-01). Mulai kuliah, Bangkit, Riset MBKM & Magang, Skripsi, AWS Back-End Academy, Lulus, dan Intramedika sesuai bentuk sekarang; Harisenin tetap satu kartu (Mei – Agu 2026), tidak dipecah menjadi mulai lalu selesai.
 - Maskot diganti dari kucing menjadi **berang-berang** (lihat `01-overview.md` dan `02-design-system.md`).
 
 ## Pertanyaan terbuka
