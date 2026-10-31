@@ -40,6 +40,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 
 - Links to a section (hero buttons and navbar) scroll smoothly again instead of jumping; visitors who prefer reduced motion still jump straight there.
+- No focus ring around a section, heading, or the main area when focus moves there after a link or a reload (for example on `/#contact`); buttons and links keep their focus ring.
 
 ### Removed
 

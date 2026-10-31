@@ -88,6 +88,13 @@
     outline: 2px solid var(--focus);
     outline-offset: 2px;
   }
+
+  /* Sections, headings, and <main> receive focus only from script (useRouteFocus and the
+     skip link) so screen readers announce them. They are not controls, so no ring;
+     buttons and links keep theirs. */
+  [tabindex='-1']:focus-visible {
+    outline: none;
+  }
 }
 
 /* Day/Night color change; switched off for visitors who prefer reduced motion. */
