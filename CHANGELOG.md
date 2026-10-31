@@ -11,6 +11,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - React SPA scaffold: Vite, React, TypeScript, React Router, and Tailwind CSS, with design tokens for Day and Night, self-hosted Jersey 10 and Manrope fonts, and placeholder routes for `/`, `/cv`, `/projects/:slug`, and 404.
 - `vercel.json` with the Vite build, SPA rewrite, security headers, and long caching for hashed assets.
+- Vercel builds only `main` and `react-rewrite`; other branches are skipped to save the Hobby plan build quota.
 - GitHub Actions CI that runs lint, format check, type check, `check-i18n`, unit tests, and the build on every pull request.
 - `check-i18n` and initial JavaScript size budget (170 KB gzip) scripts.
 - `.gitignore` for design mockups, dependencies, build output, environment files, and editor/OS files.
