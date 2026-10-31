@@ -9,6 +9,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- React SPA scaffold: Vite, React, TypeScript, React Router, and Tailwind CSS, with design tokens for Day and Night, self-hosted Jersey 10 and Manrope fonts, and placeholder routes for `/`, `/cv`, `/projects/:slug`, and 404.
+- `vercel.json` with the Vite build, SPA rewrite, security headers, and long caching for hashed assets.
+- GitHub Actions CI that runs lint, format check, type check, `check-i18n`, unit tests, and the build on every pull request.
+- `check-i18n` and initial JavaScript size budget (170 KB gzip) scripts.
 - `.gitignore` for design mockups, dependencies, build output, environment files, and editor/OS files.
 - `CHANGELOG.md` to track notable changes.
 - `CLAUDE.md` with the working agreement (spec-driven development, git rules, quality bar).
@@ -25,6 +29,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - `react-rewrite` integration branch for the React SPA rewrite; the live site on `main` stays untouched until the rewrite is ready.
 
 ### Removed
+
+- The old static HTML/CSS/JS site files (`assets/`, `components/`, `contents/`, and the old `index.html`); the live site on `main` keeps them until cutover.
 
 - Stale remote branches `develop` and `v1-react`; their commits are already part of `main`.
 
