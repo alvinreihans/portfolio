@@ -113,10 +113,10 @@ Selain itu, animasi **dijeda** (tanpa menggambar sama sekali) saat kanvas tidak 
 
 ## Rencana pengerjaan
 
-Dua slice, dikerjakan **sebelum** Experience (keputusan Q7.4):
+Dua tahap di satu branch `feat/scenery` dan **satu PR** ke `react-rewrite` (Q7.8), dikerjakan **sebelum** Experience (keputusan Q7.4):
 
-1. **`feat/scenery`:** lapisan langit selebar halaman, kanvas dengan empat adegan, berang-berang dengan animasi diam, Contact di atas tekstur tanah, mode statis dan jeda. AC1 sampai AC4 dan AC7 sampai AC12.
-2. **`feat/scenery-greeting`:** sapaan dengan bubble pixel dan efek ketik, partikel, dan cahaya dinamis. AC5 dan AC6, serta AC7 untuk bagian sapaan.
+1. Lapisan langit selebar halaman, kanvas dengan empat adegan, berang-berang dengan animasi diam, Contact di atas tekstur tanah, mode statis dan jeda. AC1 sampai AC4 dan AC7 sampai AC12.
+2. Sapaan dengan bubble pixel dan efek ketik, partikel (termasuk mobil di adegan kota), dan cahaya dinamis. AC5 dan AC6, serta AC7 untuk bagian sapaan.
 
 ## Keputusan
 
@@ -127,6 +127,7 @@ Dua slice, dikerjakan **sebelum** Experience (keputusan Q7.4):
 - Q7.6. Warna adegan (pohon, laut, gedung, mobil, berang-berang) adalah ilustrasi dan dikecualikan dari aturan satu warna aksen, sama seperti bendera di Q2.6. Warna teks dan kontrol tetap memakai token.
 - Q7.5. Adegan hanya di halaman utama. Halaman lain (`/cv`, project, 404) memakai footer ringkas `--footer`; halaman 404 tetap memakai berang-berang besar seperti di `04-pages.md`, dengan sprite baru (disetujui owner).
 - Q7.7. Adegan digambar dengan Canvas 2D, bukan SVG, karena jumlah piksel per frame besar (selebar layar) dan animasinya berjalan per frame. Awan, bubble, dan ikon tetap SVG.
+- Q7.8. Kedua tahap pemandangan digabung dalam satu PR (permintaan owner, 2026-10-31); tiap tahap tetap commit terpisah.
 
 ## Pertanyaan terbuka
 

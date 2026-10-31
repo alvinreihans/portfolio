@@ -24,7 +24,9 @@
     "contact.body",
     "contact.email",
     "contact.copy",
-    "contact.copied"
+    "contact.copied",
+    "scene.greet",
+    "scene.lines"
   ],
   "hero": {
     "titleLine1": "Membangun sistem backend",
@@ -66,5 +68,51 @@
     "email": "Kirim email",
     "copy": "Salin email",
     "copied": "Email disalin"
+  },
+  "scene": {
+    "greet": "Sapa berang-berang",
+    "lines": {
+      "park": {
+        "day": {
+          "1": "Santai dulu, ngoding nanti.",
+          "2": "Kopinya hangat banget...",
+          "3": "Hai! Lagi istirahat nih."
+        },
+        "night": {
+          "1": "Zzz...",
+          "2": "Lima menit lagi..."
+        }
+      },
+      "beach": {
+        "day": {
+          "1": "Istana pasirku hampir jadi!",
+          "2": "Panas, tapi seru!"
+        },
+        "night": {
+          "1": "Zzz...",
+          "2": "Ombaknya bikin ngantuk..."
+        }
+      },
+      "city": {
+        "day": {
+          "1": "Butuh kopi dulu.",
+          "2": "Yuk, ngoding!"
+        },
+        "night": {
+          "1": "Lembur lagi, ya?",
+          "2": "Kopi malam paling enak."
+        }
+      },
+      "mountain": {
+        "day": {
+          "1": "Marshmallow-nya hampir matang!",
+          "2": "Udara gunung segar!"
+        },
+        "night": {
+          "1": "Hangat dan nyaman...",
+          "2": "Lihat bintangnya!"
+        }
+      }
+    }
   }
 }

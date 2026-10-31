@@ -25,6 +25,141 @@ type Palette = Record<string, string>;
 
 const GROUND = 52;
 
+interface Particle {
+  x: number;
+  y: number;
+  v: number;
+  phase: number;
+  lane: number;
+  color: string;
+  age: number;
+}
+
+const CAR_COLORS = ['#ff5e24', '#3fa9f5', '#f2d38a', '#6abf4b', '#e8edf7'];
+
+/**
+ * What lives between frames: particles (leaves, fireflies, gulls, cars, smoke) and the
+ * beaver's surprised hop after a greeting. One per scene canvas.
+ */
+export class SceneState {
+  readonly scene: SceneName;
+  readonly seed: number;
+  particles: Particle[] = [];
+  /** Frames left of the surprised hop; 0 when idle. */
+  surprise = 0;
+  private width = 0;
+
+  constructor(scene: SceneName, seed: number) {
+    this.scene = scene;
+    this.seed = seed;
+  }
+
+  /** Places the particles again when the width changes. */
+  resize(width: number) {
+    if (width === this.width) return;
+    this.width = width;
+    const rnd = mulberry(this.seed + 7);
+    this.particles = [];
+    if (this.scene === 'city') {
+      // Cars spaced evenly per lane (with a little jitter), about one per lane on a typical
+      // screen, so the street stays calm.
+      const perLane = Math.max(1, Math.round(width / 300));
+      for (let lane = 0; lane < 2; lane++)
+        for (let c = 0; c < perLane; c++)
+          this.particles.push({
+            x: ((c + lane * 0.5) / perLane) * (width + 60) - 30 + rnd() * 20,
+            y: 0,
+            v: 0.45 + rnd() * 0.25,
+            phase: 0,
+            lane,
+            color: CAR_COLORS[(c * 2 + lane) % CAR_COLORS.length],
+            age: 0,
+          });
+      return;
+    }
+    const count = Math.max(6, Math.round(width / 30));
+    for (let i = 0; i < count; i++)
+      this.particles.push({
+        x: rnd() * width,
+        y: rnd() * (GROUND - 6),
+        v: 0.3 + rnd() * 0.6,
+        phase: rnd() * 100,
+        lane: i % 2,
+        color: '',
+        age: 0,
+      });
+  }
+
+  /** Moves everything one tick; only called while the scene animates. */
+  tick(frame: number, night: boolean) {
+    if (this.surprise > 0) this.surprise--;
+    const W = this.width;
+    for (const p of this.particles) {
+      if (this.scene === 'park') {
+        if (night) {
+          p.x += Math.sin((frame + p.phase) / 9) * 0.2;
+          p.y += Math.cos((frame + p.phase) / 11) * 0.15;
+        } else {
+          p.y += 0.25 * p.v;
+          p.x += Math.sin((frame + p.phase) / 6) * 0.35 + 0.15;
+          if (p.y > GROUND + 2) {
+            p.y = -2;
+            p.x = Math.random() * W;
+          }
+        }
+      } else if (this.scene === 'beach') {
+        p.x += p.v * 0.5;
+        if (p.x > W + 6) {
+          p.x = -6;
+          p.y = 4 + Math.random() * 14;
+        }
+      } else if (this.scene === 'city') {
+        // upper lane drives right, lower lane drives left
+        p.x += (p.lane ? -1 : 1) * p.v;
+        if (p.x > W + 30) p.x = -60;
+        if (p.x < -60) p.x = W + 30;
+        continue;
+      } else {
+        p.age++;
+      }
+      if (p.x > W + 8) p.x -= W + 16;
+    }
+  }
+
+  /** The greeting's surprised hop; none in static mode. */
+  startle(still: boolean) {
+    this.surprise = still ? 0 : 10;
+  }
+}
+
+// Pixel car, front on the right, sized to match the cafe and the beaver:
+// R body, D lower body, W windows, H headlight, T tail light, K tyre, G rim.
+const CAR = [
+  '.......RRRRRRRR.........',
+  '......RWWWWRWWWWR.......',
+  '.....RWWWWWRWWWWWR......',
+  '..RRRRRRRRRRRRRRRRRRRR..',
+  '.RRRRRRRRRRRRRRRRRRRRRRH',
+  'TRRRRRRRRRRRRRRRRRRRRRRH',
+  '.DDDDKKKDDDDDDDDKKKDDDD.',
+  '....KGGGK......KGGGK....',
+  '.....KKK........KKK.....',
+];
+
+function shade(hex: string, factor: number): string {
+  const n = Number.parseInt(hex.slice(1), 16);
+  return (
+    '#' +
+    [(n >> 16) & 255, (n >> 8) & 255, n & 255]
+      .map((v) =>
+        Math.round(v * factor)
+          .toString(16)
+          .padStart(2, '0'),
+      )
+      .join('')
+  );
+}
+
 function mulberry(seed: number) {
   let a = seed;
   return () => {
@@ -68,7 +203,7 @@ const BEAVER = [
 ];
 const BEAVER_WIDTH = BEAVER[0].length;
 
-type Eyes = 'open' | 'closed' | 'shades';
+type Eyes = 'open' | 'closed' | 'wide' | 'shades';
 
 interface BeaverPose {
   eyes: Eyes;
@@ -78,17 +213,18 @@ interface BeaverPose {
   glowSide?: 'left';
 }
 
-// Cars, particles, the light flicker, and the greeting come with the second scenery slice.
 class Painter {
   readonly ctx: CanvasRenderingContext2D;
   readonly f: SceneFrame;
+  readonly state: SceneState;
   readonly night: boolean;
   readonly rnd: () => number;
   beaver: Box | null = null;
 
-  constructor(ctx: CanvasRenderingContext2D, f: SceneFrame) {
+  constructor(ctx: CanvasRenderingContext2D, f: SceneFrame, state: SceneState) {
     this.ctx = ctx;
     this.f = f;
+    this.state = state;
     this.night = f.theme === 'night';
     this.rnd = mulberry(f.seed);
   }
@@ -133,8 +269,17 @@ class Painter {
           );
   }
 
-  /** Warm light as a sparse dither of solid pixels (the flicker comes with the greeting slice). */
-  glow(cx: number, cy: number, r: number, color: string) {
+  /** Warm light as a sparse dither of solid pixels; the radius flickers by a pixel now and then. */
+  glow(cx: number, cy: number, radius: number, color: string, key: number) {
+    const { frame, still } = this.f;
+    const flick = still
+      ? 0
+      : (frame + key * 5) % 7 === 0
+        ? 1
+        : (frame + key * 3) % 11 === 0
+          ? -1
+          : 0;
+    const r = radius + flick;
     for (let y = -r; y <= r; y++)
       for (let x = -r; x <= r; x++) {
         const d = x * x + y * y;
@@ -143,23 +288,92 @@ class Painter {
       }
   }
 
+  drawCar(x: number, y: number, color: string, facingLeft: boolean) {
+    const dark = this.night;
+    const colors: Palette = {
+      R: dark ? shade(color, 0.42) : color,
+      D: shade(color, dark ? 0.3 : 0.72),
+      W: dark ? '#26335a' : '#dce8f7',
+      H: dark ? '#fff3c4' : '#f5e6dc',
+      T: dark ? '#ff3b30' : '#b83a08',
+      K: '#232629',
+      G: dark ? '#5c6066' : '#8b93a1',
+    };
+    const w = CAR[0].length;
+    CAR.forEach((row, j) => {
+      for (let i = 0; i < w; i++) {
+        const c = colors[row[i]];
+        if (c) this.px(x + (facingLeft ? w - 1 - i : i), y + j, 1, 1, c);
+      }
+    });
+    if (dark) {
+      // headlight beam on the road ahead and a soft red glow behind
+      for (let k = 1; k <= 7; k++)
+        for (let dy = -Math.floor(k / 2); dy <= Math.floor(k / 2); dy++)
+          if ((k + dy) % 2 === 0)
+            this.px(facingLeft ? x - k : x + w - 1 + k, y + 5 + dy, 1, 1, '#7a6a3a');
+      this.px(facingLeft ? x + w : x - 1, y + 5, 1, 1, '#6a1a14');
+      this.px(facingLeft ? x + w + 1 : x - 2, y + 5, 1, 1, '#4a1410');
+    }
+  }
+
+  /** Particles, cars included, are hidden in static mode (specs/07-scenery.md, section 4). */
+  particles(P: Palette, fire?: { x: number; y: number }) {
+    const { frame, still, scene } = this.f;
+    if (still) return;
+    this.state.particles.forEach((p, i) => {
+      if (scene === 'park') {
+        if (this.night) {
+          if ((frame + Math.floor(p.phase)) % 8 < 5) this.px(p.x, p.y + 20, 1, 1, '#ffd166');
+        } else this.px(p.x, p.y, i % 3 ? 1 : 2, 1, i % 2 ? P.leafLight : '#e0a040');
+      } else if (scene === 'beach') {
+        if (this.night || i % 2) return; // a few gulls by day only
+        const up = Math.floor((frame + p.phase) / 3) % 2;
+        const c = '#5c6066';
+        const gy = 3 + ((i * 5) % 14);
+        if (up) {
+          this.px(p.x, gy, 1, 1, c);
+          this.px(p.x + 1, gy + 1, 2, 1, c);
+          this.px(p.x + 3, gy, 1, 1, c);
+        } else {
+          this.px(p.x, gy + 1, 1, 1, c);
+          this.px(p.x + 1, gy, 2, 1, c);
+          this.px(p.x + 3, gy + 1, 1, 1, c);
+        }
+      } else if (scene === 'city') {
+        // the dashed line sits between the two lanes
+        this.drawCar(p.x, p.lane ? GROUND + 12 : GROUND + 1, p.color, p.lane === 1);
+      } else if (fire && i < 6) {
+        const age = (p.age + i * 5) % 30;
+        const sx = fire.x + Math.sin((age + i) / 4) * 1.5;
+        const sy = fire.y - 7 - age * 0.45;
+        if (age < 22 || (age + frame) % 2 === 0)
+          this.px(sx, sy, 1, 1, this.night ? '#5a6478' : '#c9cfd6');
+      }
+    });
+  }
+
   ground(x0: number, y0: number, w: number, h: number) {
     paintGround(this.ctx, this.f.scene, this.f.theme, x0, y0, w, h);
   }
 
-  /** Idle animation: breathing bob, blinks, and a tail wag. */
+  /** Idle animation: breathing bob, blinks, and a tail wag; a surprised hop when greeted. */
   drawBeaver(x: number, y: number, pose: BeaverPose) {
     const { frame, still } = this.f;
+    const surprise = this.state.surprise;
     const sleepy = pose.eyes === 'closed';
     const bob = still ? 0 : Math.floor(frame / (sleepy ? 9 : 5)) % 2;
+    const hop = surprise > 0 ? [0, -1, -2, -3, -2][surprise % 5] : 0;
     let eyes = pose.eyes;
-    if (eyes === 'open' && !still && frame % 28 < 2) eyes = 'closed';
-    const eyeRow = this.eyeRow(eyes, pose.look ?? 0);
-    const wag = !still && Math.floor(frame / 3) % 4 === 0;
+    // Greeted: a sleeping beaver wakes up, an awake one opens its eyes wide.
+    if (surprise > 0) eyes = sleepy ? 'open' : 'wide';
+    else if (eyes === 'open' && !still && frame % 28 < 2) eyes = 'closed';
+    const eyeRows = this.eyeRows(eyes, pose.look ?? 0);
+    const wag = !still && (surprise > 0 ? frame % 2 === 0 : Math.floor(frame / 3) % 4 === 0);
     const x0 = Math.round(x);
-    const y0 = Math.round(y);
+    const y0 = Math.round(y + hop);
     for (let j = 0; j < BEAVER.length; j++) {
-      const row = j === 4 ? eyeRow : BEAVER[j];
+      const row = eyeRows[j] ?? BEAVER[j];
       for (let i = 0; i < row.length; i++) {
         const key = row[i];
         let color = BEAVER_COLORS[key];
@@ -178,18 +392,25 @@ class Painter {
         this.px(x0 + col, y0 + j + dy, 1, 1, color);
       }
     }
-    this.beaver = { x: x0, y: y0, w: BEAVER_WIDTH, h: BEAVER.length };
+    // The resting position, so the greeting button does not jump with the hop.
+    this.beaver = { x: x0, y: Math.round(y), w: BEAVER_WIDTH, h: BEAVER.length };
   }
 
-  eyeRow(eyes: Eyes, look: number): string {
-    const row = '....OBBBBBBBBBBBBO..'.split('');
-    if (eyes === 'shades') for (let i = 6; i <= 15; i++) row[i] = 'G';
-    else if (eyes === 'closed') row[7] = row[8] = row[13] = row[14] = 'O';
+  /** Rows 3 and 4 of the sprite for the given eyes; 'wide' adds a pixel above each eye. */
+  eyeRows(eyes: Eyes, look: number): Record<number, string> {
+    const row4 = '....OBBBBBBBBBBBBO..'.split('');
+    const row3 = BEAVER[3].split('');
+    if (eyes === 'shades') for (let i = 6; i <= 15; i++) row4[i] = 'G';
+    else if (eyes === 'closed') row4[7] = row4[8] = row4[13] = row4[14] = 'O';
     else {
-      row[7 + look] = 'K';
-      row[14 + look] = 'K';
+      row4[7 + look] = 'K';
+      row4[14 + look] = 'K';
+      if (eyes === 'wide') {
+        row3[7 + look] = 'K';
+        row3[14 + look] = 'K';
+      }
     }
-    return row.join('');
+    return { 3: row3.join(''), 4: row4.join('') };
   }
 
   zz(x: number, y: number) {
@@ -230,8 +451,8 @@ class Painter {
     }
   }
 
-  lamp(x: number, base: number, P: Palette) {
-    if (this.night) this.glow(x, base - 18, 5, '#7a6430');
+  lamp(x: number, base: number, P: Palette, key: number) {
+    if (this.night) this.glow(x, base - 18, 5, '#7a6430', key);
     this.px(x, base - 18, 1, 18, P.metal);
     this.px(x - 1, base - 19, 3, 2, this.night ? '#ffd166' : P.metal);
   }
@@ -275,7 +496,9 @@ const SCENE_ART: Record<SceneName, (p: Painter, P: Palette) => void> = {
     for (let b = 18; b < W; b += 40 + Math.floor(rnd() * 30))
       p.circle(b, GROUND - 2, 3, P.leaf, P.leafLight);
     const bx = Math.floor(W * 0.55);
-    for (let l = 30; l < W; l += 70) if (Math.abs(l - bx - 10) > 14) p.lamp(l, GROUND, P);
+    for (let l = 30, k = 0; l < W; l += 70, k++)
+      if (Math.abs(l - bx - 10) > 14) p.lamp(l, GROUND, P, k);
+    p.particles(P);
     // bench
     p.px(bx, GROUND - 6, 20, 1, P.wood);
     p.px(bx, GROUND - 9, 20, 1, P.wood);
@@ -333,6 +556,7 @@ const SCENE_ART: Record<SceneName, (p: Painter, P: Palette) => void> = {
         }
       p.px(tx - 1, ty, 3, 2, P.trunkDark);
     });
+    p.particles(P);
     // umbrella
     const ux = Math.floor(W * 0.45);
     p.px(ux, GROUND - 16, 1, 16, '#e8edf7');
@@ -386,9 +610,11 @@ const SCENE_ART: Record<SceneName, (p: Painter, P: Palette) => void> = {
     for (let d = 2; d < W; d += 12) p.px(d, GROUND + 10, 6, 1, P.dash);
     p.px(0, GROUND + 22, W, 1, P.curb);
     p.ground(0, GROUND + 23, W, H - GROUND - 23);
+    p.particles(P);
     // cafe
     const cx = Math.floor(W * 0.5);
-    for (let l = 12; l < W; l += 48) if (l < cx - 42 || l > cx + 38) p.lamp(l, GROUND - 4, P);
+    for (let l = 12, k = 0; l < W; l += 48, k++)
+      if (l < cx - 42 || l > cx + 38) p.lamp(l, GROUND - 4, P, k);
     p.px(cx, GROUND - 26, 34, 22, '#f5e6dc');
     for (let a = 0; a < 34; a += 2) p.px(cx + a, GROUND - 22, 2, 3, a % 4 ? '#ffffff' : '#ff5e24');
     p.px(cx + 3, GROUND - 17, 12, 9, p.night ? '#ffd166' : '#7cc6f2');
@@ -434,7 +660,7 @@ const SCENE_ART: Record<SceneName, (p: Painter, P: Palette) => void> = {
     p.px(tx - 2, GROUND - 6, 5, 6, '#101828');
     // campfire
     const fx = tx + 22;
-    if (p.night) p.glow(fx, GROUND - 4, 10, '#6a3a12');
+    if (p.night) p.glow(fx, GROUND - 4, 10, '#6a3a12', 9);
     p.px(fx - 3, GROUND - 1, 7, 1, '#6c3200');
     p.px(fx - 2, GROUND - 2, 5, 1, '#3b1c02');
     const flick = f.still ? 0 : f.frame % 3;
@@ -447,6 +673,7 @@ const SCENE_ART: Record<SceneName, (p: Painter, P: Palette) => void> = {
     ];
     for (const [dx, dy, w, color] of flames)
       p.px(fx + dx - Math.floor(w / 2), GROUND + dy, w, 2, color);
+    p.particles(P, { x: fx, y: GROUND });
     // roasting a marshmallow over the fire; firelight on the side facing it at night
     p.drawBeaver(fx + 5, GROUND - 17, { eyes: 'open', flip: true, glowSide: 'left' });
     const dip = f.still ? 0 : Math.floor(f.frame / 8) % 2;
@@ -557,8 +784,13 @@ const PALETTES: Record<SceneName, Record<Theme, Palette>> = {
 };
 
 /** Draws one frame and returns where the beaver is, in scene pixels. */
-export function drawScene(ctx: CanvasRenderingContext2D, frame: SceneFrame): Box | null {
-  const painter = new Painter(ctx, frame);
+export function drawScene(
+  ctx: CanvasRenderingContext2D,
+  frame: SceneFrame,
+  state: SceneState,
+): Box | null {
+  state.resize(frame.width);
+  const painter = new Painter(ctx, frame, state);
   ctx.clearRect(0, 0, frame.width, sceneRows(frame.scene));
   SCENE_ART[frame.scene](painter, PALETTES[frame.scene][frame.theme]);
   return painter.beaver;
