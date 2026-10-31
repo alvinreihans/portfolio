@@ -76,13 +76,15 @@ Catatan:
 | Kejadian | Hasil di Vercel |
 |---|---|
 | Push ke `main` | Production deployment ke `alvinreihans.web.id` |
-| Push ke branch lain (`react-rewrite`, `feat/*`) | Preview deployment dengan URL sendiri |
-| PR dibuka | Vercel menaruh komentar berisi URL preview di PR |
+| Push ke `react-rewrite` | Preview deployment dengan URL stabil |
+| Push ke branch lain (`feat/*`, `fix/*`, `chore/*`, `docs/*`) | **Tidak di-build** (dilewati lewat Ignored Build Step), untuk menghemat kuota build Vercel Hobby |
 
-- URL stabil untuk branch integrasi: `alvinreihansgithubio-git-react-rewrite-<tim>.vercel.app` (nama persisnya dilihat di dashboard).
-- Preview deployment otomatis diberi header `X-Robots-Tag: noindex` oleh Vercel (diverifikasi saat implementasi).
-- Preview mungkin meminta login Vercel (Deployment Protection). Karena tidak ada rahasia di situs ini, owner boleh mematikan proteksi untuk preview bila ingin membagikan URL-nya.
-- Alur PR: `feat/*` ke `react-rewrite` (tinjau di preview), lalu satu PR akhir `react-rewrite` ke `main` sebagai cutover.
+- Pembatasan build memakai `ignoreCommand` di `vercel.json`: build hanya berjalan jika `VERCEL_GIT_COMMIT_REF` adalah `main` atau `react-rewrite` (exit 1 berarti build jalan, exit 0 berarti dilewati). Deployment yang dilewati tetap muncul di dashboard dengan status dibatalkan. `main` belum memuat `vercel.json` sampai cutover, dan memang selalu di-build.
+- URL stabil untuk branch integrasi: `portfolio-git-react-rewrite-alvin-reihansyah-makarims-projects.vercel.app`.
+- Preview deployment otomatis diberi header `X-Robots-Tag: noindex` oleh Vercel (terverifikasi 2026-10-31).
+- Preview dilindungi Deployment Protection (pengunjung tanpa login Vercel dialihkan dengan 302). Karena tidak ada rahasia di situs ini, owner boleh mematikan proteksi untuk preview agar pemeriksaan asap bisa berjalan tanpa login.
+- **Alur PR:** `feat/*` ke `react-rewrite`. Sebelum merge, perubahan diperiksa lewat CI di PR dan secara lokal (`npm run build` lalu `npm run preview`, ditambah pemeriksaan Playwright oleh asisten). Setelah merge, hasilnya dilihat di preview `react-rewrite`. Satu PR akhir `react-rewrite` ke `main` menjadi cutover.
+- Deployment lama dari branch yang sudah dihapus tidak ikut terhapus otomatis. Owner bisa menghapusnya manual dari dashboard (menu titik tiga di deployment, lalu Delete), atau membiarkan kebijakan retensi Vercel menghapusnya.
 
 ## Integrasi berkelanjutan (CI)
 
@@ -146,6 +148,7 @@ Skrip Playwright kecil dijalankan terhadap URL preview dan, setelah cutover, ter
 ## Kriteria penerimaan
 
 - [ ] AC1. Push ke `react-rewrite` menghasilkan preview deployment yang berhasil build dengan preset Vite, tanpa mengubah deployment produksi di `main`.
+- [ ] AC12. Push ke branch selain `main` dan `react-rewrite` tidak menjalankan build di Vercel (status dilewati), sedangkan CI GitHub Actions tetap berjalan di PR-nya.
 - [ ] AC2. Membuka langsung `/projects/<slug>` dan path acak di preview dan di produksi tidak menghasilkan 404 dari platform.
 - [ ] AC3. Berkas di `/assets/`, `robots.txt`, `sitemap.xml`, favicon, dan gambar OG disajikan sebagai berkas aslinya, bukan `index.html`.
 - [ ] AC4. `alvinreihans.web.id` melayani situs, dan `www.alvinreihans.web.id` dialihkan permanen ke domain tanpa `www`.
@@ -170,6 +173,7 @@ Skrip Playwright kecil dijalankan terhadap URL preview dan, setelah cutover, ter
 - Q5.2. CV lama di situs (`assets/docs/CV_..._BE.pdf`) dihapus dan tidak dialihkan; berkas itu hilang bersama situs lama saat cutover. CV di situs yang baru adalah tautan ke **dokumen Google Docs publik** (Indonesia dan Inggris), bukan berkas di repo, sehingga CV di situs ikut terbaru setiap kali dokumennya diperbarui (lihat `03-i18n.md` dan `04-pages.md`).
 - Q5.3. Workflow GitHub Actions `ci.yml` (lint, tipe, `check-i18n`, build) di setiap PR disetujui.
 - Q5.4. Content-Security-Policy ditambahkan **setelah scaffold**, dimulai dari mode `Content-Security-Policy-Report-Only`, karena skrip kecil untuk tema di `index.html` membutuhkan hash (atau nonce). CSP harus mengizinkan `frame-src https://docs.google.com` untuk pratinjau di halaman `/cv`.
+- Q5.5. Vercel hanya membangun `main` dan `react-rewrite` (keputusan owner, untuk menghemat kuota build plan Hobby). Branch fitur diperiksa lewat CI dan pemeriksaan lokal sebelum merge.
 
 ## Penggantian nama repo
 
