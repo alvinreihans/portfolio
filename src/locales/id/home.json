@@ -27,10 +27,11 @@
     "scene.greet",
     "scene.lines",
     "experience.certifications",
-    "experience.showAll",
     "experience.otherCertifications",
     "experience.allOnLinkedIn",
-    "experience.type.certification"
+    "experience.type.certification",
+    "experience.showMore",
+    "experience.showLess"
   ],
   "hero": {
     "titleLine1": "Membangun sistem backend",
@@ -63,9 +64,10 @@
     },
     "present": "Sekarang",
     "certifications": "Sertifikasi",
-    "showAll": "Lihat semua ({{count}})",
     "otherCertifications": "Sertifikat lainnya",
-    "allOnLinkedIn": "Lihat semua {{count}} sertifikat di LinkedIn"
+    "allOnLinkedIn": "Lihat semua {{count}} sertifikat di LinkedIn",
+    "showMore": "Lihat {{count}} lainnya",
+    "showLess": "Sembunyikan"
   },
   "works": {
     "heading": "Project"

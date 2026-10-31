@@ -27,10 +27,11 @@
     "scene.greet",
     "scene.lines",
     "experience.certifications",
-    "experience.showAll",
     "experience.otherCertifications",
     "experience.allOnLinkedIn",
-    "experience.type.certification"
+    "experience.type.certification",
+    "experience.showMore",
+    "experience.showLess"
   ],
   "hero": {
     "titleLine1": "Building backend systems",
@@ -63,9 +64,10 @@
     },
     "present": "Present",
     "certifications": "Certifications",
-    "showAll": "Show all ({{count}})",
     "otherCertifications": "Other certificates",
-    "allOnLinkedIn": "See all {{count}} certificates on LinkedIn"
+    "allOnLinkedIn": "See all {{count}} certificates on LinkedIn",
+    "showMore": "Show {{count}} more",
+    "showLess": "Show less"
   },
   "works": {
     "heading": "Projects"

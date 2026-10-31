@@ -158,34 +158,40 @@
           "title": "Menjadi Back-End Developer Expert dengan JavaScript",
           "issuer": "Dicoding",
           "date": "2025-12",
-          "highlight": true
+          "highlight": true,
+          "href": "https://www.dicoding.com/certificates/6RPNGJ1G9Z2M"
         },
         {
           "title": "Architecting on AWS (Membangun Arsitektur Cloud di AWS)",
           "issuer": "Dicoding",
           "date": "2025-09",
-          "highlight": true
+          "highlight": true,
+          "href": "https://www.dicoding.com/certificates/98XWOG2V9ZM3"
         },
         {
           "title": "Belajar Fundamental Back-End dengan JavaScript",
           "issuer": "Dicoding",
           "date": "2025-08",
-          "highlight": true
+          "highlight": true,
+          "href": "https://www.dicoding.com/certificates/0LZ053MO3X65"
         },
         {
           "title": "Belajar Dasar Cloud dan Gen AI di AWS",
           "issuer": "Dicoding",
-          "date": "2025-06"
+          "date": "2025-06",
+          "href": "https://www.dicoding.com/certificates/NVP75MKOVXR0"
         },
         {
           "title": "Belajar Back-End Pemula dengan JavaScript",
           "issuer": "Dicoding",
-          "date": "2025-06"
+          "date": "2025-06",
+          "href": "https://www.dicoding.com/certificates/1RXYE59LQZVM"
         },
         {
           "title": "Belajar Dasar Pemrograman Web",
           "issuer": "Dicoding",
-          "date": "2025-06"
+          "date": "2025-06",
+          "href": "https://www.dicoding.com/certificates/N9ZO9WQO6XG5"
         }
       ]
     },
@@ -263,149 +269,178 @@
           "title": "Menjadi Google Cloud Engineer",
           "issuer": "Dicoding",
           "date": "2023-10",
-          "highlight": true
+          "highlight": true,
+          "href": "https://www.dicoding.com/certificates/53XE4KN7KZRN"
         },
         {
           "title": "System Administration and IT Infrastructure Services",
           "issuer": "Coursera",
           "date": "2023-10",
-          "highlight": true
+          "highlight": true,
+          "href": "https://coursera.org/share/a864e42d5f918cb474d7887b39a5310a"
         },
         {
           "title": "Serverless Cloud Run Development",
           "issuer": "Google Cloud Skills Boost",
-          "date": "2023-11"
+          "date": "2023-11",
+          "href": "https://www.cloudskillsboost.google/public_profiles/706b8fef-faa4-4fc4-b101-d2b0a7f7a989/badges/6249519"
         },
         {
           "title": "Advanced ML: ML Infrastructure",
           "issuer": "Google Cloud Skills Boost",
-          "date": "2023-11"
+          "date": "2023-11",
+          "href": "https://www.cloudskillsboost.google/public_profiles/706b8fef-faa4-4fc4-b101-d2b0a7f7a989/badges/6235605"
         },
         {
           "title": "Cloud SQL",
           "issuer": "Google Cloud Skills Boost",
-          "date": "2023-11"
+          "date": "2023-11",
+          "href": "https://www.cloudskillsboost.google/public_profiles/706b8fef-faa4-4fc4-b101-d2b0a7f7a989/badges/6180461"
         },
         {
           "title": "Deploy to Kubernetes in Google Cloud",
           "issuer": "Google Cloud Skills Boost",
-          "date": "2023-11"
+          "date": "2023-11",
+          "href": "https://www.cloudskillsboost.google/public_profiles/706b8fef-faa4-4fc4-b101-d2b0a7f7a989/badges/6139528"
         },
         {
           "title": "Hybrid Cloud Modernizing Applications with Anthos",
           "issuer": "Google Cloud Skills Boost",
-          "date": "2023-11"
+          "date": "2023-11",
+          "href": "https://www.cloudskillsboost.google/public_profiles/706b8fef-faa4-4fc4-b101-d2b0a7f7a989/badges/6066090"
         },
         {
           "title": "Application Development with Cloud Run",
           "issuer": "Google Cloud Skills Boost",
-          "date": "2023-11"
+          "date": "2023-11",
+          "href": "https://www.cloudskillsboost.google/public_profiles/706b8fef-faa4-4fc4-b101-d2b0a7f7a989/badges/6025485"
         },
         {
           "title": "Automating Infrastructure on Google Cloud with Terraform",
           "issuer": "Google Cloud Skills Boost",
-          "date": "2023-10"
+          "date": "2023-10",
+          "href": "https://www.cloudskillsboost.google/public_profiles/706b8fef-faa4-4fc4-b101-d2b0a7f7a989/badges/5893893"
         },
         {
           "title": "Getting Started with Terraform for Google Cloud",
           "issuer": "Google Cloud Skills Boost",
-          "date": "2023-10"
+          "date": "2023-10",
+          "href": "https://www.cloudskillsboost.google/public_profiles/706b8fef-faa4-4fc4-b101-d2b0a7f7a989/badges/5874205"
         },
         {
           "title": "Logging and Monitoring in Google Cloud",
           "issuer": "Google Cloud Skills Boost",
-          "date": "2023-10"
+          "date": "2023-10",
+          "href": "https://www.cloudskillsboost.google/public_profiles/706b8fef-faa4-4fc4-b101-d2b0a7f7a989/badges/5863922"
         },
         {
           "title": "Getting Started with Google Kubernetes Engine",
           "issuer": "Google Cloud Skills Boost",
-          "date": "2023-10"
+          "date": "2023-10",
+          "href": "https://www.cloudskillsboost.google/public_profiles/706b8fef-faa4-4fc4-b101-d2b0a7f7a989/badges/5830929"
         },
         {
           "title": "Elastic Google Cloud Infrastructure: Scaling and Automation",
           "issuer": "Google Cloud Skills Boost",
-          "date": "2023-10"
+          "date": "2023-10",
+          "href": "https://www.cloudskillsboost.google/public_profiles/706b8fef-faa4-4fc4-b101-d2b0a7f7a989/badges/5820474"
         },
         {
           "title": "Essential Google Cloud Infrastructure: Core Services",
           "issuer": "Google Cloud Skills Boost",
           "date": "2023-10",
-          "highlight": true
+          "highlight": true,
+          "href": "https://www.cloudskillsboost.google/public_profiles/706b8fef-faa4-4fc4-b101-d2b0a7f7a989/badges/5782369"
         },
         {
           "title": "Set Up and Configure a Cloud Environment in Google Cloud",
           "issuer": "Google Cloud Skills Boost",
-          "date": "2023-10"
+          "date": "2023-10",
+          "href": "https://www.cloudskillsboost.google/public_profiles/706b8fef-faa4-4fc4-b101-d2b0a7f7a989/badges/5763251"
         },
         {
           "title": "Essential Google Cloud Infrastructure: Foundation",
           "issuer": "Google Cloud Skills Boost",
-          "date": "2023-10"
+          "date": "2023-10",
+          "href": "https://www.cloudskillsboost.google/public_profiles/706b8fef-faa4-4fc4-b101-d2b0a7f7a989/badges/5707197"
         },
         {
           "title": "Google Cloud Fundamentals: Core Infrastructure",
           "issuer": "Google Cloud Skills Boost",
-          "date": "2023-10"
+          "date": "2023-10",
+          "href": "https://www.cloudskillsboost.google/public_profiles/706b8fef-faa4-4fc4-b101-d2b0a7f7a989/badges/5691627"
         },
         {
           "title": "Preparing for Your Associate Cloud Engineer Journey",
           "issuer": "Google Cloud Skills Boost",
-          "date": "2023-10"
+          "date": "2023-10",
+          "href": "https://www.cloudskillsboost.google/public_profiles/706b8fef-faa4-4fc4-b101-d2b0a7f7a989/badges/5656324"
         },
         {
           "title": "Perform Foundational Data, ML, and AI Tasks in Google Cloud",
           "issuer": "Google Cloud Skills Boost",
-          "date": "2023-09"
+          "date": "2023-09",
+          "href": "https://www.cloudskillsboost.google/public_profiles/706b8fef-faa4-4fc4-b101-d2b0a7f7a989/badges/4970896"
         },
         {
           "title": "Build and Secure Networks in Google Cloud",
           "issuer": "Google Cloud Skills Boost",
-          "date": "2023-09"
+          "date": "2023-09",
+          "href": "https://www.cloudskillsboost.google/public_profiles/706b8fef-faa4-4fc4-b101-d2b0a7f7a989/badges/4967615"
         },
         {
           "title": "Perform Foundational Infrastructure Tasks in Google Cloud",
           "issuer": "Google Cloud Skills Boost",
-          "date": "2023-09"
+          "date": "2023-09",
+          "href": "https://www.cloudskillsboost.google/public_profiles/706b8fef-faa4-4fc4-b101-d2b0a7f7a989/badges/4957020"
         },
         {
           "title": "Create and Manage Cloud Resources",
           "issuer": "Google Cloud Skills Boost",
-          "date": "2023-08"
+          "date": "2023-08",
+          "href": "https://www.cloudskillsboost.google/public_profiles/706b8fef-faa4-4fc4-b101-d2b0a7f7a989/badges/4952028"
         },
         {
           "title": "Google Cloud Computing Foundations: Data, ML, and AI in Google Cloud",
           "issuer": "Google Cloud Skills Boost",
-          "date": "2023-08"
+          "date": "2023-08",
+          "href": "https://www.cloudskillsboost.google/public_profiles/706b8fef-faa4-4fc4-b101-d2b0a7f7a989/badges/4947012"
         },
         {
           "title": "Google Cloud Computing Foundations: Infrastructure in Google Cloud",
           "issuer": "Google Cloud Skills Boost",
-          "date": "2023-08"
+          "date": "2023-08",
+          "href": "https://www.cloudskillsboost.google/public_profiles/706b8fef-faa4-4fc4-b101-d2b0a7f7a989/badges/4906212"
         },
         {
           "title": "Google Cloud Computing Foundations: Cloud Computing Fundamentals",
           "issuer": "Google Cloud Skills Boost",
-          "date": "2023-08"
+          "date": "2023-08",
+          "href": "https://www.cloudskillsboost.google/public_profiles/706b8fef-faa4-4fc4-b101-d2b0a7f7a989/badges/4894227"
         },
         {
           "title": "Google Cloud Computing Foundations: Networking",
           "issuer": "Google Cloud Skills Boost",
-          "date": "2023-08"
+          "date": "2023-08",
+          "href": "https://www.cloudskillsboost.google/public_profiles/706b8fef-faa4-4fc4-b101-d2b0a7f7a989/badges/4931226"
         },
         {
           "title": "The Bits and Bytes of Computer Networking",
           "issuer": "Coursera",
-          "date": "2023-08"
+          "date": "2023-08",
+          "href": "https://www.coursera.org//verify/QY5P28ZLQAUJ"
         },
         {
           "title": "Belajar Membuat Aplikasi Back-End untuk Pemula dengan Google Cloud",
           "issuer": "Dicoding",
-          "date": "2023-08"
+          "date": "2023-08",
+          "href": "https://www.dicoding.com/certificates/N9ZO6KDE0XG5"
         },
         {
           "title": "Belajar Dasar Pemrograman JavaScript",
           "issuer": "Dicoding",
-          "date": "2023-08"
+          "date": "2023-08",
+          "href": "https://www.dicoding.com/certificates/MRZMQ0VYLPYQ"
         }
       ]
     },
@@ -424,7 +459,8 @@
     {
       "title": "JavaScript (Basic)",
       "issuer": "HackerRank",
-      "date": "2026-01"
+      "date": "2026-01",
+      "href": "https://www.hackerrank.com/certificates/58af8b263c2c"
     },
     {
       "title": "English Proficiency Test",
@@ -434,27 +470,32 @@
     {
       "title": "SQL (Basic)",
       "issuer": "HackerRank",
-      "date": "2024-03"
+      "date": "2024-03",
+      "href": "https://www.hackerrank.com/certificates/193f3e435903"
     },
     {
       "title": "Python (Basic)",
       "issuer": "HackerRank",
-      "date": "2024-03"
+      "date": "2024-03",
+      "href": "https://www.hackerrank.com/certificates/ddee98adbeb2"
     },
     {
       "title": "React (Basic)",
       "issuer": "HackerRank",
-      "date": "2023-03"
+      "date": "2023-03",
+      "href": "https://www.hackerrank.com/certificates/751c03a920f0"
     },
     {
       "title": "EF SET English Certificate 72/100 (C2 Proficient)",
       "issuer": "EF SET",
-      "date": "2022-08"
+      "date": "2022-08",
+      "href": "https://www.efset.org/cert/3nBo26"
     },
     {
       "title": "Responsive Web Design",
       "issuer": "freeCodeCamp",
-      "date": "2022-04"
+      "date": "2022-04",
+      "href": "https://freecodecamp.org/certification/arma008/responsive-web-design"
     }
   ]
 }

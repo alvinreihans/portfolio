@@ -185,6 +185,22 @@ describe('the real roadmap', () => {
       expect(e.certifications?.filter((cert) => cert.highlight)).toHaveLength(3);
   });
 
+  it('links certificates straight to their issuer over HTTPS, without tracking parameters', () => {
+    const certs = [
+      ...EXPERIENCE.events.flatMap((e) => e.certifications ?? []),
+      ...(EXPERIENCE.otherCertifications ?? []),
+    ];
+    const linked = certs.filter((cert) => cert.href);
+    // English Proficiency Test has only an image on LinkedIn, so it has no credential page.
+    expect(certs.length - linked.length).toBe(1);
+    for (const cert of linked) {
+      const url = new URL(cert.href!);
+      expect(url.protocol).toBe('https:');
+      expect(url.host).not.toContain('linkedin.com');
+      expect([...url.searchParams.keys()].some((key) => key.startsWith('utm_'))).toBe(false);
+    }
+  });
+
   it('keeps PT Intramedika Global Digital to org, role, and period (AC19)', () => {
     const job = EXPERIENCE.events.find((e) => e.org === 'PT Intramedika Global Digital');
     expect(job?.summary).toBeUndefined();
