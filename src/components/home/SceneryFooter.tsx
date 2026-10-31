@@ -12,8 +12,8 @@ const BUTTON =
   'inline-flex min-h-11 items-center justify-center rounded-md px-5 text-[0.95rem] font-semibold';
 const COPIED_MS = 2000;
 
-// Home page ending (specs/07-scenery.md): the pixel scene, then Contact and the footer on the
-// scene's ground texture. Other pages keep the plain SiteFooter (Q7.5).
+// Every page ends here (specs/07-scenery.md, Q7.9): the pixel scene, then Contact and the
+// footer on the scene's ground texture.
 export function SceneryFooter() {
   const { t } = useTranslation('home');
   const theme = useTheme();
