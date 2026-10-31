@@ -37,6 +37,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - CV page `/cv` planned: an in-site preview of public Google Docs (Indonesian and English) with PDF download, so the CV on the site follows every update of the document.
 - `react-rewrite` integration branch for the React SPA rewrite; the live site on `main` stays untouched until the rewrite is ready.
 
+### Fixed
+
+- Links to a section (hero buttons and navbar) scroll smoothly again instead of jumping; visitors who prefer reduced motion still jump straight there.
+
 ### Removed
 
 - The old static HTML/CSS/JS site files (`assets/`, `components/`, `contents/`, and the old `index.html`); the live site on `main` keeps them until cutover.
