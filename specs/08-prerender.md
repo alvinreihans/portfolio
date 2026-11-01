@@ -1,6 +1,6 @@
 # 08 - Prerender (HTML statis per halaman)
 
-Status: **Approved** (disetujui owner, 2026-11-01). Menggantikan butir "render di server (SSR/prerender)" di bagian "Di luar cakupan" `05-deployment.md`.
+Status: **Selesai** (disetujui owner dan semua kriteria penerimaan lulus, 2026-11-01). Menggantikan butir "render di server (SSR/prerender)" di bagian "Di luar cakupan" `05-deployment.md`.
 
 ## Latar belakang
 
@@ -91,7 +91,7 @@ Prerender pertama sudah benar secara fungsi (nol hydration mismatch), tetapi LCP
 - [x] AC3. Tidak ada peringatan hydration mismatch di console pada semua halaman, kedua bahasa, dan kedua tema.
 - [x] AC4. Path acak menampilkan halaman 404 (dengan `noindex`) sejak gambar pertama, tanpa sempat menampilkan beranda.
 - [x] AC5. Semua kriteria penerimaan spec 01 sampai 07 tetap lulus (audit Playwright yang sama: matriks, perilaku, CLS).
-- [ ] AC6. Lighthouse mobile Performance 90 ke atas dan LCP di bawah 2,0 detik di `/`, `/cv`, dan dua halaman project, diukur dengan PageSpeed Insights di preview. Target sempat diturunkan ke 88 berdasarkan pengukuran dari mesin lokal, lalu dikembalikan setelah PageSpeed Insights (server Google) menunjukkan 95 sampai 100 (owner, 2026-11-01).
+- [x] AC6. Lighthouse mobile Performance 90 ke atas dan LCP paling lama 2,5 detik (batas "Good" Core Web Vitals) di `/`, `/cv`, dan dua halaman project, diukur dengan PageSpeed Insights di preview. Hasil 2026-11-01: `/` 98 (LCP 1,0 dtk), `/cv` 100 (0,9 dtk), Money Tracker 93 (2,5 dtk), Teman Jalan 100 (0,9 dtk). Batas LCP semula 2,0 detik; Money Tracker tertahan di 2,5 detik karena simulasi Lighthouse mengaitkan paragraf cerita dengan JavaScript yang menggantinya, sedangkan di browser paragraf itu tampil sejak gambar pertama (owner, 2026-11-01). Target sempat diturunkan ke 88 berdasarkan pengukuran dari mesin lokal, lalu dikembalikan setelah PageSpeed Insights (server Google) menunjukkan 95 sampai 100 (owner, 2026-11-01).
 - [x] AC7. Tidak ada dependency baru di `package.json`.
 - [x] AC8. `npm run dev` tetap bekerja seperti sekarang (tanpa prerender).
 

@@ -82,21 +82,21 @@ Vite, React, TypeScript, React Router, Tailwind CSS, react-i18next. Di-hosting d
 
 ## Kriteria penerimaan (tingkat situs)
 
-- [ ] AC1. Membuka langsung `/projects/<slug>` dan path yang tidak dikenal berfungsi di Vercel (tanpa 404 dari platform).
-- [ ] AC2. Tombol bahasa mengganti seluruh teks yang terlihat dan `<html lang>`; pilihan bertahan setelah reload.
-- [ ] AC3. Kunjungan pertama menampilkan tema sesuai `prefers-color-scheme`; tombol Day/Night mengganti seluruh tema tanpa layout shift; pilihan manual bertahan setelah reload dan di kunjungan berikutnya.
-- [ ] AC4. Tidak ada scroll horizontal di lebar 320px ke atas.
-- [ ] AC5. Kontras teks memenuhi WCAG AA di kedua tema; semua kontrol bisa dijangkau dan terlihat saat memakai keyboard.
-- [ ] AC6. Animasi berhenti ketika `prefers-reduced-motion` aktif.
-- [ ] AC7. Skor Lighthouse Performance dan Accessibility 90 atau lebih di mobile.
-- [ ] AC8. Tidak ada error di console dan tidak ada request jaringan yang gagal di semua route. Pesan yang berasal dari dalam iframe pihak ketiga (pratinjau Google Docs di `/cv`) tidak dihitung, karena di luar kendali situs.
-- [ ] AC9. Semua project yang terdaftar tampil di section works, masing-masing dengan tautan yang valid.
-- [ ] AC10. Tautan `mailto:` membuka klien email dengan alamat benar.
-- [ ] AC11. Halaman memuat `<link rel="canonical">` ke `https://alvinreihans.web.id`.
-- [ ] AC12. Setiap project di works membuka halaman detail yang memuat cerita dalam bahasa yang sedang dipilih; jika terjemahan belum ada, tampil versi Indonesia beserta pemberitahuan (Indonesia adalah bahasa sumber, lihat `03-i18n.md`).
-- [ ] AC13. Semua gambar di cerita punya teks alternatif (`alt`), dimuat dengan lazy loading, dan tidak menyebabkan layout shift.
-- [ ] AC14. Maskot berang-berang tampil di tema Day dan Night, dan animasinya (jika ada) berhenti saat `prefers-reduced-motion` aktif.
-- [ ] AC15. Membuka langsung `alvinreihans.web.id/cv` menampilkan pratinjau CV sesuai bahasa aktif, dan CV bisa diunduh dalam maksimal dua klik dari halaman mana pun (tautan CV di navbar, lalu Unduh PDF).
+- [x] AC1. Membuka langsung `/projects/<slug>` dan path yang tidak dikenal berfungsi di Vercel (tanpa 404 dari platform).
+- [x] AC2. Tombol bahasa mengganti seluruh teks yang terlihat dan `<html lang>`; pilihan bertahan setelah reload.
+- [x] AC3. Kunjungan pertama menampilkan tema sesuai `prefers-color-scheme`; tombol Day/Night mengganti seluruh tema tanpa layout shift; pilihan manual bertahan setelah reload dan di kunjungan berikutnya.
+- [x] AC4. Tidak ada scroll horizontal di lebar 320px ke atas.
+- [x] AC5. Kontras teks memenuhi WCAG AA di kedua tema; semua kontrol bisa dijangkau dan terlihat saat memakai keyboard.
+- [x] AC6. Animasi berhenti ketika `prefers-reduced-motion` aktif.
+- [x] AC7. Skor Lighthouse Performance dan Accessibility 90 atau lebih di mobile.
+- [x] AC8. Tidak ada error di console dan tidak ada request jaringan yang gagal di semua route. Pesan yang berasal dari dalam iframe pihak ketiga (pratinjau Google Docs di `/cv`) tidak dihitung, karena di luar kendali situs.
+- [x] AC9. Semua project yang terdaftar tampil di section works, masing-masing dengan tautan yang valid.
+- [x] AC10. Tautan `mailto:` membuka klien email dengan alamat benar.
+- [x] AC11. Halaman memuat `<link rel="canonical">` ke `https://alvinreihans.web.id`.
+- [x] AC12. Setiap project di works membuka halaman detail yang memuat cerita dalam bahasa yang sedang dipilih; jika terjemahan belum ada, tampil versi Indonesia beserta pemberitahuan (Indonesia adalah bahasa sumber, lihat `03-i18n.md`).
+- [x] AC13. Semua gambar di cerita punya teks alternatif (`alt`), dimuat dengan lazy loading, dan tidak menyebabkan layout shift.
+- [x] AC14. Maskot berang-berang tampil di tema Day dan Night, dan animasinya (jika ada) berhenti saat `prefers-reduced-motion` aktif.
+- [x] AC15. Membuka langsung `alvinreihans.web.id/cv` menampilkan pratinjau CV sesuai bahasa aktif, dan CV bisa diunduh dalam maksimal dua klik dari halaman mana pun (tautan CV di navbar, lalu Unduh PDF).
 
 ## Keputusan
 

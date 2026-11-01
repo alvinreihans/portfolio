@@ -125,22 +125,23 @@ Tidak ada library untuk frontmatter karena memang tidak dipakai. Konten dimuat d
 
 ## Kriteria penerimaan
 
-- [ ] AC1. Menambah project baru cukup dengan menambah satu folder di `src/content/projects/` tanpa mengubah kode komponen.
-- [ ] AC2. Kartu di section works dan halaman detail dibuat dari `meta.json` (urutan mengikuti `order`).
-- [ ] AC3. Memilih bahasa Inggris memuat `en.md`; jika tidak ada, memuat `id.md` dengan pemberitahuan. Memilih bahasa Indonesia memuat `id.md`.
-- [ ] AC4. Gambar relatif di markdown tampil, punya `alt`, lazy loading (kecuali gambar pertama), dan tanpa layout shift. Selama cerita dimuat, tempatnya dicadangkan setinggi satu layar, sehingga adegan dan Contact di bawahnya tidak terdorong saat cerita tiba (CLS di bawah 0,1 juga saat halaman project dibuka langsung).
-- [ ] AC5. Code block `flow` dirender sebagai flowchart atas ke bawah (setiap node sekali, percabangan dan pertemuan terlihat sebagai panah) yang mengikuti tema Day/Night dan bisa dibaca screen reader.
-- [ ] AC6. HTML mentah di dalam markdown tidak dirender.
-- [ ] AC7. Slug yang tidak ada menampilkan halaman 404.
-- [ ] AC8. Halaman detail lulus kriteria aksesibilitas dan performa di `01-overview.md` (AC5 dan AC7 di sana).
-- [ ] AC9. Halaman detail menampilkan kotak fakta (judul, ringkasan, tag, tautan) di atas cerita, dibuat dari `meta.json`.
-- [ ] AC10. Markdown tanpa heading sama sekali tetap tampil rapi (tidak ada bagian kosong atau judul wajib yang hilang).
+- [x] AC1. Menambah project baru cukup dengan menambah satu folder di `src/content/projects/` tanpa mengubah kode komponen.
+- [x] AC2. Kartu di section works dan halaman detail dibuat dari `meta.json` (urutan mengikuti `order`).
+- [x] AC3. Memilih bahasa Inggris memuat `en.md`; jika tidak ada, memuat `id.md` dengan pemberitahuan. Memilih bahasa Indonesia memuat `id.md`.
+- [x] AC4. Gambar relatif di markdown tampil, punya `alt`, lazy loading (kecuali gambar pertama), dan tanpa layout shift. Selama cerita dimuat, tempatnya dicadangkan setinggi satu layar, sehingga adegan dan Contact di bawahnya tidak terdorong saat cerita tiba (CLS di bawah 0,1 juga saat halaman project dibuka langsung).
+- [x] AC5. Code block `flow` dirender sebagai flowchart atas ke bawah (setiap node sekali, percabangan dan pertemuan terlihat sebagai panah) yang mengikuti tema Day/Night dan bisa dibaca screen reader.
+- [x] AC6. HTML mentah di dalam markdown tidak dirender.
+- [x] AC7. Slug yang tidak ada menampilkan halaman 404.
+- [x] AC8. Halaman detail lulus kriteria aksesibilitas dan performa di `01-overview.md` (AC5 dan AC7 di sana).
+- [x] AC9. Halaman detail menampilkan kotak fakta (judul, ringkasan, tag, tautan) di atas cerita, dibuat dari `meta.json`.
+- [x] AC10. Markdown tanpa heading sama sekali tetap tampil rapi (tidak ada bagian kosong atau judul wajib yang hilang).
 
 ## Keputusan
 
 - Q6.3. Draf cerita ketujuh project ditulis Claude (owner, 2026-11-01) hanya dari fakta yang ada: README dan isi repo, CV, dan keterangan owner di sesi kerja. Pengalaman pribadi (jalan buntu, pelajaran) tidak dikarang. Setiap `meta.json` memuat `_review` dengan `TODO(owner)` sampai owner menyunting cerita dan ringkasannya.
 - Q6.4. Diagram `flow` digambar sebagai flowchart atas ke bawah, bukan baris-baris rantai yang mengulang node yang sama (owner, 2026-11-01; disetujui). Sintaks markdown tidak berubah.
 - Q6.5. Cerita project memuat dua bagian (owner, 2026-11-01; disetujui): cerita "latar belakang, perjalanan, hasil" dari Q6.1, lalu dokumentasi aplikasi (fitur, arsitektur, alur, keamanan, pengujian, deploy). Bagian cerita ditulis dari wawancara dengan owner dan jejak di repo (CHANGELOG, spec, riwayat commit); pengalaman pribadi tidak dikarang. Kotak fakta dan aturan heading tidak wajib tetap berlaku. Isinya dibedah dari repo dengan skill acquire-codebase-knowledge: setiap klaim dicek ke kode, dan pertanyaan yang butuh niat owner ditanyakan dulu. Diagram arsitektur hanya memuat bagian inti aplikasi; pekerjaan pemeliharaan (mis. cron supaya database gratis tidak ter-pause) tidak ditampilkan.
+- Q6.6. Untuk rilis 1.0.0, cerita keenam project selain Money Tracker dirilis sebagai dokumentasi aplikasi yang sudah dicek ke kode (Q6.5), tanpa bagian latar belakang, perjalanan, dan hasil. Bagian itu ditambahkan setelah owner diwawancarai; pertanyaannya sudah disiapkan per project (owner, 2026-11-01). Penanda `_review` dilepas karena isinya sudah ditinjau owner.
 - Q6.1. Cerita ditulis sebagai cerita pendek yang mengalir (latar belakang, perjalanan, hasil), tanpa heading wajib. Untuk pembaca yang terburu-buru, kotak fakta dari `meta.json` ditampilkan di atas cerita.
 
 ## Pertanyaan terbuka
