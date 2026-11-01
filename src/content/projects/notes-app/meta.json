@@ -1,8 +1,8 @@
 {
-  "_review": "TODO(owner): summary and story are drafts written from the README, CV, and the owner’s notes (specs/06-project-stories.md, Q6.3).",
+  "_review": "TODO(owner): documentation sections checked against the code with acquire-codebase-knowledge (2026-11-01); background, journey, and outcome wait for the interview (specs/06-project-stories.md, Q6.3 and Q6.5).",
   "slug": "notes-app",
   "order": 7,
-  "tags": ["React", "React Hooks", "localStorage"],
+  "tags": ["React", "JavaScript", "React Hooks", "localStorage", "GitHub Pages"],
   "links": {
     "repo": "https://github.com/alvinreihans/note-app",
     "demo": "https://alvinreihans.github.io/note-app/"
@@ -12,7 +12,7 @@
     "en": "Notes App"
   },
   "summary": {
-    "id": "Aplikasi catatan pribadi dengan React Hooks yang menyimpan catatan di browser.",
-    "en": "A personal notes app with React Hooks that keeps notes in the browser."
+    "id": "Aplikasi catatan pribadi berbasis React dengan pencarian, arsip, dan penyimpanan di localStorage.",
+    "en": "A personal notes app in React with search, archiving, and storage in localStorage."
   }
 }

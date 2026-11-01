@@ -1,17 +1,16 @@
 {
-  "_review": "TODO(owner): summary and story are drafts written from the README, CV, and the owner’s notes (specs/06-project-stories.md, Q6.3).",
+  "_review": "TODO(owner): documentation sections checked against the code with acquire-codebase-knowledge (2026-11-01); background, journey, and outcome wait for the interview (specs/06-project-stories.md, Q6.3 and Q6.5).",
   "slug": "garuda-chat-forum",
   "order": 3,
   "tags": [
     "Node.js",
     "Hapi",
     "PostgreSQL",
+    "JWT",
     "Clean Architecture",
-    "TDD",
     "Jest",
     "GitHub Actions",
-    "AWS EC2",
-    "Amazon RDS"
+    "AWS EC2"
   ],
   "links": {
     "repo": "https://github.com/alvinreihans/dicoding-garuda-games-chat-forum"
@@ -21,7 +20,7 @@
     "en": "Garuda Games Chat Forum"
   },
   "summary": {
-    "id": "Backend forum diskusi dengan Clean Architecture dan TDD, dari AWS Back-End Academy.",
-    "en": "A discussion forum backend built with Clean Architecture and TDD, from the AWS Back-End Academy."
+    "id": "REST API forum diskusi dengan Clean Architecture, pengujian Jest, dan CI/CD ke AWS EC2, dari kelas Back-End Developer Expert Dicoding.",
+    "en": "A discussion forum REST API with Clean Architecture, Jest tests, and CI/CD to AWS EC2, from Dicoding’s Back-End Developer Expert class."
   }
 }

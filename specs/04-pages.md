@@ -411,7 +411,7 @@ Catatan: `project:noEnglish` hanya muncul saat bahasa Inggris dipilih dan `en.md
 - [ ] AC3. Di bawah 640px, tautan navbar diganti tombol menu yang bisa dioperasikan keyboard (`Enter`, `Spasi`, `Esc`), memakai `aria-expanded`, dan mengembalikan fokus saat ditutup.
 - [ ] AC4. Skip link berfungsi dan tampil saat difokus.
 - [ ] AC5. Berpindah route memindahkan fokus ke `<h1>` dan memperbarui `document.title`.
-- [ ] AC6. Section Works menampilkan semua project dari `meta.json`: Money Tracker sebagai kartu besar, sisanya sebagai kartu biasa, urut sesuai `order`.
+- [ ] AC6. Section Works menampilkan semua project dari `meta.json` sebagai kartu yang sama (tanpa kartu besar, Q4.30), urut sesuai `order` dengan Money Tracker pertama.
 - [ ] AC7. Setiap kartu hanya punya satu tautan utama ke halaman detail; tidak ada tautan bersarang; tautan eksternal membuka tab baru dengan `rel="noopener noreferrer"`.
 - [ ] AC8. Halaman detail menampilkan tautan kembali, kotak fakta, cerita, dan tautan project berikutnya; slug tak dikenal menampilkan 404.
 - [ ] AC9. Ikon mail di section Contact membuka `mailto:` ke alamat yang benar dengan subjek sesuai bahasa, dan punya nama aksesibel "Kirim email" / "Send email".

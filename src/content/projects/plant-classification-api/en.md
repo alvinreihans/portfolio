@@ -1,9 +1,18 @@
-During MBKM research and an internship at Gita Persada Butterfly Park, I applied the cloud skills from Bangkit to serve a plant classification machine learning model. The CNN model (stored as HDF5) is wrapped in a Flask RESTful API: send a plant photo to the `/predict` endpoint and the API returns its classification.
+## Overview
+
+A Flask API that serves an image classification model from MBKM research. The model recognises which part of the plant *Micromelum minutum* is in a photo: the stem, a leaf, or a twig.
+
+## How it works
 
 ```flow
-Plant photo -> *Flask API (/predict) -> CNN model (HDF5) -> Classification
-Flask API -> Cloud SQL
-Flask API -> Cloud Storage (images)
+Client -> *Flask /predict -> Preprocess (224x224, /255) -> Keras model (HDF5) -> JSON label
 ```
 
-The API is deployed on Google Compute Engine, with Cloud SQL as the main database and Cloud Storage for media. The research was published in three papers, listed on my ORCID profile.
+1. The client sends a JPG or PNG photo to `POST /predict` as the `file` field. A request without a file gets an error message.
+2. The photo is saved temporarily, resized to 224x224, and its pixel values are divided by 255.
+3. The Keras model (HDF5 format), loaded once when the app starts, predicts the image. The class with the highest score is returned as JSON.
+4. The temporary file is deleted after the prediction, so no images are kept.
+
+## Deployment
+
+In production, the app runs under gunicorn on port 8080. The README includes a deployment guide for Google Compute Engine: a VM with a static IP, a firewall rule for port 8080, and a systemd service running gunicorn with three workers.

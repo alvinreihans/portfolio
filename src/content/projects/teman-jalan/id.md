@@ -1,11 +1,41 @@
-Teman Jalan adalah tongkat pintar berbasis IoT untuk penyandang tunanetra, dan backend-nya saya bangun sebagai skripsi. Tongkat mengirim data sensor dan GPS setiap 5 detik, jadi backend harus menerima aliran data yang terus-menerus tanpa tertinggal.
+## Gambaran umum
 
-```flow
-Tongkat IoT (tiap 5 detik) -> MQTT broker -> *Express API -> Redis (status terkini)
-Express API -> MySQL (riwayat)
-Express API -> FCM (notifikasi)
-```
-
-Data masuk lewat MQTT, divalidasi, lalu diproses: sesi perjalanan dicatat, jarak dihitung dengan rumus Haversine, dan bahaya seperti rintangan atau genangan air dideteksi. Status terkini disimpan di Redis agar cepat dibaca, riwayatnya di MySQL, dan keadaan darurat memicu notifikasi push lewat FCM ke pendamping. Backend berjalan di AWS EC2 dengan Amazon RDS.
+Teman Jalan adalah tongkat pintar berbasis IoT untuk penyandang tunanetra, dibuat untuk skripsi oleh tim tiga orang: aplikasi mobile, firmware tongkat, dan backend. Bagian saya adalah backend: menerima data dari tongkat, mencatat perjalanan, dan mengabari pendamping (keluarga atau perawat) lewat aplikasi mereka.
 
 Repo yang publik adalah versi demonstrasi; sebagian komponen dan konfigurasi internal sengaja tidak disertakan.
+
+## Arsitektur
+
+```flow
+Tongkat pintar (sensor + GPS) -> MQTT broker -> *Backend Express -> Redis (sesi live)
+Backend Express -> MySQL (riwayat)
+Backend Express -> FCM + Socket.IO (darurat, status) -> Aplikasi pendamping
+```
+
+Satu proses Node.js menjalankan REST API Express dan penerima MQTT sekaligus. Kodenya dikelompokkan per fitur (auth, stick, user), masing-masing dengan lapisan route, handler, service, dan validator. Redis menyimpan keadaan yang sedang berjalan dan data berumur pendek, sedangkan MySQL menjadi catatan permanen.
+
+## Dari tongkat ke backend
+
+Tongkat mengirim empat jenis pesan MQTT: data sensor, status (online atau offline), darurat, dan baterai. ID tongkat dibaca dari topiknya.
+
+- **Data sensor** disimpan di MySQL dan diberi penanda bahaya dengan aturan ambang: "halangan" bila jarak ultrasonik di bawah 50, "genangan" bila sensor air mendeteksi air. Titik GPS (0,0) dibuang.
+- **Darurat** memicu notifikasi push lewat FCM ke semua perangkat milik semua pendamping yang memantau tongkat itu, dicari dengan satu join SQL antara daftar pantauan dan token perangkat. Menyalakan atau mematikan tongkat juga mengirim notifikasi.
+- **Komunikasi dua arah:** pendamping menjawab SOS dengan "jemput" atau "tolak" dari aplikasi, lalu backend meneruskannya ke tongkat lewat topik MQTT `callback`.
+
+## Sesi perjalanan
+
+```flow
+Tongkat online -> *Sesi di Redis (jarak, bahaya, waktu) -> Tongkat offline -> MySQL (sesi)
+```
+
+Selama perjalanan, setiap titik GPS hanya memicu operasi Redis yang ringan: jarak ditambah dengan rumus Haversine yang ditulis sendiri, sedangkan jumlah halangan, genangan, dan waktu aktif dinaikkan. Saat tongkat offline, totalnya ditulis ke MySQL sekali, lalu kunci Redis dibersihkan.
+
+Endpoint riwayat menggabungkan keduanya: total hari ini dari MySQL ditambah sesi yang masih berjalan di Redis, jadi angkanya tetap terkini di tengah perjalanan.
+
+## Untuk aplikasi pendamping
+
+- Status tongkat secara live lewat Socket.IO, dengan JWT saat handshake.
+- Status terkini, riwayat hari ini, statistik jarak per hari dalam rentang tanggal, dan rute satu sesi lengkap dengan penanda bahaya.
+- Daftar pantauan per pendamping dan 25 notifikasi terbaru.
+- Autentikasi: password di-hash dengan bcrypt, access token JWT 1 hari, dan refresh token 7 hari yang disimpan di database sehingga bisa dicabut saat logout. Reset password memakai OTP lewat email yang disimpan di Redis selama 10 menit dan dibatasi 5 percobaan per 10 menit. Input divalidasi dengan Joi.
+- Foto profil dipotong menjadi JPEG 500x500 dengan Sharp.

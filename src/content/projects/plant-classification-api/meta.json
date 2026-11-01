@@ -1,18 +1,17 @@
 {
-  "_review": "TODO(owner): summary and story are drafts written from the README, CV, and the owner’s notes (specs/06-project-stories.md, Q6.3).",
+  "_review": "TODO(owner): documentation sections checked against the code with acquire-codebase-knowledge (2026-11-01); background, journey, and outcome wait for the interview (specs/06-project-stories.md, Q6.3 and Q6.5).",
   "slug": "plant-classification-api",
   "order": 5,
-  "tags": ["Python", "Flask", "CNN", "Google Compute Engine", "Cloud SQL", "Cloud Storage"],
+  "tags": ["Python", "Flask", "TensorFlow", "Keras", "Gunicorn"],
   "links": {
-    "repo": "https://github.com/alvinreihans/ImageClassificationAPI-MBKMP",
-    "article": "https://orcid.org/0009-0005-6629-9783"
+    "repo": "https://github.com/alvinreihans/ImageClassificationAPI-MBKMP"
   },
   "title": {
     "id": "Plant Classification API",
     "en": "Plant Classification API"
   },
   "summary": {
-    "id": "RESTful API Flask untuk klasifikasi tanaman dengan model CNN, dari riset MBKM yang terbit di tiga publikasi.",
-    "en": "A Flask RESTful API for plant classification with a CNN model, from MBKM research published in three papers."
+    "id": "API Flask yang menyajikan model Keras untuk mengenali batang, daun, atau ranting Micromelum minutum dari foto, dari riset MBKM.",
+    "en": "A Flask API serving a Keras model that tells the stem, leaf, or twig of Micromelum minutum apart in a photo, from MBKM research."
   }
 }
