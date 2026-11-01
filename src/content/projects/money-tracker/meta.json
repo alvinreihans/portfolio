@@ -1,0 +1,28 @@
+{
+  "_review": "TODO(owner): summary and story are drafts written from the README, CV, and the owner’s notes (specs/06-project-stories.md, Q6.3).",
+  "slug": "money-tracker",
+  "order": 1,
+  "tags": [
+    "Next.js",
+    "React",
+    "TypeScript",
+    "Supabase",
+    "PostgreSQL",
+    "Gemini",
+    "Groq",
+    "PWA",
+    "Vercel"
+  ],
+  "links": {
+    "repo": "https://github.com/alvinreihans/money-tracker",
+    "demo": "https://money-tracker-six-henna.vercel.app"
+  },
+  "title": {
+    "id": "Money Tracker",
+    "en": "Money Tracker"
+  },
+  "summary": {
+    "id": "Pencatat keuangan pribadi berbasis AI: ketik seperti chat, foto struk, atau isi form, lalu isinya tersimpan sebagai transaksi.",
+    "en": "An AI-powered personal finance tracker: type like a chat, snap a receipt, or fill a form, and it becomes a transaction."
+  }
+}

@@ -9,6 +9,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- Works section and project pages: seven projects as cards in a grid (Money Tracker first, then Teman Jalan, Garuda Games Chat Forum, Video Belajar, Plant Classification API, CropOptima, and Notes App), and a page per project at `/projects/:slug` with a fact box, a short story in Indonesian and English, top-down pixel flowcharts (each step once, with branches and merges drawn as arrows), and a link to the next project. The Money Tracker story covers its background, journey, and outcome, then documents the app (features, architecture, receipt pipeline, Ask AI, security, testing), with five AVIF screenshots from a demo account filled with sample data (phone and tablet shots stay at most 380px wide, and every image reserves its size so nothing shifts while it loads). Stories are markdown files (react-markdown and remark-gfm, loaded only on project pages); adding a project is adding a folder.
+- Switching language fades the page text and navbar links out and back in instead of swapping them at once (off for reduced motion), and a project story keeps showing until the other language is ready, so the page no longer collapses to a loading line and jumps.
 - Moving to another page (for example from the home page to the CV) fades the new page in with a small rise; the navbar, sky, and scene stay put, same-page section links do not animate, and reduced motion shows the page at once.
 - CV page `/cv`: a live preview of the public Google Docs CV in the active language, with a PDF download and an "Open in new tab" link to the same document. `npm run check-cv` checks both public CVs for phone numbers and forbidden keywords and that the PDF download works.
 - The pixel sky (clouds, and stars at night) and the scene with Contact now appear on every page, not only the home page, so visitors can get in touch from the CV, project, and 404 pages too. The scene stays the same while moving between pages.
@@ -46,6 +48,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixed
 
+- On narrow phones the scene no longer widens the page: the mountain and beach props stay inside the screen, the greeting button is clipped to the scene, and the speech bubble moves inward to stay on screen while its tail still points at the beaver.
 - The logo (or any link to the page that is already open) now glides back to the top instead of jumping; the browser back and forward buttons still restore the scroll position, and reduced motion still jumps.
 - Cards (tech stack, experience, other certificates) now carry the layered card shadow from the design system, so they stand out from the page in both Day and Night.
 - Links to a section (hero buttons and navbar) scroll smoothly again instead of jumping; visitors who prefer reduced motion still jump straight there.

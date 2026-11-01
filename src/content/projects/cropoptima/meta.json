@@ -1,0 +1,17 @@
+{
+  "_review": "TODO(owner): summary and story are drafts written from the README, CV, and the owner’s notes (specs/06-project-stories.md, Q6.3).",
+  "slug": "cropoptima",
+  "order": 6,
+  "tags": ["Python", "Flask", "Docker", "Google Cloud", "Compute Engine", "Cloud SQL"],
+  "links": {
+    "repo": "https://github.com/panduwjaya/CropOptima-Fullteam"
+  },
+  "title": {
+    "id": "CropOptima",
+    "en": "CropOptima"
+  },
+  "summary": {
+    "id": "Aplikasi Android yang menyarankan tanaman sesuai lokasi dan kondisi tanah, capstone Bangkit tempat saya memegang backend cloud.",
+    "en": "An Android app that suggests crops for your location and soil, a Bangkit capstone where I worked on the cloud backend."
+  }
+}

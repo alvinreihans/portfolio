@@ -1,0 +1,18 @@
+{
+  "_review": "TODO(owner): summary and story are drafts written from the README, CV, and the owner’s notes (specs/06-project-stories.md, Q6.3).",
+  "slug": "notes-app",
+  "order": 7,
+  "tags": ["React", "React Hooks", "localStorage"],
+  "links": {
+    "repo": "https://github.com/alvinreihans/note-app",
+    "demo": "https://alvinreihans.github.io/note-app/"
+  },
+  "title": {
+    "id": "Notes App",
+    "en": "Notes App"
+  },
+  "summary": {
+    "id": "Aplikasi catatan pribadi dengan React Hooks yang menyimpan catatan di browser.",
+    "en": "A personal notes app with React Hooks that keeps notes in the browser."
+  }
+}

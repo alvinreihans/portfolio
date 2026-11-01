@@ -1,0 +1,1 @@
+Aplikasi catatan pribadi yang berawal dari latihan kelas Dicoding. Saya memperbaruinya dengan praktik React yang lebih modern: komponen kelas diganti function component dengan React Hooks untuk mengelola state, dan catatan disimpan di localStorage sehingga tetap ada setelah browser ditutup.
