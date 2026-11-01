@@ -163,7 +163,7 @@ Skrip Playwright kecil dijalankan terhadap URL preview dan, setelah cutover, ter
 ## Di luar cakupan
 
 - Penempatan aplikasi lain (misalnya Money Tracker di subdomain atau di `alvinreihans.web.id/app/...`) ditunda (lihat `06-project-stories.md`). Dua opsi tetap terbuka: subdomain (tambah domain di project Vercel lain dan satu CNAME di DomaiNesia) atau rewrite lewat `vercel.json` ini. Berkas ini dirancang agar mudah ditambah rewrite nanti.
-- Analytics, render di server (SSR/prerender), dan CDN tambahan.
+- Analytics, render di server saat permintaan (SSR runtime), dan CDN tambahan. Prerender saat build dibahas di `08-prerender.md`.
 
 ## Pertanyaan terbuka
 

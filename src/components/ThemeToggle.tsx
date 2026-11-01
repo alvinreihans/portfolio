@@ -19,7 +19,10 @@ export function ThemeToggle() {
       title={label}
       className="grid size-11 cursor-pointer place-items-center rounded-md hover:bg-chip"
     >
-      <PixelIcon icon={theme === 'day' ? SUN : MOON} />
+      {/* Both icons, switched by data-theme, so prerendered pages show the right one before
+          React takes over (specs/08-prerender.md). */}
+      <PixelIcon icon={SUN} className="night:hidden" />
+      <PixelIcon icon={MOON} className="hidden night:block" />
     </button>
   );
 }

@@ -1,7 +1,8 @@
-import { lazy, Suspense } from 'react';
+import { lazy } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Link, useParams } from 'react-router';
 
+import { ClientLazy } from '../components/ClientLazy.tsx';
 import { ProjectLinks } from '../components/home/Works.tsx';
 import { nextProject, projectBySlug, type ProjectLang } from '../content/projects.ts';
 import { useDocumentTitle } from '../hooks/useDocumentTitle.ts';
@@ -52,9 +53,9 @@ function ProjectDetail({ slug }: { slug: string }) {
 
       {/* The loading line reserves a screen so the scene below does not jump when the story
           arrives (specs/06-project-stories.md, AC4). */}
-      <Suspense fallback={<p className="mt-8 min-h-dvh text-muted">{t('loading')}</p>}>
+      <ClientLazy fallback={<p className="mt-8 min-h-dvh text-muted">{t('loading')}</p>}>
         <ProjectStory slug={slug} lang={lang} />
-      </Suspense>
+      </ClientLazy>
 
       <nav aria-label={t('next')} className="mt-12">
         <Link

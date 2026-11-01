@@ -1,10 +1,12 @@
-import { lazy, Suspense, type CSSProperties } from 'react';
+import { lazy, type CSSProperties } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import { EMAIL } from '../../content/links.ts';
+import { useHydrated } from '../../hooks/useHydrated.ts';
 import { useTheme } from '../../theme/store.ts';
+import { ClientLazy } from '../ClientLazy.tsx';
 import { SocialLinks } from '../SocialLinks.tsx';
-import { groundPalette, groundTile, SCENE_SCALE, sceneRows, VISIT } from './scenery.ts';
+import { groundPalette, groundTile, SCENE_SCALE, VISIT } from './scenery.ts';
 
 const Scene = lazy(() => import('./Scene.tsx'));
 
@@ -13,26 +15,32 @@ const Scene = lazy(() => import('./Scene.tsx'));
 export function SceneryFooter() {
   const { t } = useTranslation('home');
   const theme = useTheme();
+  // The scene is picked in the browser, so its ground texture (drawn on a canvas) is added
+  // once React has taken over the prerendered page (specs/08-prerender.md).
+  const hydrated = useHydrated();
   const ground = groundPalette(VISIT.scene, theme);
   const mailto = `mailto:${EMAIL}?subject=${encodeURIComponent(t('common:contact.mailSubject'))}`;
 
-  const groundStyle = {
-    backgroundColor: ground.base,
-    backgroundImage: `url(${groundTile(VISIT.scene, theme)})`,
-    backgroundSize: `${32 * SCENE_SCALE}px ${16 * SCENE_SCALE}px`,
-    '--ground-ink': ground.ink,
-    '--ground-base': ground.base,
-    // Focus rings follow the text colour, which is checked against every texture colour.
-    '--focus': ground.ink,
-  } as CSSProperties;
+  const groundStyle = hydrated
+    ? ({
+        backgroundColor: ground.base,
+        backgroundImage: `url(${groundTile(VISIT.scene, theme)})`,
+        backgroundSize: `${32 * SCENE_SCALE}px ${16 * SCENE_SCALE}px`,
+        '--ground-ink': ground.ink,
+        '--ground-base': ground.base,
+        // Focus rings follow the text colour, which is checked against every texture colour.
+        '--focus': ground.ink,
+      } as CSSProperties)
+    : undefined;
 
   return (
     <>
-      {/* Reserves the scene's height before the lazy canvas arrives (no layout shift). */}
-      <div style={{ height: sceneRows(VISIT.scene) * SCENE_SCALE }}>
-        <Suspense fallback={null}>
+      {/* Reserves the scene's height before the lazy canvas arrives (no layout shift). The
+          script in index.html sets --scene-height for the scene it picked. */}
+      <div style={{ height: 'var(--scene-height, 256px)' }}>
+        <ClientLazy fallback={null}>
           <Scene />
-        </Suspense>
+        </ClientLazy>
       </div>
 
       <footer
@@ -55,7 +63,7 @@ export function SceneryFooter() {
           </section>
 
           <small className="mt-8 block text-sm font-semibold">
-            © {new Date().getFullYear()} alvinreihans
+            © <span suppressHydrationWarning>{new Date().getFullYear()}</span> alvinreihans
           </small>
         </div>
       </footer>

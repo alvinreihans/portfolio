@@ -17,5 +17,9 @@ function subscribe(notify: () => void) {
 }
 
 export function useHeroActionsVisible(): boolean | null {
-  return useSyncExternalStore(subscribe, () => visible);
+  return useSyncExternalStore(
+    subscribe,
+    () => visible,
+    () => null,
+  );
 }
