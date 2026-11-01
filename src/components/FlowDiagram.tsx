@@ -53,8 +53,9 @@ export function FlowDiagram({ source }: { source: string }) {
     return () => observer.disconnect();
   }, [source]);
 
-  const paths: string[] = [];
-  const heads: string[] = [];
+  // Keyed by edge: two arrows into the same node draw identical heads.
+  const paths: { key: string; d: string }[] = [];
+  const heads: { key: string; d: string }[] = [];
   if (boxes) {
     const contentRight = Math.max(...[...boxes.values()].map((box) => box.right));
     let lane = 0;
@@ -62,21 +63,28 @@ export function FlowDiagram({ source }: { source: string }) {
       const a = boxes.get(from);
       const b = boxes.get(to);
       if (!a || !b) continue;
+      const key = `${from}\u0000${to}`;
       if (layout.level.get(to)! - layout.level.get(from)! === 1) {
         // Down from the bottom of one node to the top of the next, bending halfway.
         const sx = Math.round((a.left + a.right) / 2);
         const tx = Math.round((b.left + b.right) / 2);
         const mid = Math.round((a.bottom + b.top) / 2);
-        paths.push(`M${sx} ${a.bottom}V${mid}H${tx}V${b.top - HEAD}`);
-        heads.push(`M${tx - HEAD} ${b.top - HEAD}h${HEAD * 2 + 1}L${tx + 0.5} ${b.top}z`);
+        paths.push({ key, d: `M${sx} ${a.bottom}V${mid}H${tx}V${b.top - HEAD}` });
+        heads.push({
+          key,
+          d: `M${tx - HEAD} ${b.top - HEAD}h${HEAD * 2 + 1}L${tx + 0.5} ${b.top}z`,
+        });
       } else {
         // Skips a level: out of the right side, down a lane past every node, back in.
         const x = contentRight + LANE_GAP * (lane + 1);
         lane++;
         const sy = Math.round((a.top + a.bottom) / 2);
         const ty = Math.round((b.top + b.bottom) / 2);
-        paths.push(`M${a.right} ${sy}H${x}V${ty}H${b.right + HEAD}`);
-        heads.push(`M${b.right + HEAD} ${ty - HEAD}v${HEAD * 2 + 1}L${b.right} ${ty + 0.5}z`);
+        paths.push({ key, d: `M${a.right} ${sy}H${x}V${ty}H${b.right + HEAD}` });
+        heads.push({
+          key,
+          d: `M${b.right + HEAD} ${ty - HEAD}v${HEAD * 2 + 1}L${b.right} ${ty + 0.5}z`,
+        });
       }
     }
   }
@@ -96,11 +104,11 @@ export function FlowDiagram({ source }: { source: string }) {
           className="pointer-events-none absolute inset-0 size-full overflow-visible"
           shapeRendering="crispEdges"
         >
-          {paths.map((d) => (
-            <path key={d} d={d} fill="none" strokeWidth={2} className="stroke-muted" />
+          {paths.map(({ key, d }) => (
+            <path key={key} d={d} fill="none" strokeWidth={2} className="stroke-muted" />
           ))}
-          {heads.map((d) => (
-            <path key={d} d={d} className="fill-muted" />
+          {heads.map(({ key, d }) => (
+            <path key={key} d={d} className="fill-muted" />
           ))}
         </svg>
         <div className="relative flex flex-col items-center" style={{ gap: LEVEL_GAP }}>
