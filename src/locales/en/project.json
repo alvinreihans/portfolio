@@ -1,15 +1,4 @@
 {
-  "_review": [
-    "back",
-    "next",
-    "viewDemo",
-    "viewRepo",
-    "noEnglish",
-    "viewArticle",
-    "loading",
-    "flowLabel",
-    "flowThen"
-  ],
   "back": "All projects",
   "next": "Next project",
   "viewDemo": "View demo",

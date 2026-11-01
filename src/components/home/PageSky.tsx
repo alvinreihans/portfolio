@@ -44,9 +44,13 @@ function layout(width: number, height: number): { clouds: Cloud[]; stars: Star[]
     if (wide) {
       // Keep the whole drift inside the gutter so clouds never cover the content column.
       const room = Math.max(gutter - range - 24, 40);
+      // Drift adds `range` on either side, so it is subtracted here once, through `room`. On a
+      // narrow gutter the cloud may then sit mostly past the screen edge, which is allowed.
+      const leftMax = room - cloudWidth;
+      const rightMin = width - room;
       x = left
-        ? rand(-cloudWidth * 0.45, room - cloudWidth + range)
-        : rand(width - room - range, width - cloudWidth * 0.55);
+        ? rand(Math.min(-cloudWidth * 0.45, leftMax), leftMax)
+        : rand(rightMin, Math.max(width - cloudWidth * 0.55, rightMin));
     } else {
       x = left
         ? rand(-cloudWidth * 0.5, width * 0.15)

@@ -113,12 +113,12 @@ Pengujian Playwright penuh tidak dijalankan di CI pada versi pertama; dijalankan
 
 **Prasyarat** (semua harus terpenuhi di preview `react-rewrite`):
 
-- [ ] Semua kriteria penerimaan di spec 01 sampai 06 lulus, diverifikasi dengan Playwright (dua bahasa, dua tema, mobile dan desktop).
-- [ ] Seluruh penanda `_review` pada teks sudah ditinjau dan dihapus owner.
-- [ ] Dua salinan CV publik di Google Docs (tanpa nomor telepon, rincian Intramedika diringkas) sudah dibuat, ID dokumennya terpasang di `src/content/links.ts`, dan lolos pemindaian teks (lihat `04-pages.md`).
-- [ ] Sprite berang-berang disetujui; favicon dan gambar Open Graph sudah ada.
-- [ ] Lisensi font OFL tersedia di repo (lihat `02-design-system.md`).
-- [ ] `[Unreleased]` di `CHANGELOG.md` sudah dirapikan menjadi `[1.0.0]` bertanggal.
+- [x] Semua kriteria penerimaan di spec 01 sampai 06 lulus, diverifikasi dengan Playwright (dua bahasa, dua tema, mobile dan desktop).
+- [x] Seluruh penanda `_review` pada teks sudah ditinjau dan dihapus owner.
+- [x] Dua salinan CV publik di Google Docs (tanpa nomor telepon, rincian Intramedika diringkas) sudah dibuat, ID dokumennya terpasang di `src/content/links.ts`, dan lolos pemindaian teks (lihat `04-pages.md`).
+- [x] Sprite berang-berang disetujui; favicon dan gambar Open Graph sudah ada.
+- [x] Lisensi font OFL tersedia di repo (lihat `02-design-system.md`).
+- [x] `[Unreleased]` di `CHANGELOG.md` sudah dirapikan menjadi `[1.0.0]` bertanggal.
 
 **Langkah:**
 
@@ -147,16 +147,16 @@ Skrip Playwright kecil dijalankan terhadap URL preview dan, setelah cutover, ter
 
 ## Kriteria penerimaan
 
-- [ ] AC1. Push ke `react-rewrite` menghasilkan preview deployment yang berhasil build dengan preset Vite, tanpa mengubah deployment produksi di `main`.
-- [ ] AC12. Push ke branch selain `main` dan `react-rewrite` tidak menjalankan build di Vercel (status dilewati), sedangkan CI GitHub Actions tetap berjalan di PR-nya.
-- [ ] AC2. Membuka langsung `/projects/<slug>` dan path acak di preview dan di produksi tidak menghasilkan 404 dari platform.
-- [ ] AC3. Berkas di `/assets/`, `robots.txt`, `sitemap.xml`, favicon, dan gambar OG disajikan sebagai berkas aslinya, bukan `index.html`.
+- [x] AC1. Push ke `react-rewrite` menghasilkan preview deployment yang berhasil build dengan preset Vite, tanpa mengubah deployment produksi di `main`.
+- [x] AC12. Push ke branch selain `main` dan `react-rewrite` tidak menjalankan build di Vercel (status dilewati), sedangkan CI GitHub Actions tetap berjalan di PR-nya.
+- [x] AC2. Membuka langsung `/projects/<slug>` dan path acak di preview dan di produksi tidak menghasilkan 404 dari platform.
+- [x] AC3. Berkas di `/assets/`, `robots.txt`, `sitemap.xml`, favicon, dan gambar OG disajikan sebagai berkas aslinya, bukan `index.html`.
 - [ ] AC4. `alvinreihans.web.id` melayani situs, dan `www.alvinreihans.web.id` dialihkan permanen ke domain tanpa `www`.
 - [ ] AC5. Header keamanan dan `Cache-Control` di `vercel.json` terpasang pada respons produksi.
-- [ ] AC6. `sitemap.xml` memuat `/`, `/cv`, dan setiap project dari `meta.json`, dan `robots.txt` menunjuk ke sitemap itu.
-- [ ] AC7. Halaman 404 memuat `noindex`.
-- [ ] AC8. JavaScript awal (gzip) di bawah 170 KB.
-- [ ] AC9. CI menjalankan lint, pengecekan tipe, `check-i18n`, dan build, dan gagal jika salah satunya gagal.
+- [x] AC6. `sitemap.xml` memuat `/`, `/cv`, dan setiap project dari `meta.json`, dan `robots.txt` menunjuk ke sitemap itu.
+- [x] AC7. Halaman 404 memuat `noindex`.
+- [x] AC8. JavaScript awal (gzip) di bawah 170 KB.
+- [x] AC9. CI menjalankan lint, pengecekan tipe, `check-i18n`, dan build, dan gagal jika salah satunya gagal.
 - [ ] AC10. Seluruh prasyarat cutover terpenuhi sebelum PR ke `main` di-merge, dan pemeriksaan asap lulus setelah deployment produksi.
 - [ ] AC11. Rollback ke situs lama dapat dilakukan dalam hitungan menit (jalur Vercel atau jalur git sudah diverifikasi sebelum cutover).
 

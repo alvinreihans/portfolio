@@ -98,18 +98,18 @@ Selain itu, animasi **dijeda** (tanpa menggambar sama sekali) saat kanvas tidak 
 
 ## Kriteria penerimaan
 
-- [ ] AC1. Halaman utama menampilkan salah satu dari empat adegan; reload berkali-kali memunculkan adegan berbeda (diuji dengan seed tetap lewat parameter uji di Playwright).
-- [ ] AC2. Setiap adegan tampil benar di Day dan Night, di lebar 320px, 768px, dan 1440px, tanpa scroll horizontal.
-- [ ] AC3. Awan bergerak pelan dan, di layar lebar (gutter ≥120px), tidak menutupi kolom konten.
-- [ ] AC4. Tinggi kanvas sudah benar sejak render pertama (CLS dari pemandangan 0).
-- [ ] AC5. Tombol sapa bisa difokus dengan Tab, punya nama aksesibel sesuai bahasa, dan Enter, Spasi, serta klik memunculkan bubble yang mengetik kalimat sesuai adegan dan tema.
-- [ ] AC6. Kalimat sapaan diumumkan utuh satu kali lewat `aria-live="polite"`; bubble yang terlihat `aria-hidden`.
-- [ ] AC7. Dengan `prefers-reduced-motion`, awan, bintang, kanvas, dan efek ketik berhenti; bubble langsung tampil utuh.
-- [ ] AC8. Aturan mode statis 2 sampai 6 bekerja (diuji dengan menimpa `navigator.connection`, `deviceMemory`, dan `hardwareConcurrency` di Playwright).
-- [ ] AC9. Animasi berhenti menggambar saat kanvas di luar layar atau tab tersembunyi.
-- [ ] AC10. Kontras teks Contact di keenam kombinasi tekstur dan tema sesuai tabel di atas (diverifikasi dengan skrip penghitung).
-- [ ] AC11. Kode adegan tidak masuk bundle awal, dan batas ukuran bundle (170 KB gzip) tetap terpenuhi.
-- [ ] AC12. Lighthouse Performance dan Accessibility tetap 90 ke atas di mobile.
+- [x] AC1. Halaman utama menampilkan salah satu dari empat adegan; reload berkali-kali memunculkan adegan berbeda (diuji dengan seed tetap lewat parameter uji di Playwright).
+- [x] AC2. Setiap adegan tampil benar di Day dan Night, di lebar 320px, 768px, dan 1440px, tanpa scroll horizontal.
+- [x] AC3. Awan bergerak pelan dan, di layar lebar (gutter ≥120px), tidak menutupi kolom konten.
+- [x] AC4. Tinggi kanvas sudah benar sejak render pertama (CLS dari pemandangan 0).
+- [x] AC5. Tombol sapa bisa difokus dengan Tab, punya nama aksesibel sesuai bahasa, dan Enter, Spasi, serta klik memunculkan bubble yang mengetik kalimat sesuai adegan dan tema.
+- [x] AC6. Kalimat sapaan diumumkan utuh satu kali lewat `aria-live="polite"`; bubble yang terlihat `aria-hidden`.
+- [x] AC7. Dengan `prefers-reduced-motion`, awan, bintang, kanvas, dan efek ketik berhenti; bubble langsung tampil utuh.
+- [x] AC8. Aturan mode statis 2 sampai 6 bekerja (diuji dengan menimpa `navigator.connection`, `deviceMemory`, dan `hardwareConcurrency` di Playwright).
+- [x] AC9. Animasi berhenti menggambar saat kanvas di luar layar atau tab tersembunyi.
+- [x] AC10. Kontras teks Contact di keenam kombinasi tekstur dan tema sesuai tabel di atas (diverifikasi dengan skrip penghitung).
+- [x] AC11. Kode adegan tidak masuk bundle awal, dan batas ukuran bundle (170 KB gzip) tetap terpenuhi.
+- [x] AC12. Lighthouse Performance dan Accessibility tetap 90 ke atas di mobile.
 
 ## Rencana pengerjaan
 

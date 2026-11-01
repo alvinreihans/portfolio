@@ -406,38 +406,38 @@ Catatan: `project:noEnglish` hanya muncul saat bahasa Inggris dipilih dan `en.md
 
 ## Kriteria penerimaan
 
-- [ ] AC1. Halaman utama menampilkan section Hero, Tech stack, Experience, Works, dan Contact sesuai urutan, pada kedua bahasa dan kedua tema.
-- [ ] AC2. Tautan navbar menggulir ke section yang benar tanpa tertutup navbar, termasuk ketika diklik dari halaman detail project.
-- [ ] AC3. Di bawah 640px, tautan navbar diganti tombol menu yang bisa dioperasikan keyboard (`Enter`, `Spasi`, `Esc`), memakai `aria-expanded`, dan mengembalikan fokus saat ditutup.
-- [ ] AC4. Skip link berfungsi dan tampil saat difokus.
-- [ ] AC5. Berpindah route memindahkan fokus ke `<h1>` dan memperbarui `document.title`.
-- [ ] AC6. Section Works menampilkan semua project dari `meta.json` sebagai kartu yang sama (tanpa kartu besar, Q4.30), urut sesuai `order` dengan Money Tracker pertama.
-- [ ] AC7. Setiap kartu hanya punya satu tautan utama ke halaman detail; tidak ada tautan bersarang; tautan eksternal membuka tab baru dengan `rel="noopener noreferrer"`.
-- [ ] AC8. Halaman detail menampilkan tautan kembali, kotak fakta, cerita, dan tautan project berikutnya; slug tak dikenal menampilkan 404.
-- [ ] AC9. Ikon mail di section Contact membuka `mailto:` ke alamat yang benar dengan subjek sesuai bahasa, dan punya nama aksesibel "Kirim email" / "Send email".
-- [ ] AC10. Footer menampilkan tahun berjalan otomatis.
-- [ ] AC11. Halaman 404 menampilkan pesan, tombol kembali ke beranda, serta langit, adegan, dan Contact seperti halaman lain, dan muncul untuk path yang tidak dikenal.
-- [ ] AC12. Hero tidak memuat foto profil, badge, atau maskot.
-- [ ] AC13. Tidak ada scroll horizontal di 320px dan seterusnya, pada kedua bahasa dan kedua tema.
-- [ ] AC14. `index.html` memuat canonical `https://alvinreihans.web.id/`, metadata dasar berbahasa Inggris, dan tag Open Graph lengkap (`og:locale` `en_US`) dengan `og:image` yang mengarah ke berkas yang ada.
-- [ ] AC15. Roadmap menampilkan semua kejadian dari `experience.json`, urut dari terbaru, dan setiap item punya label teks jenis serta tanggal dalam `<time>`.
-- [ ] AC16. `main` hanya memuat commit `init` dan simpul merge; Kuliah dan Pekerjaan punya cabang sendiri; Magang, Pelatihan, dan Skripsi bercabang dari induknya (`kuliah` atau `main`) saat mulai dan menyatu ke induk itu pada tanggal selesai; cabang `ongoing` (pekerjaan saat ini) tidak menyatu (Q4.19). Sertifikasi tidak punya garis sendiri dan tampil di kartu program asalnya, dengan "Lihat semua (N)" yang bisa dibuka dengan keyboard.
-- [ ] AC17. Garis dan simpul roadmap tidak dibacakan screen reader (`aria-hidden`) dan pembedaan jenis tetap terbaca tanpa warna.
-- [ ] AC18. Roadmap tetap terbaca (tanpa teks terpotong atau scroll horizontal) di 320px pada kedua bahasa dan kedua tema, dengan jalur yang tidak saling menimpa.
-- [ ] AC19. Kartu PT Intramedika Global Digital hanya memuat organisasi, peran, dan periode.
-- [ ] AC20. Tidak ada nomor telepon di halaman situs mana pun maupun di teks kedua CV publik (hasil ekstraksi tautan ekspor).
-- [ ] AC21. Teks kedua CV publik tidak memuat kata kunci terlarang (`E-Klaim`, `INA-CBG`, `iDRG`, `SIMRS`, `BPJS`) dan rincian Intramedika sesuai versi ringkas.
-- [ ] AC22. Tombol "Lihat CV" di hero dan tautan CV di navbar membuka halaman `/cv`; di sana tautan unduh kedua bahasa menjawab 200 bertipe PDF.
-- [ ] AC23. `public/og-image.png` berukuran 1200x630 dan di bawah 300 KB; favicon (`favicon.svg`, `favicon-32.png`, `apple-touch-icon.png`) tersedia.
-- [ ] AC24. Halaman `/cv` menampilkan iframe pratinjau dari `docs.google.com` sesuai bahasa aktif, dengan `title` yang sesuai bahasa; teks "Memuat pratinjau…" hilang setelah iframe dimuat; tidak ada scroll horizontal di 320px.
-- [ ] AC25. Hero menampilkan deretan tombol Lihat CV (satu-satunya tombol oranye), Pengalaman, Project, dan Kontak; di bawah 640px tersusun 2×2 dengan tinggi minimal 44px dan jarak minimal 8px.
-- [ ] AC26. Di beranda pada lebar 640px ke atas: saat deretan tombol hero terlihat, tautan navbar tidak terlihat dan tidak bisa diklik mouse, tetapi tetap ada di pohon aksesibilitas dan langsung terlihat saat difokus keyboard; setelah deretan tombol hero tergulir keluar, tautan navbar terlihat dan bisa diklik; saat digulir kembali ke atas, tautan memudar lagi.
-- [ ] AC27. Di halaman selain beranda, tautan navbar selalu terlihat; di bawah 640px tombol menu selalu terlihat di semua halaman dan posisi gulir.
-- [ ] AC28. Mengetuk atau mengklik di luar panel menu mobile menutupnya.
-- [ ] AC29. Elemen yang difokus dengan keyboard tidak pernah tertutup navbar yang menempel (`scroll-padding-top`).
-- [ ] AC30. Efek pudar tautan navbar mati saat `prefers-reduced-motion` aktif.
-- [ ] AC31. Ke-43 sertifikat tampil: tiga sorotan per kartu program, sisanya lewat tombol "Lihat N lainnya" yang bisa dibuka dan ditutup dengan keyboard (tanpa mengulang sorotan), dan tujuh sertifikat lain di kartu "Sertifikat lainnya" dengan tautan ke LinkedIn yang menyebut jumlah 43. Kartu itu berada di kolom kanan mulai 1024px dan di bawah graph di bawah 1024px.
-- [ ] AC32. Graph memiliki commit `init` di dasar `main`, dan ujung atas `main` serta cabang yang masih berjalan diakhiri persegi; tautan hasil (GitHub, ORCID, Credly) dibuka di tab baru dengan nama aksesibel yang menyebut tautan eksternal.
+- [x] AC1. Halaman utama menampilkan section Hero, Tech stack, Experience, Works, dan Contact sesuai urutan, pada kedua bahasa dan kedua tema.
+- [x] AC2. Tautan navbar menggulir ke section yang benar tanpa tertutup navbar, termasuk ketika diklik dari halaman detail project.
+- [x] AC3. Di bawah 640px, tautan navbar diganti tombol menu yang bisa dioperasikan keyboard (`Enter`, `Spasi`, `Esc`), memakai `aria-expanded`, dan mengembalikan fokus saat ditutup.
+- [x] AC4. Skip link berfungsi dan tampil saat difokus.
+- [x] AC5. Berpindah route memindahkan fokus ke `<h1>` dan memperbarui `document.title`.
+- [x] AC6. Section Works menampilkan semua project dari `meta.json` sebagai kartu yang sama (tanpa kartu besar, Q4.30), urut sesuai `order` dengan Money Tracker pertama.
+- [x] AC7. Setiap kartu hanya punya satu tautan utama ke halaman detail; tidak ada tautan bersarang; tautan eksternal membuka tab baru dengan `rel="noopener noreferrer"`.
+- [x] AC8. Halaman detail menampilkan tautan kembali, kotak fakta, cerita, dan tautan project berikutnya; slug tak dikenal menampilkan 404.
+- [x] AC9. Ikon mail di section Contact membuka `mailto:` ke alamat yang benar dengan subjek sesuai bahasa, dan punya nama aksesibel "Kirim email" / "Send email".
+- [x] AC10. Footer menampilkan tahun berjalan otomatis.
+- [x] AC11. Halaman 404 menampilkan pesan, tombol kembali ke beranda, serta langit, adegan, dan Contact seperti halaman lain, dan muncul untuk path yang tidak dikenal.
+- [x] AC12. Hero tidak memuat foto profil, badge, atau maskot.
+- [x] AC13. Tidak ada scroll horizontal di 320px dan seterusnya, pada kedua bahasa dan kedua tema.
+- [x] AC14. `index.html` memuat canonical `https://alvinreihans.web.id/`, metadata dasar berbahasa Inggris, dan tag Open Graph lengkap (`og:locale` `en_US`) dengan `og:image` yang mengarah ke berkas yang ada.
+- [x] AC15. Roadmap menampilkan semua kejadian dari `experience.json`, urut dari terbaru, dan setiap item punya label teks jenis serta tanggal dalam `<time>`.
+- [x] AC16. `main` hanya memuat commit `init` dan simpul merge; Kuliah dan Pekerjaan punya cabang sendiri; Magang, Pelatihan, dan Skripsi bercabang dari induknya (`kuliah` atau `main`) saat mulai dan menyatu ke induk itu pada tanggal selesai; cabang `ongoing` (pekerjaan saat ini) tidak menyatu (Q4.19). Sertifikasi tidak punya garis sendiri dan tampil di kartu program asalnya, dengan "Lihat semua (N)" yang bisa dibuka dengan keyboard.
+- [x] AC17. Garis dan simpul roadmap tidak dibacakan screen reader (`aria-hidden`) dan pembedaan jenis tetap terbaca tanpa warna.
+- [x] AC18. Roadmap tetap terbaca (tanpa teks terpotong atau scroll horizontal) di 320px pada kedua bahasa dan kedua tema, dengan jalur yang tidak saling menimpa.
+- [x] AC19. Kartu PT Intramedika Global Digital hanya memuat organisasi, peran, dan periode.
+- [x] AC20. Tidak ada nomor telepon di halaman situs mana pun maupun di teks kedua CV publik (hasil ekstraksi tautan ekspor).
+- [x] AC21. Teks kedua CV publik tidak memuat kata kunci terlarang (`E-Klaim`, `INA-CBG`, `iDRG`, `SIMRS`, `BPJS`) dan rincian Intramedika sesuai versi ringkas.
+- [x] AC22. Tombol "Lihat CV" di hero dan tautan CV di navbar membuka halaman `/cv`; di sana tautan unduh kedua bahasa menjawab 200 bertipe PDF.
+- [x] AC23. `public/og-image.png` berukuran 1200x630 dan di bawah 300 KB; favicon (`favicon.svg`, `favicon-32.png`, `apple-touch-icon.png`) tersedia.
+- [x] AC24. Halaman `/cv` menampilkan iframe pratinjau dari `docs.google.com` sesuai bahasa aktif, dengan `title` yang sesuai bahasa; teks "Memuat pratinjau…" hilang setelah iframe dimuat; tidak ada scroll horizontal di 320px.
+- [x] AC25. Hero menampilkan deretan tombol Lihat CV (satu-satunya tombol oranye), Pengalaman, Project, dan Kontak; di bawah 640px tersusun 2×2 dengan tinggi minimal 44px dan jarak minimal 8px.
+- [x] AC26. Di beranda pada lebar 640px ke atas: saat deretan tombol hero terlihat, tautan navbar tidak terlihat dan tidak bisa diklik mouse, tetapi tetap ada di pohon aksesibilitas dan langsung terlihat saat difokus keyboard; setelah deretan tombol hero tergulir keluar, tautan navbar terlihat dan bisa diklik; saat digulir kembali ke atas, tautan memudar lagi.
+- [x] AC27. Di halaman selain beranda, tautan navbar selalu terlihat; di bawah 640px tombol menu selalu terlihat di semua halaman dan posisi gulir.
+- [x] AC28. Mengetuk atau mengklik di luar panel menu mobile menutupnya.
+- [x] AC29. Elemen yang difokus dengan keyboard tidak pernah tertutup navbar yang menempel (`scroll-padding-top`).
+- [x] AC30. Efek pudar tautan navbar mati saat `prefers-reduced-motion` aktif.
+- [x] AC31. Ke-43 sertifikat tampil: tiga sorotan per kartu program, sisanya lewat tombol "Lihat N lainnya" yang bisa dibuka dan ditutup dengan keyboard (tanpa mengulang sorotan), dan tujuh sertifikat lain di kartu "Sertifikat lainnya" dengan tautan ke LinkedIn yang menyebut jumlah 43. Kartu itu berada di kolom kanan mulai 1024px dan di bawah graph di bawah 1024px.
+- [x] AC32. Graph memiliki commit `init` di dasar `main`, dan ujung atas `main` serta cabang yang masih berjalan diakhiri persegi; tautan hasil (GitHub, ORCID, Credly) dibuka di tab baru dengan nama aksesibel yang menyebut tautan eksternal.
 
 ## Keputusan
 

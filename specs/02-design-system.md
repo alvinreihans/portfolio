@@ -159,21 +159,21 @@ Aturan tambahan:
 
 ## Kriteria penerimaan
 
-- [ ] AC1. Seluruh warna teks dan kontrol memenuhi rasio di tabel kontras pada kedua tema (diverifikasi dengan skrip penghitung).
-- [ ] AC2. Jersey 10 hanya muncul pada heading 36px ke atas dan pada bubble sapaan (20px).
-- [ ] AC3. Hanya ada satu tombol utama oranye per layar.
-- [ ] AC4. Semua kontrol interaktif punya area klik minimal 44x44px dan indikator fokus yang terlihat dengan kontras minimal 3:1.
-- [ ] AC5. Mengganti tema tidak menimbulkan layout shift, dan tidak ada kilatan tema salah saat halaman dimuat.
-- [ ] AC6. Dengan `prefers-reduced-motion` aktif, bintang, kedipan berang-berang, dan transisi tema berhenti.
-- [ ] AC7. Maskot tampil di adegan di atas Contact di setiap halaman (termasuk 404) pada kedua tema dengan pose yang sesuai, dan tidak muncul di hero.
-- [ ] AC8. Tidak ada scroll horizontal di lebar 320px ke atas pada kedua tema.
-- [ ] AC9. Situs tidak membuat permintaan ke Google Fonts atau CDN font lain; font dimuat dari domain sendiri dalam format `woff2`.
-- [ ] AC10. Tombol tema bisa dioperasikan dengan keyboard (Enter dan Spasi), punya `aria-label` yang menyebut aksi dalam bahasa aktif, dan label itu ikut berubah saat bahasa atau tema berganti.
-- [ ] AC15. Tombol bahasa menampilkan bendera bahasa aktif, berpindah bahasa saat ditekan (mouse, Enter, Spasi), punya `aria-label` yang menyebut aksinya, dan area kliknya minimal 44x44px.
-- [ ] AC11. Teks lisensi OFL untuk Jersey 10 dan Manrope tersedia di repo (dan ikut dalam hasil build atau dirujuk dari halaman).
-- [ ] AC12. Kunjungan pertama (tanpa pilihan tersimpan) dengan sistem gelap menampilkan Night, dan dengan sistem terang menampilkan Day (diuji dengan emulasi `prefers-color-scheme` di Playwright).
-- [ ] AC13. Tanpa pilihan tersimpan, mengubah `prefers-color-scheme` saat halaman terbuka mengganti tema; dengan pilihan tersimpan, tema tidak berubah.
-- [ ] AC14. Pilihan manual yang berbeda dari sistem tersimpan di `localStorage` dan bertahan setelah reload maupun di tab baru; memilih tema yang sama dengan sistem menghapus simpanan.
+- [x] AC1. Seluruh warna teks dan kontrol memenuhi rasio di tabel kontras pada kedua tema (diverifikasi dengan skrip penghitung).
+- [x] AC2. Jersey 10 hanya muncul pada heading 36px ke atas dan pada bubble sapaan (20px).
+- [x] AC3. Hanya ada satu tombol utama oranye per layar.
+- [x] AC4. Semua kontrol interaktif punya area klik minimal 44x44px dan indikator fokus yang terlihat dengan kontras minimal 3:1.
+- [x] AC5. Mengganti tema tidak menimbulkan layout shift, dan tidak ada kilatan tema salah saat halaman dimuat.
+- [x] AC6. Dengan `prefers-reduced-motion` aktif, bintang, kedipan berang-berang, dan transisi tema berhenti.
+- [x] AC7. Maskot tampil di adegan di atas Contact di setiap halaman (termasuk 404) pada kedua tema dengan pose yang sesuai, dan tidak muncul di hero.
+- [x] AC8. Tidak ada scroll horizontal di lebar 320px ke atas pada kedua tema.
+- [x] AC9. Situs tidak membuat permintaan ke Google Fonts atau CDN font lain; font dimuat dari domain sendiri dalam format `woff2`.
+- [x] AC10. Tombol tema bisa dioperasikan dengan keyboard (Enter dan Spasi), punya `aria-label` yang menyebut aksi dalam bahasa aktif, dan label itu ikut berubah saat bahasa atau tema berganti.
+- [x] AC15. Tombol bahasa menampilkan bendera bahasa aktif, berpindah bahasa saat ditekan (mouse, Enter, Spasi), punya `aria-label` yang menyebut aksinya, dan area kliknya minimal 44x44px.
+- [x] AC11. Teks lisensi OFL untuk Jersey 10 dan Manrope tersedia di repo (dan ikut dalam hasil build atau dirujuk dari halaman).
+- [x] AC12. Kunjungan pertama (tanpa pilihan tersimpan) dengan sistem gelap menampilkan Night, dan dengan sistem terang menampilkan Day (diuji dengan emulasi `prefers-color-scheme` di Playwright).
+- [x] AC13. Tanpa pilihan tersimpan, mengubah `prefers-color-scheme` saat halaman terbuka mengganti tema; dengan pilihan tersimpan, tema tidak berubah.
+- [x] AC14. Pilihan manual yang berbeda dari sistem tersimpan di `localStorage` dan bertahan setelah reload maupun di tab baru; memilih tema yang sama dengan sistem menghapus simpanan.
 ## Catatan implementasi
 
 - Token dideklarasikan sebagai variabel CSS dan dipetakan ke konfigurasi tema Tailwind, supaya kelas utilitas memakai token yang sama. (Pemakaian Tailwind masih usulan; dikonfirmasi saat scaffold.)
