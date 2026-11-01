@@ -23,7 +23,7 @@ export function SiteHeader() {
         aria-label={t('nav.label')}
         className="relative mx-auto flex h-16 max-w-[1200px] items-center gap-2 px-6"
       >
-        <Link to="/" className="mr-auto font-bold">
+        <Link to="/" className="mr-auto flex min-h-11 items-center font-bold">
           alvinreihans
         </Link>
         <ul
@@ -37,7 +37,7 @@ export function SiteHeader() {
             <li key={link.to}>
               <Link
                 to={link.to}
-                className="flex min-h-11 items-center px-2 underline-offset-[6px] hover:underline hover:decoration-accent"
+                className="flex min-h-11 min-w-11 items-center justify-center px-2 underline-offset-[6px] hover:underline hover:decoration-accent"
               >
                 {t(link.labelKey)}
               </Link>

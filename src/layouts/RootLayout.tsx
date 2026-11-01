@@ -21,7 +21,7 @@ export function RootLayout() {
     <div className="flex min-h-dvh flex-col">
       <a
         href="#content"
-        className="sr-only rounded-md bg-card px-3 py-2 font-semibold focus:not-sr-only focus:fixed focus:top-3 focus:left-4 focus:z-50"
+        className="sr-only rounded-md bg-card px-3 py-2 font-semibold focus:not-sr-only focus:fixed focus:top-3 focus:left-4 focus:z-50 focus:flex focus:min-h-11 focus:items-center"
       >
         {t('skipToContent')}
       </a>
