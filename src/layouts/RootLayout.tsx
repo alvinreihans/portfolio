@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Outlet, ScrollRestoration, useLocation } from 'react-router';
 
@@ -10,6 +11,11 @@ export function RootLayout() {
   const { t } = useTranslation();
   const { pathname } = useLocation();
   useRouteFocus();
+  // The enter animation is for moving between pages (Q4.28), not the first load: there it hid
+  // the prerendered text until the animation could run (specs/08-prerender.md).
+  const [firstPath] = useState(pathname);
+  const [navigated, setNavigated] = useState(false);
+  if (!navigated && pathname !== firstPath) setNavigated(true);
 
   return (
     <div className="flex min-h-dvh flex-col">
@@ -31,7 +37,7 @@ export function RootLayout() {
         >
           {/* Keyed by path, so a new page plays the enter animation; a #section on the same
               page does not (specs/04-pages.md, Q4.28). */}
-          <div key={pathname} className="page-enter">
+          <div key={pathname} className={navigated ? 'page-enter' : undefined}>
             <Outlet />
           </div>
         </main>
