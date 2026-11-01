@@ -17,11 +17,24 @@ function isScene(value: string | null): value is SceneName {
   return SCENES.includes(value as SceneName);
 }
 
+declare global {
+  interface Window {
+    /** Picked by the script in index.html before first paint. */
+    __visit?: { scene: string; seed: number };
+  }
+}
+
 /**
  * One scene and seed per page visit (Q7.2). `?scene=` and `?seed=` pin them, so tests and
- * reviews can look at a specific scene.
+ * reviews can look at a specific scene. The script in index.html picks first, so the
+ * prerendered page reserves the right height (specs/08-prerender.md); this repeats its rules
+ * for pages without it.
  */
 function pick(): { scene: SceneName; seed: number } {
+  // Prerendering in Node: the scene is only decided in the browser.
+  if (typeof window === 'undefined') return { scene: 'park', seed: 0 };
+  const chosen = window.__visit;
+  if (chosen && isScene(chosen.scene)) return { scene: chosen.scene, seed: chosen.seed };
   const params = new URLSearchParams(window.location.search);
   const scene = params.get('scene');
   const seed = Number.parseInt(params.get('seed') ?? '', 10);

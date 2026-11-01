@@ -34,14 +34,16 @@ export function prefersStill(hints: DeviceHints): boolean {
   );
 }
 
-const reducedQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+// Absent while pages are prerendered in Node (specs/08-prerender.md).
+const reducedQuery =
+  typeof window !== 'undefined' ? window.matchMedia('(prefers-reduced-motion: reduce)') : null;
 const listeners = new Set<() => void>();
 let slowFrames = false;
 
 function readHints(): DeviceHints {
   const nav = navigator as DeviceNavigator;
   return {
-    reducedMotion: reducedQuery.matches,
+    reducedMotion: reducedQuery?.matches ?? false,
     saveData: nav.connection?.saveData,
     effectiveType: nav.connection?.effectiveType,
     deviceMemory: nav.deviceMemory,
@@ -58,7 +60,7 @@ function notify() {
   listeners.forEach((listener) => listener());
 }
 
-reducedQuery.addEventListener('change', notify);
+reducedQuery?.addEventListener('change', notify);
 
 let watching = false;
 
@@ -99,5 +101,5 @@ function subscribe(listener: () => void) {
 
 /** True when the scenery should show a single still frame. */
 export function useStillMotion(): boolean {
-  return useSyncExternalStore(subscribe, current);
+  return useSyncExternalStore(subscribe, current, () => false);
 }

@@ -14,6 +14,7 @@ import {
   type Row,
 } from '../../content/experience.ts';
 import { SOCIAL_LINKS } from '../../content/links.ts';
+import { useHydrated } from '../../hooks/useHydrated.ts';
 import { SOCIAL_ICON_PATHS } from '../socialIcons.ts';
 
 const LAYOUT = layoutExperience(EXPERIENCE);
@@ -92,7 +93,9 @@ export function Experience() {
   const boxRef = useRef<HTMLDivElement>(null);
   const listRef = useRef<HTMLOListElement>(null);
   const initRef = useRef<HTMLDivElement>(null);
-  const [wide, setWide] = useState(() => window.innerWidth >= 640);
+  const hydrated = useHydrated();
+  // The screen width is unknown while prerendering; the observer below corrects it.
+  const [wide, setWide] = useState(() => hydrated && window.innerWidth >= 640);
   // Measured centre of every row's node, in px from the top of the list.
   const [nodeY, setNodeY] = useState<number[] | null>(null);
   const [height, setHeight] = useState(0);
