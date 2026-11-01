@@ -509,7 +509,8 @@ const SCENE_ART: Record<SceneName, (p: Painter, P: Palette) => void> = {
     });
     p.particles(P);
     // umbrella
-    const ux = Math.floor(W * 0.45);
+    // Kept clear of the right edge on narrow screens: the castle and bucket end 45px further.
+    const ux = Math.min(Math.floor(W * 0.45), W - 47);
     p.px(ux, GROUND - 16, 1, 16, '#e8edf7');
     for (let w = -9; w <= 9; w++) {
       const hh = Math.round(Math.sqrt(81 - w * w) * 0.5);
@@ -605,7 +606,8 @@ const SCENE_ART: Record<SceneName, (p: Painter, P: Palette) => void> = {
     for (let x = 4; x < W; x += 9 + Math.floor(rnd() * 14))
       if (Math.abs(x - W * 0.55 - 10) > 34) p.pine(x, GROUND, 8 + Math.floor(rnd() * 6), P);
     // tent
-    const tx = Math.floor(W * 0.55);
+    // Kept clear of the right edge on narrow screens: the beaver by the fire ends 47px further.
+    const tx = Math.min(Math.floor(W * 0.55), W - 50);
     for (let r = 0; r < 12; r++)
       p.px(tx - r, GROUND - 12 + r, r * 2 + 1, 1, r % 4 === 0 ? '#c2410c' : '#ff5e24');
     p.px(tx - 2, GROUND - 6, 5, 6, '#101828');

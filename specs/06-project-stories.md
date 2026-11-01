@@ -31,7 +31,6 @@ Satu folder per project. Nama folder = `slug` di URL (`/projects/money-tracker`)
 {
   "slug": "money-tracker",
   "order": 1,
-  "hero": true,
   "tags": ["Next.js", "Supabase", "Tesseract.js", "Groq", "Gemini"],
   "links": {
     "repo": "https://github.com/alvinreihans/money-tracker",
@@ -44,6 +43,8 @@ Satu folder per project. Nama folder = `slug` di URL (`/projects/money-tracker`)
   }
 }
 ```
+
+`links` boleh berisi `repo`, `demo`, dan `article` (publikasi, misalnya profil ORCID); semuanya opsional. Diagram hanya ada di dalam cerita (markdown), tidak di `meta.json` (Q4.30 di `04-pages.md`).
 
 Alasan: data yang sama di dua bahasa (tag, tautan, urutan) ditulis sekali, jadi tidak bisa berbeda antar bahasa. Judul dan ringkasan per bahasa ikut di sini, sehingga file markdown cukup berisi isi cerita tanpa frontmatter dan tidak perlu library untuk mem-parse-nya.
 
@@ -76,7 +77,8 @@ Karena cerita bersifat naratif, recruiter yang hanya membaca sekilas tetap harus
 - Disimpan di `images/` dalam folder project, dirujuk dengan path relatif: `![Alt text](./images/ocr-flow.avif)`.
 - Format avif, lebar maksimum 1600px, target di bawah 200 KB per gambar.
 - `alt` wajib diisi dan deskriptif.
-- Dimuat dengan `loading="lazy"`, dan ukuran gambar (width/height) diketahui agar tidak terjadi layout shift.
+- Dimuat dengan `loading="lazy"`, dan ukuran gambar (width/height) diketahui agar tidak terjadi layout shift. Ukurannya ditulis di akhir nama file, `<nama>-<lebar>x<tinggi>.avif` (mis. `beranda-desktop-1600x1000.avif`), lalu dipasang sebagai atribut `width` dan `height`.
+- Screenshot HP dan tablet (file selebar 800px atau kurang) ditampilkan paling lebar 380px di tengah kolom, supaya tidak memanjang satu layar penuh atau tampil lebih besar dari aslinya; screenshot desktop (1600px) memenuhi lebar kolom.
 - Base64 di dalam markdown tidak dipakai.
 
 ## Diagram arsitektur
@@ -97,6 +99,13 @@ Aturan sintaks:
 - Teks dalam kurung = keterangan kecil di bawah nama node.
 - Awalan `*` menandai node sorotan (warna aksen).
 - Node dengan nama sama di baris berbeda dianggap node yang sama.
+
+**Tampilan: flowchart atas ke bawah** (Q6.4). Setiap node digambar **sekali**, dan setiap `->` menjadi panah:
+
+- Tingkat node dihitung dari jalur terpanjang dari node awal. Node di tingkat yang sama sejajar dalam satu baris, urut menurut kemunculan pertama.
+- Panah ke tingkat berikutnya turun dari bawah node asal ke atas node tujuan, dengan siku di tengah celah.
+- Panah yang melompati lebih dari satu tingkat lewat jalur samping di kanan diagram (keluar dari sisi kanan node asal, masuk ke sisi kanan node tujuan), supaya tidak menabrak node lain. Beberapa panah seperti ini memakai jalur yang bergeser.
+- Garis dan kepala panah bergaya pixel (`crispEdges`) dengan warna `--muted`; diagram tetap di dalam kartu dan tidak menimbulkan scroll horizontal.
 
 Alasan: ikut tema Day/Night dan bahasa, teksnya bisa dibaca screen reader, tidak perlu membuat ulang gambar tiap ganti warna, dan lebih ringan daripada Mermaid. Untuk diagram yang terlalu rumit untuk sintaks ini, gambar avif/svg tetap boleh dipakai.
 
@@ -120,7 +129,7 @@ Tidak ada library untuk frontmatter karena memang tidak dipakai. Konten dimuat d
 - [ ] AC2. Kartu di section works dan halaman detail dibuat dari `meta.json` (urutan mengikuti `order`).
 - [ ] AC3. Memilih bahasa Inggris memuat `en.md`; jika tidak ada, memuat `id.md` dengan pemberitahuan. Memilih bahasa Indonesia memuat `id.md`.
 - [ ] AC4. Gambar relatif di markdown tampil, punya `alt`, lazy loading, dan tanpa layout shift.
-- [ ] AC5. Code block `flow` dirender sebagai diagram yang mengikuti tema Day/Night dan bisa dibaca screen reader.
+- [ ] AC5. Code block `flow` dirender sebagai flowchart atas ke bawah (setiap node sekali, percabangan dan pertemuan terlihat sebagai panah) yang mengikuti tema Day/Night dan bisa dibaca screen reader.
 - [ ] AC6. HTML mentah di dalam markdown tidak dirender.
 - [ ] AC7. Slug yang tidak ada menampilkan halaman 404.
 - [ ] AC8. Halaman detail lulus kriteria aksesibilitas dan performa di `01-overview.md` (AC5 dan AC7 di sana).
@@ -129,6 +138,9 @@ Tidak ada library untuk frontmatter karena memang tidak dipakai. Konten dimuat d
 
 ## Keputusan
 
+- Q6.3. Draf cerita ketujuh project ditulis Claude (owner, 2026-11-01) hanya dari fakta yang ada: README dan isi repo, CV, dan keterangan owner di sesi kerja. Pengalaman pribadi (jalan buntu, pelajaran) tidak dikarang. Setiap `meta.json` memuat `_review` dengan `TODO(owner)` sampai owner menyunting cerita dan ringkasannya.
+- Q6.4. Diagram `flow` digambar sebagai flowchart atas ke bawah, bukan baris-baris rantai yang mengulang node yang sama (owner, 2026-11-01; disetujui). Sintaks markdown tidak berubah.
+- Q6.5. Cerita project memuat dua bagian (owner, 2026-11-01; disetujui): cerita "latar belakang, perjalanan, hasil" dari Q6.1, lalu dokumentasi aplikasi (fitur, arsitektur, alur, keamanan, pengujian, deploy). Bagian cerita ditulis dari wawancara dengan owner dan jejak di repo (CHANGELOG, spec, riwayat commit); pengalaman pribadi tidak dikarang. Kotak fakta dan aturan heading tidak wajib tetap berlaku. Isinya dibedah dari repo dengan skill acquire-codebase-knowledge: setiap klaim dicek ke kode, dan pertanyaan yang butuh niat owner ditanyakan dulu. Diagram arsitektur hanya memuat bagian inti aplikasi; pekerjaan pemeliharaan (mis. cron supaya database gratis tidak ter-pause) tidak ditampilkan.
 - Q6.1. Cerita ditulis sebagai cerita pendek yang mengalir (latar belakang, perjalanan, hasil), tanpa heading wajib. Untuk pembaca yang terburu-buru, kotak fakta dari `meta.json` ditampilkan di atas cerita.
 
 ## Pertanyaan terbuka

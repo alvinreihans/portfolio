@@ -1,0 +1,27 @@
+{
+  "_review": "TODO(owner): summary and story are drafts written from the README, CV, and the owner’s notes (specs/06-project-stories.md, Q6.3).",
+  "slug": "garuda-chat-forum",
+  "order": 3,
+  "tags": [
+    "Node.js",
+    "Hapi",
+    "PostgreSQL",
+    "Clean Architecture",
+    "TDD",
+    "Jest",
+    "GitHub Actions",
+    "AWS EC2",
+    "Amazon RDS"
+  ],
+  "links": {
+    "repo": "https://github.com/alvinreihans/dicoding-garuda-games-chat-forum"
+  },
+  "title": {
+    "id": "Garuda Games Chat Forum",
+    "en": "Garuda Games Chat Forum"
+  },
+  "summary": {
+    "id": "Backend forum diskusi dengan Clean Architecture dan TDD, dari AWS Back-End Academy.",
+    "en": "A discussion forum backend built with Clean Architecture and TDD, from the AWS Back-End Academy."
+  }
+}

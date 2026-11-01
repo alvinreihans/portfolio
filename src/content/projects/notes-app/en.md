@@ -1,0 +1,1 @@
+A personal notes app that started as a Dicoding course exercise. I updated it with more modern React practices: class components became function components with React Hooks for state, and notes are kept in localStorage so they survive closing the browser.

@@ -51,7 +51,7 @@ Portfolio pribadi Alvin sebagai full-stack developer yang berminat pada sistem b
 - F3. Layout responsif (mobile first, lebar konten maksimal 1200px).
 - F4. Halaman CV (`/cv`): pratinjau CV terbaru di dalam situs, unduh PDF, dan buka di tab baru. `alvinreihans.web.id/cv` sekaligus menjadi tautan pendek untuk lamaran. Detail di `04-pages.md`.
 - F5. Kontak lewat tautan `mailto:` berupa ikon mail di section Contact (Q4.27 di `04-pages.md`; tombol "Salin email" tidak dipakai).
-- F6. Project hero: Money Tracker, dengan diagram arsitektur dan tautan ke repo dan demo.
+- F6. Money Tracker di urutan pertama Works, dengan diagram arsitektur di halaman ceritanya dan tautan ke repo dan demo (kartunya sama seperti project lain, Q4.30 di `04-pages.md`).
 - F7. Section works yang menampilkan semua project sebagai kartu.
 - F8. Maskot berang-berang pixel art (gaya dan penempatan diputuskan di `02-design-system.md`).
 - F9. Section experience berbentuk roadmap bergaya git: pekerjaan dan pembelajaran dibedakan (detail di `04-pages.md`).

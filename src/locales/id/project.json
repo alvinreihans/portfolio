@@ -1,8 +1,20 @@
 {
-  "_review": ["back", "next", "readStory", "viewDemo", "viewRepo"],
+  "_review": [
+    "back",
+    "next",
+    "viewDemo",
+    "viewRepo",
+    "viewArticle",
+    "loading",
+    "flowLabel",
+    "flowThen"
+  ],
   "back": "Semua project",
   "next": "Project berikutnya",
-  "readStory": "Baca ceritanya",
   "viewDemo": "Lihat demo",
-  "viewRepo": "Lihat repo"
+  "viewRepo": "Lihat repo",
+  "viewArticle": "Lihat publikasi",
+  "loading": "Memuat cerita…",
+  "flowLabel": "Diagram alur",
+  "flowThen": "lalu"
 }

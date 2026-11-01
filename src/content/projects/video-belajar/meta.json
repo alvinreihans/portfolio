@@ -1,0 +1,18 @@
+{
+  "_review": "TODO(owner): summary and story are drafts written from the README, CV, and the owner’s notes (specs/06-project-stories.md, Q6.3).",
+  "slug": "video-belajar",
+  "order": 4,
+  "tags": ["React", "Vite", "Tailwind CSS", "Redux", "Express.js", "MySQL"],
+  "links": {
+    "repo": "https://github.com/alvinreihans/videobelajar-react",
+    "demo": "https://videobelajar-react-eight.vercel.app"
+  },
+  "title": {
+    "id": "Video Belajar",
+    "en": "Video Belajar"
+  },
+  "summary": {
+    "id": "Platform kursus online dengan SPA React dan REST API Express.js, proyek akhir bootcamp Harisenin.",
+    "en": "An online course platform with a React SPA and an Express.js REST API, my Harisenin bootcamp final project."
+  }
+}

@@ -133,6 +133,98 @@
   }
 }
 
+/* Project stories rendered from markdown (ProjectStory, specs/06-project-stories.md). Manrope
+   only: Jersey 10 stays for headings of 36px and up (specs/02-design-system.md). */
+.story {
+  & > * + * {
+    margin-top: 1rem;
+  }
+
+  & p,
+  & li {
+    line-height: 1.7;
+  }
+
+  & h2 {
+    margin-top: 2.25rem;
+    font-size: 1.5rem;
+    font-weight: 800;
+    line-height: 1.25;
+  }
+
+  & h3 {
+    margin-top: 1.75rem;
+    font-size: 1.2rem;
+    font-weight: 700;
+  }
+
+  & ul {
+    list-style: square;
+    padding-left: 1.25rem;
+  }
+
+  & ol {
+    list-style: decimal;
+    padding-left: 1.25rem;
+  }
+
+  & li::marker {
+    color: var(--accent);
+  }
+
+  & a {
+    color: var(--accent-text);
+    text-decoration: underline;
+    text-decoration-thickness: 2px;
+    text-underline-offset: 4px;
+  }
+
+  & strong {
+    font-weight: 800;
+  }
+
+  & code {
+    border-radius: 4px;
+    background: var(--chip);
+    padding: 0.1em 0.35em;
+    font-size: 0.9em;
+  }
+
+  & pre {
+    overflow-x: auto;
+    border-radius: 8px;
+    background: var(--chip);
+    padding: 1rem;
+
+    & code {
+      background: none;
+      padding: 0;
+    }
+  }
+
+  & img {
+    display: block;
+    height: auto;
+    max-width: 100%;
+    margin-inline: auto;
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    box-shadow: var(--shadow);
+  }
+
+  & img.narrow {
+    max-width: min(100%, 380px);
+  }
+  /* Flow diagrams sit on a card: their node colour (--chip) matches the Day page background. */
+  & figure {
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    background: var(--card);
+    padding: 1rem;
+    box-shadow: var(--shadow);
+  }
+}
+
 /* A new page fades in and rises a little (specs/04-pages.md, Q4.28). Opacity and transform
    only, so nothing shifts; off for reduced motion. */
 @keyframes page-enter {
@@ -148,6 +240,19 @@
   @media (prefers-reduced-motion: reduce) {
     animation: none;
   }
+}
+
+/* Switching language fades the page text out and back in (specs/03-i18n.md, Q3.8). Opacity
+   only; LanguageToggle skips it for reduced motion. */
+main,
+header ul {
+  transition: opacity 200ms ease-out;
+}
+
+:root[data-lang-switch='out'] :is(main, header ul) {
+  opacity: 0;
+  transition-duration: 120ms;
+  transition-timing-function: ease-in;
 }
 
 /* Page-wide sky clouds drift left and right (specs/07-scenery.md); duration and delay are
@@ -192,7 +297,8 @@
 .pixel-bubble::after {
   content: '';
   position: absolute;
-  left: calc(50% - 6px);
+  /* The bubble may move sideways to stay on screen; the tail still points at the beaver. */
+  left: calc(50% - 6px + var(--tail-shift, 0px));
   bottom: -18px;
   width: 12px;
   height: 12px;
