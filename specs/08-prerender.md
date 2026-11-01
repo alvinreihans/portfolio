@@ -59,7 +59,7 @@ Render pertama di browser harus sama persis dengan HTML hasil prerender. Hal yan
 | Tema (Day/Night) | Warna sudah diatur CSS lewat `data-theme` dari skrip di `<head>`. Komponen yang merender berbeda per tema (matahari atau bulan, adegan) memakai nilai server `day` saat hydration, lalu menyesuaikan sesudahnya (`useSyncExternalStore` dengan `getServerSnapshot`). |
 | Bahasa | Template yang dipilih sama dengan bahasa yang dideteksi i18n di browser, karena keduanya memakai `detect.ts`. |
 | Langit, adegan, sapaan | Sudah dibuat di effect atau dimuat malas di browser; HTML prerender hanya berisi wadahnya dengan tinggi yang sama. |
-| Cerita project | Dimuat di browser seperti sekarang; HTML prerender berisi baris "Memuat…" yang sudah mencadangkan satu layar (AC4 di `06-project-stories.md`). Kotak fakta, judul, dan ringkasan sudah ada di HTML. |
+| Cerita project | Ikut di-prerender (Q8.2, revisi). HTML cerita disajikan apa adanya sampai renderer markdown selesai dimuat di browser, lalu diganti versi React yang sama persis (ditambah panah flowchart, yang diukur di browser). Renderer markdown tetap dimuat malas, jadi tidak menambah JavaScript awal. |
 | Tahun di footer | Ditulis saat build; pergantian tahun setelah build diizinkan berbeda tanpa peringatan (`suppressHydrationWarning` pada angka tahun saja). |
 | `navigator`, `localStorage`, `window` | Tidak dibaca saat render di build. Inisialisasi i18n untuk build dibuat terpisah per bahasa. |
 
@@ -76,6 +76,14 @@ Rewrite catch-all di `vercel.json` diarahkan ke `/404.html` (halaman 404 hasil p
 
 `src/main.tsx` memakai `hydrateRoot` bila `#root` sudah berisi HTML, dan `createRoot` bila kosong (misalnya saat `npm run dev`).
 
+### 6. Temuan setelah preview pertama (2026-11-01)
+
+Prerender pertama sudah benar secara fungsi (nol hydration mismatch), tetapi LCP belum turun: browser langsung menjalankan React dan hydration begitu HTML selesai dibaca, tanpa menggambar dulu. Perbaikannya:
+
+- **Aplikasi dimuat setelah gambar pertama.** `src/main.tsx` hanya memuat CSS, lalu mengimpor `src/app.tsx` (React, router, halaman) setelah browser menggambar halaman prerender sekali. Di `npm run dev` aplikasi langsung dimuat. `check-size` tetap menghitung bundle aplikasi itu dalam anggaran JavaScript awal.
+- **Animasi masuk halaman hanya saat berpindah halaman** (sesuai Q4.28 di `04-pages.md`). Di muatan pertama animasi itu membuat teks prerender tidak terlihat (opacity 0) sampai JavaScript selesai.
+- Format bulan di roadmap disimpan per bahasa, dan urutan roadmap membandingkan tanggal ISO sebagai string, karena keduanya ikut berjalan di setiap render setelah hydration.
+
 ## Kriteria penerimaan
 
 - [ ] AC1. Setiap halaman di daftar (beranda, CV, ketujuh project, 404) disajikan sebagai HTML yang sudah berisi judul halaman dan teks utamanya, terlihat di "View Source" dalam kedua bahasa.
@@ -83,7 +91,7 @@ Rewrite catch-all di `vercel.json` diarahkan ke `/404.html` (halaman 404 hasil p
 - [ ] AC3. Tidak ada peringatan hydration mismatch di console pada semua halaman, kedua bahasa, dan kedua tema.
 - [ ] AC4. Path acak menampilkan halaman 404 (dengan `noindex`) sejak gambar pertama, tanpa sempat menampilkan beranda.
 - [ ] AC5. Semua kriteria penerimaan spec 01 sampai 07 tetap lulus (audit Playwright yang sama: matriks, perilaku, CLS).
-- [ ] AC6. Lighthouse mobile Performance 90 ke atas dan LCP di bawah 2,0 detik di `/`, `/cv`, dan dua halaman project, diukur di preview (median dari tiga kali).
+- [ ] AC6. Lighthouse mobile, diukur di preview (median dari tiga kali): Performance 90 ke atas di `/cv` dan 88 ke atas di `/` dan dua halaman project; LCP di bawah 2,0 detik di keempatnya. Sisa jarak ke 90 berasal dari biaya hydration React (TBT), yang baru bisa turun dengan arsitektur lain (owner, 2026-11-01).
 - [ ] AC7. Tidak ada dependency baru di `package.json`.
 - [ ] AC8. `npm run dev` tetap bekerja seperti sekarang (tanpa prerender).
 
@@ -95,5 +103,5 @@ Rewrite catch-all di `vercel.json` diarahkan ke `/404.html` (halaman 404 hasil p
 ## Keputusan
 
 - Q8.1. Dua bahasa dalam satu berkas sebagai `<template>` (bagian 2), bukan berkas per bahasa yang dipilih Vercel (owner, 2026-11-01).
-- Q8.2. Cerita project tetap dimuat di browser untuk sekarang; HTML prerender berisi kotak fakta dan baris "Memuat…" yang mencadangkan satu layar (owner, 2026-11-01).
+- Q8.2. Cerita project ikut di-prerender (owner, 2026-11-01, merevisi keputusan awal untuk memuatnya di browser): setelah preview pertama, paragraf cerita menjadi elemen LCP halaman project dan baru tampil setelah JavaScript, sehingga LCP tertahan di sekitar 2,8 detik.
 - Q8.3. Cutover ke `main` menunggu spec ini selesai (owner, 2026-11-01).
