@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.0.0] - 2026-11-01
+
+The site rebuilt as a React app: Indonesian and English, Day and Night, pixel scenery with the beaver, an experience roadmap, project stories, a CV page, and every page prerendered.
+
 ### Added
 
 - Every page is prerendered at build time (the home page, the CV, each project, and the 404 page) in both languages: the text appears before the JavaScript arrives, a small script picks the visitor's language before the first paint, and React then takes over the page without rebuilding it. Each page now has its own title and canonical address, and unknown addresses get the prerendered 404 page. The app loads right after the first paint, and the page enter animation now only plays when moving between pages, so the prerendered text shows at once (largest paint on the home page down from about 2.7 s to 1.4 s on a slow phone). Project stories are prerendered too and stay as plain HTML until the markdown renderer has loaded (largest paint on project pages down from about 2.8 s to 1.5 s), and fallback fonts sized like Manrope and Jersey 10 keep the page from shifting when the real fonts arrive. The first image of a story loads at once with high priority, since it is usually on screen when the page opens.
@@ -50,6 +54,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixed
 
+- The site name in the navbar, its links, and the skip link are at least 44 px in both directions, like every other control.
+- Navbar links no longer fade in or out for visitors who prefer reduced motion; the language switch fade had overridden that setting.
+- On wide screens, drifting clouds stay in the side margins instead of sliding over the text column.
 - Opening a project page directly no longer makes the page jump: the two main fonts are preloaded, so text no longer switches font after the first render, and the story keeps a screen of space while it loads. Layout shift on those pages dropped from up to 0.24 to under 0.02 on a slow phone connection.
 - The experience roadmap formats its dates with one formatter per language instead of a new one for every date, which shortens the first render of the home page.
 - On narrow phones the scene no longer widens the page: the mountain and beach props stay inside the screen, the greeting button is clipped to the scene, and the speech bubble moves inward to stay on screen while its tail still points at the beaver.
