@@ -16,7 +16,8 @@
     "format:check": "prettier --check .",
     "test": "vitest run --passWithNoTests",
     "check-i18n": "node scripts/check-i18n.mjs",
-    "brand": "node scripts/generate-brand.mjs"
+    "brand": "node scripts/generate-brand.mjs",
+    "check-cv": "node scripts/check-cv.mjs"
   },
   "dependencies": {
     "@fontsource-variable/manrope": "5.3.0",
