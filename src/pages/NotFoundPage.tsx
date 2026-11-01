@@ -2,12 +2,14 @@ import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router';
 
 import { useDocumentTitle } from '../hooks/useDocumentTitle.ts';
+import { useNoIndex } from '../hooks/useNoIndex.ts';
 
 // 404 (specs/04-pages.md, Q4.26): the message and a way home. The beaver in the scene below
 // keeps the visitor company, as on every page.
 export function NotFoundPage() {
   const { t } = useTranslation('notFound');
   useDocumentTitle(t('common:title.page', { page: t('title') }));
+  useNoIndex();
 
   return (
     <>
