@@ -30,3 +30,6 @@ npm-debug.log*
 .idea/
 .DS_Store
 Thumbs.db
+
+# Generated before each build (scripts/generate-sitemap.mjs)
+public/sitemap.xml
