@@ -71,6 +71,7 @@ Catatan: matahari, bulan, bintang, awan, dan berang-berang murni dekoratif (`ari
 - Ukuran display 96px dipakai hanya di layar lebar; di mobile heading hero mengecil (`clamp`), tetap minimal 48px.
 - Fallback (tidak ikut dihosting): Jersey 10 jatuh ke `ui-monospace, monospace`; Manrope jatuh ke `system-ui, sans-serif`.
 - `font-display: swap`; font utama dimuat lebih awal (preload) agar tidak menurunkan skor Lighthouse.
+- Selama font belum tiba, teks memakai font cadangan berbasis Arial yang ukurannya disamakan dengan font aslinya (`size-adjust`, `ascent-override`, `descent-override`, diukur di browser pada 2026-11-01), supaya pergantian font tidak menggeser tata letak. Ini diperlukan sejak halaman di-prerender (`08-prerender.md`): teks tampil sebelum font tiba.
 - Judul bertulisan Jersey 10 tetap harus terbaca: tidak boleh terlalu rapat, dan jangan dipakai untuk kalimat panjang.
 
 ### Lisensi font

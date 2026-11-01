@@ -118,7 +118,12 @@ export function layoutExperience({ branches, events }: Experience): Layout {
   // Newest first. On the same date, shallower branches come first: a branch's merge, then its
   // events, then its child branches' merges and events. So the thesis merges into its parent
   // before graduating, and the parent merges into main after it. File order breaks ties.
-  items.sort((a, b) => b.date.localeCompare(a.date) || a.rank - b.rank || a.order - b.order);
+  // Dates are ISO (YYYY-MM), so plain string order is date order; localeCompare would start
+  // the locale engine for nothing.
+  items.sort(
+    (a, b) =>
+      (a.date < b.date ? 1 : a.date > b.date ? -1 : 0) || a.rank - b.rank || a.order - b.order,
+  );
   const rows = items.map((item) => item.row);
 
   // Walk from the oldest row up, so branches open in the order they started.
@@ -156,17 +161,23 @@ function activeLanes(laneOf: Map<string, number>): number[] {
 
 export const EXPERIENCE = data as Experience;
 
-// One formatter per language: creating an Intl.DateTimeFormat is slow, and the roadmap formats
-// dozens of dates on every render.
+// Intl formatting is slow and the roadmap formats dozens of dates on every render, so both the
+// formatter (per language) and each result are kept.
 const monthFormats = new Map<Lang, Intl.DateTimeFormat>();
+const formattedMonths = new Map<string, string>();
 
 /** "Februari 2026" / "February 2026" (specs/03-i18n.md, "Format tanggal dan angka"). */
 export function formatMonth(yearMonth: string, lang: Lang): string {
+  const key = `${lang} ${yearMonth}`;
+  const cached = formattedMonths.get(key);
+  if (cached) return cached;
   const [year, month] = yearMonth.split('-').map(Number);
   let format = monthFormats.get(lang);
   if (!format) {
     format = new Intl.DateTimeFormat(lang, { month: 'long', year: 'numeric', timeZone: 'UTC' });
     monthFormats.set(lang, format);
   }
-  return format.format(new Date(Date.UTC(year, month - 1, 1)));
+  const text = format.format(new Date(Date.UTC(year, month - 1, 1)));
+  formattedMonths.set(key, text);
+  return text;
 }

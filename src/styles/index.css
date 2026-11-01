@@ -73,8 +73,8 @@
   --color-mascot-light: #f5e6dc;
   --color-mascot-dark: #232629;
 
-  --font-display: 'Jersey 10', ui-monospace, monospace;
-  --font-sans: 'Manrope Variable', system-ui, sans-serif;
+  --font-display: 'Jersey 10', 'Jersey 10 Fallback', ui-monospace, monospace;
+  --font-sans: 'Manrope Variable', 'Manrope Fallback', system-ui, sans-serif;
 }
 
 @layer base {
@@ -99,6 +99,27 @@
   [tabindex='-1']:focus-visible {
     outline: none;
   }
+}
+
+/* Fallback faces sized like the real fonts (specs/02-design-system.md), so text drawn before
+   the fonts arrive takes the same room and nothing shifts when they swap in. Measured against
+   Arial in the browser; Liberation Sans has the same metrics, Roboto is close. */
+@font-face {
+  font-family: 'Manrope Fallback';
+  src: local('Arial'), local('Liberation Sans'), local('Roboto');
+  size-adjust: 103.06%;
+  ascent-override: 103.83%;
+  descent-override: 29.11%;
+  line-gap-override: 0%;
+}
+
+@font-face {
+  font-family: 'Jersey 10 Fallback';
+  src: local('Arial'), local('Liberation Sans'), local('Roboto');
+  size-adjust: 79.67%;
+  ascent-override: 100.42%;
+  descent-override: 33.89%;
+  line-gap-override: 0%;
 }
 
 /* One shadow set per card (specs/02-design-system.md, "Spasi, radius, bayangan"). */
@@ -282,7 +303,7 @@ header ul {
   white-space: nowrap;
   pointer-events: none;
   /* `@theme inline` tokens are not emitted as CSS variables, so the family is spelled out. */
-  font-family: 'Jersey 10', ui-monospace, monospace;
+  font-family: 'Jersey 10', 'Jersey 10 Fallback', ui-monospace, monospace;
   font-size: 20px;
   line-height: 1;
   color: #232629;

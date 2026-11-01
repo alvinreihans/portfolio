@@ -5,6 +5,7 @@ import remarkGfm from 'remark-gfm';
 
 import { loadStory, storyImage, type ProjectLang } from '../content/projects.ts';
 import { FlowDiagram } from './FlowDiagram.tsx';
+import { PrerenderedStory } from './PrerenderedStory.tsx';
 
 /** Phone and tablet screenshots are at most this wide; desktop ones are 1600px. */
 const NARROW_MAX = 800;
@@ -34,10 +35,35 @@ export default function ProjectStory({ slug, lang }: ProjectStoryProps) {
     };
   }, [slug, lang, key]);
 
-  // Only the first load shows the loading text; after a language switch the previous story
-  // stays until the new one arrives, so the page does not collapse (specs/03-i18n.md, Q3.8).
-  if (!story) return <p className="mt-8 min-h-dvh text-muted">{t('loading')}</p>;
+  // Only the first load shows the loading text (or the prerendered story, which looks the same
+  // as this one); after a language switch the previous story stays until the new one arrives,
+  // so the page does not collapse (specs/03-i18n.md, Q3.8).
+  if (!story)
+    return (
+      <PrerenderedStory
+        slug={slug}
+        lang={lang}
+        fallback={<p className="mt-8 min-h-dvh text-muted">{t('loading')}</p>}
+      />
+    );
 
+  return <StoryView slug={slug} lang={lang} text={story.text} textLang={story.lang} />;
+}
+
+/** The rendered story; also used to prerender it (specs/08-prerender.md, Q8.2). */
+export function StoryView({
+  slug,
+  lang,
+  text,
+  textLang,
+}: {
+  slug: string;
+  lang: ProjectLang;
+  text: string;
+  /** The language of `text`; differs from `lang` when the English story is missing. */
+  textLang: ProjectLang;
+}) {
+  const { t } = useTranslation('project');
   const external = t('common:externalLink');
   const components: Components = {
     // A `flow` block arrives as <pre><code class="language-flow">; drop the <pre> around it.
@@ -81,12 +107,12 @@ export default function ProjectStory({ slug, lang }: ProjectStoryProps) {
 
   return (
     <>
-      {story.lang !== lang && (
+      {textLang !== lang && (
         <p className="mt-8 rounded-lg bg-chip px-4 py-3 text-sm text-muted">{t('noEnglish')}</p>
       )}
-      <div className="story mt-8 max-w-[70ch]" lang={story.lang}>
+      <div className="story mt-8 max-w-[70ch]" lang={textLang}>
         <Markdown remarkPlugins={[remarkGfm]} components={components}>
-          {story.text}
+          {text}
         </Markdown>
       </div>
     </>
