@@ -49,6 +49,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixed
 
+- Opening a project page directly no longer makes the page jump: the two main fonts are preloaded, so text no longer switches font after the first render, and the story keeps a screen of space while it loads. Layout shift on those pages dropped from up to 0.24 to under 0.02 on a slow phone connection.
+- The experience roadmap formats its dates with one formatter per language instead of a new one for every date, which shortens the first render of the home page.
 - On narrow phones the scene no longer widens the page: the mountain and beach props stay inside the screen, the greeting button is clipped to the scene, and the speech bubble moves inward to stay on screen while its tail still points at the beaver.
 - The logo (or any link to the page that is already open) now glides back to the top instead of jumping; the browser back and forward buttons still restore the scroll position, and reduced motion still jumps.
 - Cards (tech stack, experience, other certificates) now carry the layered card shadow from the design system, so they stand out from the page in both Day and Night.
