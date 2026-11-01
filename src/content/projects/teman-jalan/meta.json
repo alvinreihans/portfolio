@@ -1,8 +1,17 @@
 {
-  "_review": "TODO(owner): summary and story are drafts written from the README, CV, and the owner’s notes (specs/06-project-stories.md, Q6.3).",
+  "_review": "TODO(owner): documentation sections checked against the code with acquire-codebase-knowledge (2026-11-01); background, journey, and outcome wait for the interview (specs/06-project-stories.md, Q6.3 and Q6.5).",
   "slug": "teman-jalan",
   "order": 2,
-  "tags": ["Node.js", "Express.js", "MQTT", "Redis", "MySQL", "FCM", "AWS EC2", "Amazon RDS"],
+  "tags": [
+    "Node.js",
+    "Express.js",
+    "MQTT",
+    "Redis",
+    "MySQL",
+    "Socket.IO",
+    "Firebase Cloud Messaging",
+    "JWT"
+  ],
   "links": {
     "repo": "https://github.com/alvinreihans/teman-jalan"
   },
@@ -11,7 +20,7 @@
     "en": "Teman Jalan: Real-Time IoT Monitoring"
   },
   "summary": {
-    "id": "Backend real-time untuk tongkat pintar IoT bagi penyandang tunanetra, proyek skripsi saya.",
-    "en": "A real-time backend for an IoT smart cane for visually impaired users, built for my thesis."
+    "id": "Backend real-time untuk tongkat pintar IoT bagi penyandang tunanetra: MQTT, sesi perjalanan di Redis, dan notifikasi darurat lewat FCM. Proyek skripsi saya.",
+    "en": "A real-time backend for an IoT smart cane for visually impaired people: MQTT, trip sessions in Redis, and emergency alerts through FCM. My thesis project."
   }
 }

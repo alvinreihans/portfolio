@@ -1,8 +1,17 @@
 {
-  "_review": "TODO(owner): summary and story are drafts written from the README, CV, and the owner’s notes (specs/06-project-stories.md, Q6.3).",
+  "_review": "TODO(owner): documentation sections checked against the code with acquire-codebase-knowledge (2026-11-01); background, journey, and outcome wait for the interview (specs/06-project-stories.md, Q6.3 and Q6.5).",
   "slug": "cropoptima",
   "order": 6,
-  "tags": ["Python", "Flask", "Docker", "Google Cloud", "Compute Engine", "Cloud SQL"],
+  "tags": [
+    "Python",
+    "Flask",
+    "Google App Engine",
+    "Cloud SQL",
+    "Firebase Authentication",
+    "Docker",
+    "Cloud Storage",
+    "LightGBM"
+  ],
   "links": {
     "repo": "https://github.com/panduwjaya/CropOptima-Fullteam"
   },
@@ -11,7 +20,7 @@
     "en": "CropOptima"
   },
   "summary": {
-    "id": "Aplikasi Android yang menyarankan tanaman sesuai lokasi dan kondisi tanah, capstone Bangkit tempat saya memegang backend cloud.",
-    "en": "An Android app that suggests crops for your location and soil, a Bangkit capstone where I worked on the cloud backend."
+    "id": "Capstone Bangkit 2023 yang menyarankan satu dari 22 tanaman dari kondisi tanah dan cuaca lokasi; saya membangun backend cloud-nya.",
+    "en": "A Bangkit 2023 capstone that suggests one of 22 crops from soil and local weather; I built its cloud backend."
   }
 }
