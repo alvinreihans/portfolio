@@ -65,6 +65,9 @@ export function StoryView({
 }) {
   const { t } = useTranslation('project');
   const external = t('common:externalLink');
+  // The first image is usually on screen when the page opens and is its largest element (LCP),
+  // so it loads at once; the rest wait until they are near (specs/06-project-stories.md).
+  let images = 0;
   const components: Components = {
     // A `flow` block arrives as <pre><code class="language-flow">; drop the <pre> around it.
     pre: ({ children }) => {
@@ -81,13 +84,15 @@ export function StoryView({
     img: ({ src, alt }) => {
       const image = typeof src === 'string' ? storyImage(slug, src) : undefined;
       const narrow = image?.width !== undefined && image.width <= NARROW_MAX;
+      const first = images++ === 0;
       return (
         <img
           src={image?.url ?? (typeof src === 'string' ? src : undefined)}
           alt={alt ?? ''}
           width={image?.width}
           height={image?.height}
-          loading="lazy"
+          loading={first ? 'eager' : 'lazy'}
+          fetchPriority={first ? 'high' : undefined}
           decoding="async"
           // Phone and tablet screenshots stay narrow instead of filling a whole screen.
           className={narrow ? 'narrow' : undefined}
