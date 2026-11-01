@@ -36,7 +36,7 @@ export default function ProjectStory({ slug, lang }: ProjectStoryProps) {
 
   // Only the first load shows the loading text; after a language switch the previous story
   // stays until the new one arrives, so the page does not collapse (specs/03-i18n.md, Q3.8).
-  if (!story) return <p className="mt-8 text-muted">{t('loading')}</p>;
+  if (!story) return <p className="mt-8 min-h-dvh text-muted">{t('loading')}</p>;
 
   const external = t('common:externalLink');
   const components: Components = {

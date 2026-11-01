@@ -50,7 +50,9 @@ function ProjectDetail({ slug }: { slug: string }) {
         <ProjectLinks project={project} />
       </section>
 
-      <Suspense fallback={<p className="mt-8 text-muted">{t('loading')}</p>}>
+      {/* The loading line reserves a screen so the scene below does not jump when the story
+          arrives (specs/06-project-stories.md, AC4). */}
+      <Suspense fallback={<p className="mt-8 min-h-dvh text-muted">{t('loading')}</p>}>
         <ProjectStory slug={slug} lang={lang} />
       </Suspense>
 
