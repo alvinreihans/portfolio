@@ -78,7 +78,7 @@ Adegan dipilih acak **sekali per kunjungan halaman** (setiap reload bisa berbeda
 
 - Kerikil abu-abu di tanah Day tidak dipakai (hanya 2,54:1 terhadap teks).
 - Teks diberi bobot 600 dan halo tipis berwarna dasar tekstur (`text-shadow`) supaya tekstur tepat di belakang huruf terlihat lebih tenang. Halo ini hanya membantu keterbacaan; kontras di atas sudah lolos tanpa halo.
-- Tombol **Kirim email** (utama, `--accent`) dan **Salin email** (sekunder, latar `--nav`) tetap berlatar padat, jadi kontrasnya tidak dipengaruhi tekstur.
+- Ikon mail dan ikon sosial memakai warna teks tekstur (`--ground-ink`), jadi kontrasnya sama dengan teks di tabel di atas (Q4.27 di `04-pages.md`).
 - Semua halaman (`/`, `/cv`, `/projects/:slug`, 404) memakai adegan dan Contact yang sama (Q7.9). Adegannya satu per kunjungan, jadi tetap sama saat berpindah halaman.
 
 ## 4. Mode statis (gerak dimatikan)

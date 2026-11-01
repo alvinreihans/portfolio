@@ -8,7 +8,7 @@ Spec ini menjabarkan G4 sampai G7 dari `01-overview.md`: tampilan, tema Day/Nigh
 
 1. Minimal dan bersih; kesan "pixel" hanya sebagai aksen (heading, awan, matahari, bulan, bintang, berang-berang), bukan pada teks isi.
 2. Satu warna aksen (oranye). Tidak ada warna merek kedua. Pengecualian: ikon bendera di tombol bahasa memakai warna asli benderanya (Q2.6), dan ilustrasi adegan pixel di halaman utama (Q7.6 di `07-scenery.md`).
-3. Satu tombol utama (oranye) per layar. Pengecualian: tombol "Kirim email" di section Contact (Q2.9).
+3. Satu tombol utama (oranye) per layar.
 4. Kontras WCAG AA adalah syarat, bukan pilihan. Angka di spec ini sudah dihitung, bukan perkiraan.
 
 ## Temuan dari mockup (diperbaiki di spec ini)
@@ -160,7 +160,7 @@ Aturan tambahan:
 
 - [ ] AC1. Seluruh warna teks dan kontrol memenuhi rasio di tabel kontras pada kedua tema (diverifikasi dengan skrip penghitung).
 - [ ] AC2. Jersey 10 hanya muncul pada heading 36px ke atas dan pada bubble sapaan (20px).
-- [ ] AC3. Hanya ada satu tombol utama oranye per layar, tidak menghitung tombol "Kirim email" di section Contact (Q2.9).
+- [ ] AC3. Hanya ada satu tombol utama oranye per layar.
 - [ ] AC4. Semua kontrol interaktif punya area klik minimal 44x44px dan indikator fokus yang terlihat dengan kontras minimal 3:1.
 - [ ] AC5. Mengganti tema tidak menimbulkan layout shift, dan tidak ada kilatan tema salah saat halaman dimuat.
 - [ ] AC6. Dengan `prefers-reduced-motion` aktif, bintang, kedipan berang-berang, dan transisi tema berhenti.
@@ -188,7 +188,7 @@ Aturan tambahan:
 - Q2.6. Pilihan bahasa berupa satu tombol ikon bendera pixel (Indonesia dan Amerika Serikat), tanpa teks kode, menggantikan kontrol segmen "EN / ID". Warna asli bendera menjadi pengecualian dari aturan satu warna aksen. Ikon matahari diberi sinar agar jelas dibedakan dari bulatan.
 - Q2.7. Bubble sapaan berang-berang memakai Jersey 10 20px agar terasa seperti teks game pixel (permintaan owner, `07-scenery.md`). Teksnya pendek (satu kalimat), berwarna `#232629` di atas putih (15,21:1).
 - Q2.8. Chip bergaya git di roadmap (label cabang, `HEAD`, `init`) memakai monospace sistem, bukan font yang dihosting, sehingga tidak menambah unduhan font. Lihat `04-pages.md`, section 3.
-- Q2.9. Tombol "Kirim email" di section Contact tetap oranye di semua halaman, walaupun bisa terlihat bersamaan dengan tombol utama halaman (misalnya "Kembali ke beranda" di 404 atau "Unduh PDF" di `/cv`). Contact diperlakukan sebagai bagian penutup yang terpisah dari isi halaman (owner, 2026-11-01).
+- Q2.9. Tombol "Kirim email" di section Contact tetap oranye di semua halaman, walaupun bisa terlihat bersamaan dengan tombol utama halaman (misalnya "Kembali ke beranda" di 404 atau "Unduh PDF" di `/cv`). Contact diperlakukan sebagai bagian penutup yang terpisah dari isi halaman (owner, 2026-11-01). **Tidak berlaku lagi:** Contact kini memakai ikon mail, bukan tombol oranye (Q4.27 di `04-pages.md`).
 
 ## Pertanyaan terbuka
 
