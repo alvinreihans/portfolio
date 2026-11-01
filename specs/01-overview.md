@@ -89,7 +89,7 @@ Vite, React, TypeScript, React Router, Tailwind CSS, react-i18next. Di-hosting d
 - [ ] AC5. Kontras teks memenuhi WCAG AA di kedua tema; semua kontrol bisa dijangkau dan terlihat saat memakai keyboard.
 - [ ] AC6. Animasi berhenti ketika `prefers-reduced-motion` aktif.
 - [ ] AC7. Skor Lighthouse Performance dan Accessibility 90 atau lebih di mobile.
-- [ ] AC8. Tidak ada error di console dan tidak ada request jaringan yang gagal di semua route.
+- [ ] AC8. Tidak ada error di console dan tidak ada request jaringan yang gagal di semua route. Pesan yang berasal dari dalam iframe pihak ketiga (pratinjau Google Docs di `/cv`) tidak dihitung, karena di luar kendali situs.
 - [ ] AC9. Semua project yang terdaftar tampil di section works, masing-masing dengan tautan yang valid.
 - [ ] AC10. Tautan `mailto:` membuka klien email dengan alamat benar.
 - [ ] AC11. Halaman memuat `<link rel="canonical">` ke `https://alvinreihans.web.id`.
