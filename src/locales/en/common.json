@@ -1,21 +1,4 @@
 {
-  "_review": [
-    "nav.experience",
-    "nav.projects",
-    "nav.contact",
-    "nav.cv",
-    "nav.label",
-    "nav.openMenu",
-    "nav.closeMenu",
-    "skipToContent",
-    "externalLink",
-    "language.switch",
-    "theme.switchToNight",
-    "theme.switchToDay",
-    "contact.mailSubject",
-    "title.home",
-    "title.page"
-  ],
   "nav": {
     "experience": "Experience",
     "projects": "Projects",
