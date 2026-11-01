@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useLayoutEffect, useRef, useState, type CSSProperties } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import { useTheme } from '../../theme/store.ts';
@@ -28,6 +28,9 @@ export default function Scene() {
   // The beaver's place in CSS px, for the greeting button and the bubble.
   const [beaver, setBeaver] = useState<Box | null>(null);
   const [bubble, setBubble] = useState<Bubble | null>(null);
+  const bubbleRef = useRef<HTMLDivElement>(null);
+  // How far the bubble moves sideways to stay on screen; its tail moves back by the same amount.
+  const [bubbleShift, setBubbleShift] = useState(0);
   const timers = useRef<number[]>([]);
 
   useEffect(() => {
@@ -118,9 +121,25 @@ export default function Scene() {
   };
 
   const typing = bubble !== null && bubble.shown < bubble.line.length;
+  const bubbleLine = bubble?.line;
+
+  // The full line reserves the bubble's width from the first frame, so measure once per line.
+  useLayoutEffect(() => {
+    const el = bubbleRef.current;
+    const canvas = canvasRef.current;
+    if (!el || !canvas || !beaver) return;
+    const half = el.offsetWidth / 2;
+    const center = beaver.x + beaver.w / 2;
+    const margin = 8;
+    const width = canvas.getBoundingClientRect().width;
+    const left = Math.min(Math.max(center, half + margin), width - half - margin);
+    setBubbleShift(left - center);
+  }, [bubbleLine, beaver]);
 
   return (
-    <div className="relative">
+    // Clipped sideways: on narrow screens the beaver (and its greeting button) can sit partly
+    // past the canvas edge, which must not widen the page. Upwards stays open for the bubble.
+    <div className="relative overflow-x-clip">
       <canvas
         ref={canvasRef}
         aria-hidden="true"
@@ -139,8 +158,15 @@ export default function Scene() {
           {bubble && (
             <div
               aria-hidden="true"
+              ref={bubbleRef}
               className="pixel-bubble"
-              style={{ left: beaver.x + beaver.w / 2, top: beaver.y - 3 * SCENE_SCALE }}
+              style={
+                {
+                  left: beaver.x + beaver.w / 2 + bubbleShift,
+                  top: beaver.y - 3 * SCENE_SCALE,
+                  '--tail-shift': `${-bubbleShift}px`,
+                } as CSSProperties
+              }
             >
               {/* The invisible full line reserves the final width, so the bubble does not
                   grow while it types. */}
