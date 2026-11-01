@@ -128,7 +128,7 @@ Tidak ada library untuk frontmatter karena memang tidak dipakai. Konten dimuat d
 - [ ] AC1. Menambah project baru cukup dengan menambah satu folder di `src/content/projects/` tanpa mengubah kode komponen.
 - [ ] AC2. Kartu di section works dan halaman detail dibuat dari `meta.json` (urutan mengikuti `order`).
 - [ ] AC3. Memilih bahasa Inggris memuat `en.md`; jika tidak ada, memuat `id.md` dengan pemberitahuan. Memilih bahasa Indonesia memuat `id.md`.
-- [ ] AC4. Gambar relatif di markdown tampil, punya `alt`, lazy loading, dan tanpa layout shift.
+- [ ] AC4. Gambar relatif di markdown tampil, punya `alt`, lazy loading, dan tanpa layout shift. Selama cerita dimuat, tempatnya dicadangkan setinggi satu layar, sehingga adegan dan Contact di bawahnya tidak terdorong saat cerita tiba (CLS di bawah 0,1 juga saat halaman project dibuka langsung).
 - [ ] AC5. Code block `flow` dirender sebagai flowchart atas ke bawah (setiap node sekali, percabangan dan pertemuan terlihat sebagai panah) yang mengikuti tema Day/Night dan bisa dibaca screen reader.
 - [ ] AC6. HTML mentah di dalam markdown tidak dirender.
 - [ ] AC7. Slug yang tidak ada menampilkan halaman 404.
