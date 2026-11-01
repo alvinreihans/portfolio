@@ -4,7 +4,7 @@
   "buildCommand": "npm run build",
   "outputDirectory": "dist",
   "ignoreCommand": "if [ \"$VERCEL_GIT_COMMIT_REF\" = \"main\" ] || [ \"$VERCEL_GIT_COMMIT_REF\" = \"react-rewrite\" ]; then exit 1; else exit 0; fi",
-  "rewrites": [{ "source": "/(.*)", "destination": "/index.html" }],
+  "rewrites": [{ "source": "/(.*)", "destination": "/404.html" }],
   "headers": [
     {
       "source": "/(.*)",
@@ -15,7 +15,7 @@
         { "key": "Permissions-Policy", "value": "camera=(), microphone=(), geolocation=()" },
         {
           "key": "Content-Security-Policy",
-          "value": "default-src 'self'; script-src 'self' 'sha256-1cXYBanqQwr3sRkXy5AvsYiKgpG/K+Zu0a+79yJSkII='; style-src 'self'; img-src 'self' data:; font-src 'self' data:; connect-src 'self'; frame-src https://docs.google.com; object-src 'none'; base-uri 'self'; form-action 'self'"
+          "value": "default-src 'self'; script-src 'self' 'sha256-RGUnO4EopLygahQ7YtD5GC+KnbXELl//uJFnBIruv+U=' 'sha256-t1HCjQNetuo3zS25+NAkiVztM9oVeyRR8h/zwNXH64Y='; style-src 'self'; style-src-attr 'unsafe-inline'; img-src 'self' data:; font-src 'self' data:; connect-src 'self'; frame-src https://docs.google.com; object-src 'none'; base-uri 'self'; form-action 'self'"
         }
       ]
     },
