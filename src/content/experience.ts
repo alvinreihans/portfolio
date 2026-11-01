@@ -156,10 +156,17 @@ function activeLanes(laneOf: Map<string, number>): number[] {
 
 export const EXPERIENCE = data as Experience;
 
+// One formatter per language: creating an Intl.DateTimeFormat is slow, and the roadmap formats
+// dozens of dates on every render.
+const monthFormats = new Map<Lang, Intl.DateTimeFormat>();
+
 /** "Februari 2026" / "February 2026" (specs/03-i18n.md, "Format tanggal dan angka"). */
 export function formatMonth(yearMonth: string, lang: Lang): string {
   const [year, month] = yearMonth.split('-').map(Number);
-  return new Intl.DateTimeFormat(lang, { month: 'long', year: 'numeric', timeZone: 'UTC' }).format(
-    new Date(Date.UTC(year, month - 1, 1)),
-  );
+  let format = monthFormats.get(lang);
+  if (!format) {
+    format = new Intl.DateTimeFormat(lang, { month: 'long', year: 'numeric', timeZone: 'UTC' });
+    monthFormats.set(lang, format);
+  }
+  return format.format(new Date(Date.UTC(year, month - 1, 1)));
 }
