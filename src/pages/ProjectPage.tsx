@@ -4,6 +4,7 @@ import { Link, useParams } from 'react-router';
 
 import { ClientLazy } from '../components/ClientLazy.tsx';
 import { ProjectLinks } from '../components/home/Works.tsx';
+import { PrerenderedStory } from '../components/PrerenderedStory.tsx';
 import { nextProject, projectBySlug, type ProjectLang } from '../content/projects.ts';
 import { useDocumentTitle } from '../hooks/useDocumentTitle.ts';
 import { NotFoundPage } from './NotFoundPage.tsx';
@@ -53,7 +54,15 @@ function ProjectDetail({ slug }: { slug: string }) {
 
       {/* The loading line reserves a screen so the scene below does not jump when the story
           arrives (specs/06-project-stories.md, AC4). */}
-      <ClientLazy fallback={<p className="mt-8 min-h-dvh text-muted">{t('loading')}</p>}>
+      <ClientLazy
+        fallback={
+          <PrerenderedStory
+            slug={slug}
+            lang={lang}
+            fallback={<p className="mt-8 min-h-dvh text-muted">{t('loading')}</p>}
+          />
+        }
+      >
         <ProjectStory slug={slug} lang={lang} />
       </ClientLazy>
 

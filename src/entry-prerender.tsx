@@ -2,11 +2,13 @@
 // `vite build --ssr` and run by scripts/prerender.mjs; never shipped to the browser.
 import { createInstance } from 'i18next';
 import { StrictMode } from 'react';
-import { renderToString } from 'react-dom/server';
+import { renderToStaticMarkup, renderToString } from 'react-dom/server';
 import { I18nextProvider, initReactI18next } from 'react-i18next';
 import { createStaticHandler, createStaticRouter, StaticRouterProvider } from 'react-router';
 
-import { PROJECTS } from './content/projects.ts';
+import { StoryView } from './components/ProjectStory.tsx';
+import { StoryMarkup } from './components/storyMarkup.ts';
+import { loadStory, PROJECTS } from './content/projects.ts';
 import { TitleSink } from './hooks/useDocumentTitle.ts';
 import type { Language } from './i18n/detect.ts';
 import { I18N_OPTIONS } from './i18n/resources.ts';
@@ -26,14 +28,32 @@ export async function render(path: string, lang: Language) {
   if (context instanceof Response) throw new Error(`prerender: ${path} answered with a redirect`);
   const router = createStaticRouter(handler.dataRoutes, context);
 
+  // The story of a project page, as plain HTML (Q8.2); the browser shows it until the lazy
+  // markdown renderer takes over.
+  const slug = path.match(/^\/projects\/([^/]+)$/)?.[1];
+  const story = slug && PROJECTS.some((p) => p.slug === slug) ? await loadStory(slug, lang) : null;
+  // Rendered before the page: React cannot start a second render inside a running one.
+  const storyHtml =
+    slug && story
+      ? renderToStaticMarkup(
+          <I18nextProvider i18n={i18n}>
+            <StoryView slug={slug} lang={lang} text={story.text} textLang={story.lang} />
+          </I18nextProvider>,
+        )
+      : null;
+  const storyMarkup = (storySlug: string, storyLang: Language) =>
+    storySlug === slug && storyLang === lang ? storyHtml : null;
+
   let title = '';
   const html = renderToString(
     <StrictMode>
       <I18nextProvider i18n={i18n}>
         <TitleSink value={(value) => (title = value)}>
-          {/* No hydration data: the routes have no loaders, and an inline script would need
+          <StoryMarkup value={storyMarkup}>
+            {/* No hydration data: the routes have no loaders, and an inline script would need
               its own CSP hash. */}
-          <StaticRouterProvider router={router} context={context} hydrate={false} />
+            <StaticRouterProvider router={router} context={context} hydrate={false} />
+          </StoryMarkup>
         </TitleSink>
       </I18nextProvider>
     </StrictMode>,
