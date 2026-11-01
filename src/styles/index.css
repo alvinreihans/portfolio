@@ -150,6 +150,19 @@
   }
 }
 
+/* Switching language fades the page text out and back in (specs/03-i18n.md, Q3.8). Opacity
+   only; LanguageToggle skips it for reduced motion. */
+main,
+header ul {
+  transition: opacity 200ms ease-out;
+}
+
+:root[data-lang-switch='out'] :is(main, header ul) {
+  opacity: 0;
+  transition-duration: 120ms;
+  transition-timing-function: ease-in;
+}
+
 /* Page-wide sky clouds drift left and right (specs/07-scenery.md); duration and delay are
    set per cloud. */
 @keyframes drift {
