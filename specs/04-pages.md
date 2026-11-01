@@ -224,9 +224,20 @@ Catatan:
 
 ### 4. Works
 
-- **Project hero (Money Tracker):** kartu besar di bagian atas section: judul, ringkasan, diagram arsitektur (komponen `flow`, lihat `06-project-stories.md`), tag, dan tautan. Karena tombol utama sudah dipakai di hero, tautan di sini berbentuk **tautan teks**: "Baca ceritanya" (ke `/projects/money-tracker`), "Lihat demo", dan "Lihat repo".
-- **Kartu project lain:** grid (1 kolom di bawah 640px, 2 kolom di atasnya) untuk project sisanya. Setiap kartu menampilkan judul, ringkasan, dan tag.
+- **Kartu project** dalam grid (1 kolom di bawah 640px, 2 kolom di atasnya), semuanya berbentuk sama; Money Tracker berada di urutan pertama. Tidak ada kartu unggulan yang lebih besar (Q4.30). Setiap kartu menampilkan judul, ringkasan, tag, dan tautan.
+- Diagram arsitektur (`flow`) hanya tampil di halaman cerita, tidak di kartu.
 - Isi dan urutan dibuat dari `meta.json` tiap project (urutan mengikuti `order`).
+- **Daftar project** (Q4.29, owner 2026-11-01; backend dulu):
+
+| `order` | Slug | Project | Repo | Demo |
+|---|---|---|---|---|
+| 1 | `money-tracker` | Money Tracker | `alvinreihans/money-tracker` | `money-tracker-six-henna.vercel.app` |
+| 2 | `teman-jalan` | Real-Time IoT Monitoring (skripsi, tongkat pintar Teman Jalan) | `alvinreihans/teman-jalan` | – |
+| 3 | `garuda-chat-forum` | Garuda Games Chat Forum (AWS Back-End Academy) | `alvinreihans/dicoding-garuda-games-chat-forum` | – |
+| 4 | `video-belajar` | Video Belajar (Harisenin) | `alvinreihans/videobelajar-react` | `videobelajar-react-eight.vercel.app` |
+| 5 | `plant-classification-api` | Plant Classification API (riset MBKM) | `alvinreihans/ImageClassificationAPI-MBKMP` | – (tautan ORCID ke publikasi) |
+| 6 | `cropoptima` | CropOptima (capstone Bangkit, peran Cloud Computing) | `panduwjaya/CropOptima-Fullteam` | – |
+| 7 | `notes-app` | Notes App | `alvinreihans/note-app` | `alvinreihans.github.io/note-app` |
 - **Satu tautan utama per kartu:** judul menuju `/projects/:slug`, dengan area klik yang menutupi seluruh kartu. Tautan repo dan demo adalah tautan terpisah di atasnya (tidak ada tautan di dalam tautan).
 - Tautan eksternal dibuka di tab baru dengan `rel="noopener noreferrer"` dan diberi penanda ikon serta nama aksesibel yang menyebutkan bahwa tautan itu eksternal.
 
@@ -376,7 +387,6 @@ Teks Indonesia adalah sumber. Semua entri di bawah ditandai `_review` sampai own
 | `home:contact.email` | Kirim email | Send email |
 | `project:back` | Semua project | All projects |
 | `project:next` | Project berikutnya | Next project |
-| `project:readStory` | Baca ceritanya | Read the story |
 | `project:viewDemo` | Lihat demo | View demo |
 | `project:viewRepo` | Lihat repo | View repo |
 | `project:noEnglish` | (tidak dipakai) | This story isn't available in English yet. Showing the Indonesian version. |
@@ -465,6 +475,8 @@ Catatan: `project:noEnglish` hanya muncul saat bahasa Inggris dipilih dan `en.md
 - Q4.26. Berang-berang besar di 404 dihapus (owner, 2026-11-01): sejak adegan tampil di semua halaman (Q7.9), dua berang-berang di satu layar terasa aneh. 404 cukup berisi pesan dan tombol kembali, dengan berang-berang di adegan di bawahnya. Komponen dan versi detail 40x34 ikut dihapus.
 - Q4.27. Tombol "Kirim email" dan "Salin email" di Contact diganti satu ikon mail di deretan ikon sosial (owner, 2026-11-01). Fitur salin email dihapus; pengunjung tanpa aplikasi email tetap bisa memakai LinkedIn atau melihat alamat email di CV.
 - Q4.28. Perpindahan halaman memakai animasi masuk yang ringan pada isi `<main>` saja (owner menanyakan animasi saat pindah dari beranda ke `/cv`, 2026-11-01). Dipilih animasi CSS, bukan View Transitions API, supaya berjalan di semua browser tanpa mengubah setiap tautan.
+- Q4.29. Works menampilkan tujuh project: lima dari situs lama (Garuda Games Chat Forum, Real-Time IoT Monitoring, Plant Classification API, CropOptima, Notes App) ditambah Money Tracker sebagai project unggulan dan Video Belajar (owner, 2026-11-01). Urutan mendahulukan project backend. Tag Notes App diperbaiki (situs lama keliru menulis Flask/Python).
+- Q4.30. Money Tracker tidak lagi tampil sebagai kartu unggulan yang besar dengan diagram; kartunya sama seperti project lain, di urutan pertama (owner, 2026-11-01). Field `hero` dan `diagram` di `meta.json` dihapus.
 - Maskot diganti dari kucing menjadi **berang-berang** (lihat `01-overview.md` dan `02-design-system.md`).
 
 ## Pertanyaan terbuka
