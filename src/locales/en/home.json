@@ -22,8 +22,6 @@
     "contact.heading",
     "contact.body",
     "contact.email",
-    "contact.copy",
-    "contact.copied",
     "scene.greet",
     "scene.lines",
     "experience.certifications",
@@ -75,9 +73,7 @@
   "contact": {
     "heading": "Let's talk.",
     "body": "I'm open to new opportunities. For a job, a collaboration, or just to say hello, feel free to send an email.",
-    "email": "Send email",
-    "copy": "Copy email",
-    "copied": "Email copied"
+    "email": "Send email"
   },
   "scene": {
     "greet": "Say hi to the beaver",

@@ -1,4 +1,4 @@
-import { lazy, Suspense, useEffect, useRef, useState, type CSSProperties } from 'react';
+import { lazy, Suspense, type CSSProperties } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import { EMAIL } from '../../content/links.ts';
@@ -8,32 +8,12 @@ import { groundPalette, groundTile, SCENE_SCALE, sceneRows, VISIT } from './scen
 
 const Scene = lazy(() => import('./Scene.tsx'));
 
-const BUTTON =
-  'inline-flex min-h-11 items-center justify-center rounded-md px-5 text-[0.95rem] font-semibold';
-const COPIED_MS = 2000;
-
 // Every page ends here (specs/07-scenery.md, Q7.9): the pixel scene, then Contact and the
 // footer on the scene's ground texture.
 export function SceneryFooter() {
   const { t } = useTranslation('home');
   const theme = useTheme();
   const ground = groundPalette(VISIT.scene, theme);
-  const [copied, setCopied] = useState(false);
-  const resetTimer = useRef<number>(undefined);
-
-  useEffect(() => () => window.clearTimeout(resetTimer.current), []);
-
-  const copyEmail = async () => {
-    try {
-      await navigator.clipboard.writeText(EMAIL);
-    } catch {
-      return; // The button keeps its label; "Send email" still works.
-    }
-    setCopied(true);
-    window.clearTimeout(resetTimer.current);
-    resetTimer.current = window.setTimeout(() => setCopied(false), COPIED_MS);
-  };
-
   const mailto = `mailto:${EMAIL}?subject=${encodeURIComponent(t('common:contact.mailSubject'))}`;
 
   const groundStyle = {
@@ -66,24 +46,10 @@ export function SceneryFooter() {
             </h2>
             <p className="mt-4 max-w-[60ch] font-semibold">{t('contact.body')}</p>
 
-            <div className="mt-6 flex flex-wrap gap-3">
-              <a href={mailto} className={`${BUTTON} bg-accent text-on-accent`}>
-                {t('contact.email')}
-              </a>
-              <button
-                type="button"
-                onClick={copyEmail}
-                className={`${BUTTON} theme-fade cursor-pointer bg-nav text-ink`}
-              >
-                {copied ? t('contact.copied') : t('contact.copy')}
-              </button>
-            </div>
-            <p aria-live="polite" className="sr-only">
-              {copied ? t('contact.copied') : ''}
-            </p>
-
+            {/* Mail first, then the profiles (Q4.27). */}
             <SocialLinks
-              className="mt-4 -ml-3"
+              className="mt-5 -ml-3"
+              mail={{ href: mailto, label: t('contact.email') }}
               linkClassName="text-(--ground-ink) hover:bg-[color-mix(in_srgb,var(--ground-ink)_15%,transparent)]"
             />
           </section>
