@@ -50,7 +50,7 @@ Portfolio pribadi Alvin sebagai full-stack developer yang berminat pada sistem b
 - F2. Tombol Day/Night. Selama pengunjung belum memilih sendiri, tema mengikuti pengaturan sistem atau browser (`prefers-color-scheme`: gelap menjadi Night, terang menjadi Day) dan ikut berganti jika pengaturan itu berubah. Setelah pengunjung memilih lewat tombol, pilihannya disimpan di `localStorage` dan dipakai di kunjungan berikutnya. Detail di `02-design-system.md`.
 - F3. Layout responsif (mobile first, lebar konten maksimal 1200px).
 - F4. Halaman CV (`/cv`): pratinjau CV terbaru di dalam situs, unduh PDF, dan buka di tab baru. `alvinreihans.web.id/cv` sekaligus menjadi tautan pendek untuk lamaran. Detail di `04-pages.md`.
-- F5. Kontak lewat tautan `mailto:`. Tombol "Salin email" ikut disediakan sebagai cadangan untuk pengunjung yang tidak memakai aplikasi email bawaan (usulan, perlu konfirmasi).
+- F5. Kontak lewat tautan `mailto:` berupa ikon mail di section Contact (Q4.27 di `04-pages.md`; tombol "Salin email" tidak dipakai).
 - F6. Project hero: Money Tracker, dengan diagram arsitektur dan tautan ke repo dan demo.
 - F7. Section works yang menampilkan semua project sebagai kartu.
 - F8. Maskot berang-berang pixel art (gaya dan penempatan diputuskan di `02-design-system.md`).
@@ -91,7 +91,7 @@ Vite, React, TypeScript, React Router, Tailwind CSS, react-i18next. Di-hosting d
 - [ ] AC7. Skor Lighthouse Performance dan Accessibility 90 atau lebih di mobile.
 - [ ] AC8. Tidak ada error di console dan tidak ada request jaringan yang gagal di semua route.
 - [ ] AC9. Semua project yang terdaftar tampil di section works, masing-masing dengan tautan yang valid.
-- [ ] AC10. Tautan `mailto:` membuka klien email dengan alamat benar, dan tombol "Salin email" menyalin alamat tersebut.
+- [ ] AC10. Tautan `mailto:` membuka klien email dengan alamat benar.
 - [ ] AC11. Halaman memuat `<link rel="canonical">` ke `https://alvinreihans.web.id`.
 - [ ] AC12. Setiap project di works membuka halaman detail yang memuat cerita dalam bahasa yang sedang dipilih; jika terjemahan belum ada, tampil versi Indonesia beserta pemberitahuan (Indonesia adalah bahasa sumber, lihat `03-i18n.md`).
 - [ ] AC13. Semua gambar di cerita punya teks alternatif (`alt`), dimuat dengan lazy loading, dan tidak menyebabkan layout shift.

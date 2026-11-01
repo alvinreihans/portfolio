@@ -22,8 +22,6 @@
     "contact.heading",
     "contact.body",
     "contact.email",
-    "contact.copy",
-    "contact.copied",
     "scene.greet",
     "scene.lines",
     "experience.certifications",
@@ -75,9 +73,7 @@
   "contact": {
     "heading": "Mari berdiskusi.",
     "body": "Saya terbuka untuk peluang baru. Untuk pekerjaan, kolaborasi, atau sekadar menyapa, silakan kirim email.",
-    "email": "Kirim email",
-    "copy": "Salin email",
-    "copied": "Email disalin"
+    "email": "Kirim email"
   },
   "scene": {
     "greet": "Sapa berang-berang",

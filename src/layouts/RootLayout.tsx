@@ -1,5 +1,5 @@
 import { useTranslation } from 'react-i18next';
-import { Outlet, ScrollRestoration } from 'react-router';
+import { Outlet, ScrollRestoration, useLocation } from 'react-router';
 
 import { PageSky } from '../components/home/PageSky.tsx';
 import { SceneryFooter } from '../components/home/SceneryFooter.tsx';
@@ -8,6 +8,7 @@ import { useRouteFocus } from '../hooks/useRouteFocus.ts';
 
 export function RootLayout() {
   const { t } = useTranslation();
+  const { pathname } = useLocation();
   useRouteFocus();
 
   return (
@@ -28,7 +29,11 @@ export function RootLayout() {
           tabIndex={-1}
           className="relative mx-auto w-full max-w-[1200px] flex-1 px-6 py-16"
         >
-          <Outlet />
+          {/* Keyed by path, so a new page plays the enter animation; a #section on the same
+              page does not (specs/04-pages.md, Q4.28). */}
+          <div key={pathname} className="page-enter">
+            <Outlet />
+          </div>
         </main>
       </div>
       <SceneryFooter />

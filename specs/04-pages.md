@@ -1,6 +1,6 @@
 # 04 - Pages
 
-Status: **Approved** (disetujui owner, 2026-10-31; revisi section 3 Experience, Q4.14 sampai Q4.21, disetujui 2026-10-31). Tautan kredensial sertifikat dan Q4.22 disetujui 2026-11-01. Pemandangan dan Contact di semua halaman (Q7.9 di `07-scenery.md`), aset brand (Q4.24), dan 404 tanpa berang-berang besar (Q4.26) disetujui 2026-11-01.
+Status: **Approved** (disetujui owner, 2026-10-31; revisi section 3 Experience, Q4.14 sampai Q4.21, disetujui 2026-10-31). Tautan kredensial sertifikat dan Q4.22 disetujui 2026-11-01. Pemandangan dan Contact di semua halaman (Q7.9 di `07-scenery.md`), aset brand (Q4.24), dan 404 tanpa berang-berang besar (Q4.26) disetujui 2026-11-01. Ikon mail di Contact (Q4.27), animasi masuk halaman (Q4.28), halaman `/cv` dengan ID dokumen publik, dan gulir halus ke atas untuk tautan ke halaman yang sama disetujui 2026-11-01.
 
 Spec ini menjabarkan konten dan layout tiap route dari `01-overview.md`. Tampilan visual mengikuti `02-design-system.md`, bahasa mengikuti `03-i18n.md`, dan cerita project mengikuti `06-project-stories.md`. Sumber data konten: CV owner (versi Indonesia dan Inggris) dan situs lama.
 
@@ -33,7 +33,9 @@ Spec ini menjabarkan konten dan layout tiap route dari `01-overview.md`. Tampila
 ### Perilaku antar halaman (SPA)
 
 - Berpindah route memindahkan fokus ke judul utama (`<h1>`) halaman baru dan memperbarui `document.title` (format: `<Halaman> · alvinreihans`).
+- **Animasi masuk halaman** (Q4.28): saat path berubah, isi `<main>` halaman baru muncul pudar sambil naik sedikit (opacity 0 ke 1, geser 12px ke 0, sekitar 300ms, `ease-out`). Navbar, langit, adegan, dan Contact tidak ikut beranimasi. Pindah ke `#section` di halaman yang sama tidak memicu animasi ini. Animasi mati saat `prefers-reduced-motion` aktif. Hanya `opacity` dan `transform`, jadi tidak menimbulkan layout shift.
 - Berpindah ke halaman baru dimulai dari atas; tombol kembali browser memulihkan posisi gulir sebelumnya.
+- Mengklik tautan ke halaman yang sedang dibuka (misalnya logo `alvinreihans` saat sudah di beranda) menggulir **halus** ke atas, kecuali `prefers-reduced-motion` aktif (langsung loncat). Tombol kembali dan maju browser tetap memulihkan posisi gulir, tanpa digulir ke atas.
 
 ## Halaman utama `/`
 
@@ -43,7 +45,7 @@ Urutan section: Hero, Tech stack, Experience, Works, Contact.
 
 - Heading Jersey 10 dua baris; baris kedua beraksen (`--accent-display`).
 - Paragraf pembuka singkat bersumber dari ringkasan di CV, dengan peran **full-stack developer** (lihat Draf teks). Bagian ringkasan CV yang menyebut hal spesifik tentang pekerjaan di PT Intramedika Global Digital **tidak** dipakai.
-- **Deretan tombol hero:** tombol utama **Lihat CV** (oranye, tautan internal ke `/cv`), lalu tombol sekunder **Pengalaman**, **Project**, dan **Kontak** (menggulir ke section-nya). Hanya ada satu tombol oranye. Di bawah 640px tombol tersusun 2×2, setiap tombol setinggi minimal 44px dengan jarak minimal 8px. Kontak menggantikan "Hubungi saya": section Kontak sudah menyediakan Kirim email dan Salin email.
+- **Deretan tombol hero:** tombol utama **Lihat CV** (oranye, tautan internal ke `/cv`), lalu tombol sekunder **Pengalaman**, **Project**, dan **Kontak** (menggulir ke section-nya). Hanya ada satu tombol oranye. Di bawah 640px tombol tersusun 2×2, setiap tombol setinggi minimal 44px dengan jarak minimal 8px. Kontak menggantikan "Hubungi saya": section Kontak menyediakan ikon mail (`mailto:`).
 - Tautan sosial berupa ikon: LinkedIn, GitHub, dan Instagram.
 - Dekorasi langit di sisi kanan (matahari di Day, bulan di Night); awan dan bintang berada di lapisan langit selebar halaman (`07-scenery.md`). Tidak ada foto profil, tidak ada badge, dan tidak ada maskot di hero.
 
@@ -231,8 +233,8 @@ Catatan:
 ### 5. Contact
 
 - Heading Jersey 10 dan satu kalimat yang menyatakan Alvin terbuka untuk peluang baru (G8 di `01-overview.md`), tanpa badge.
-- Tombol **Kirim email** (`mailto:` dengan subjek sesuai bahasa) dan tombol **Salin email** (menyalin alamat; setelah berhasil teksnya berubah sebentar menjadi "Email disalin" dan diumumkan lewat `aria-live="polite"`).
-- Tautan sosial (sama seperti di hero): LinkedIn, GitHub, Instagram.
+- **Ikon mail** (`mailto:` dengan subjek sesuai bahasa) sebagai ikon pertama di deretan ikon sosial, sebelum LinkedIn, GitHub, dan Instagram, dengan nama aksesibel "Kirim email" / "Send email". Tidak ada tombol "Kirim email" dan "Salin email" (Q4.27).
+- Tautan sosial: ikon mail lalu LinkedIn, GitHub, Instagram (hero tetap tanpa ikon mail).
 - Tepat di atas section ini ada adegan pixel acak dengan berang-berang yang bisa disapa, dan section ini memakai tekstur tanah adegan sebagai latar (`07-scenery.md`).
 - Tidak ada form. Nomor telepon tidak ditampilkan di situs.
 
@@ -297,16 +299,16 @@ CV yang bisa diunduh dari situs adalah dokumen Google Docs yang dapat dibuka sia
 - Pengaturan dokumen: berbagi "Siapa saja yang memiliki tautan: Pelihat", dengan unduh, cetak, dan salin diizinkan (kalau tidak, tautan ekspor tidak berfungsi untuk pengunjung).
 - Karena dokumen bisa dilihat langsung, **setiap suntingan langsung terlihat publik**, termasuk suntingan yang belum selesai. Suntingan pada salinan publik dilakukan dengan hati-hati; CV kerja yang berisi data pribadi tidak pernah dijadikan publik.
 - Judul dokumen menjadi nama berkas yang terunduh, jadi diberi nama yang rapi, misalnya "CV - Alvin Reihansyah Makarim (Indonesia)" dan "CV - Alvin Reihansyah Makarim (English)".
-- Aturan di atas tidak bisa dipaksakan saat build, jadi dijaga lewat pemeriksaan: skrip kecil mengambil kedua tautan ekspor, mengekstrak teksnya, dan memeriksa pola nomor telepon serta kata kunci terlarang. Dijalankan sebelum cutover dan atas permintaan owner setelahnya.
+- Aturan di atas tidak bisa dipaksakan saat build, jadi dijaga lewat pemeriksaan: `npm run check-cv` (`scripts/check-cv.mjs`) mengambil teks kedua dokumen lewat ekspor teks polos (`export?format=txt`, tanpa dependency tambahan), memeriksa pola nomor telepon serta kata kunci terlarang, dan memastikan tautan ekspor PDF menjawab 200 bertipe PDF. Dijalankan sebelum cutover dan setiap kali owner mengubah CV. Tidak dijalankan di CI, karena bergantung pada jaringan dan dokumen di luar repo.
 
-Usulan ringkasan bullet untuk bagian PT Intramedika Global Digital (dipakai di kedua versi CV):
+Ringkasan bullet untuk bagian PT Intramedika Global Digital (versi owner, 2026-11-01; dipakai di kedua versi CV):
 
 | Indonesia | Inggris |
 |---|---|
 | Mengembangkan fitur backend dan integrasi dengan sistem eksternal pada aplikasi SaaS multi-tenant untuk pengelolaan klaim di lingkungan rumah sakit. | Developed backend features and integrations with external systems for a multi-tenant SaaS application for claims management in hospitals. |
 | Merancang ulang kontrol akses menjadi berbasis izin dan menegakkannya secara terpusat di seluruh endpoint API. | Redesigned access control into a permission-based model and enforced it centrally across all API endpoints. |
 | Membangun pipeline pemrosesan dokumen berbasis OCR dan LLM. | Built a document processing pipeline based on OCR and LLMs. |
-| Menyiapkan CI/CD GitHub Actions, migrasi skema basis data, dan test suite berlapis. | Set up GitHub Actions CI/CD, database schema migrations, and a layered test suite. |
+| Berkontribusi pada pengembangan aplikasi perhitungan remunerasi dokter berbasis Oracle APEX. | Contributed to developing a doctor remuneration calculation application built on Oracle APEX. |
 
 Usulan kalimat ringkasan profil di CV (Indonesia): "Sarjana Teknik Informatika Universitas Lampung yang kini bekerja sebagai full-stack developer, membangun aplikasi SaaS multi-tenant untuk pengelolaan klaim di lingkungan rumah sakit, mencakup kontrol akses berbasis izin dan pemrosesan dokumen berbasis OCR & LLM. Tertarik pada perancangan sistem backend yang andal, teruji, dan mudah diaudit." Versi Inggrisnya mengikuti.
 
@@ -372,8 +374,6 @@ Teks Indonesia adalah sumber. Semua entri di bawah ditandai `_review` sampai own
 | `home:contact.heading` | Mari berdiskusi. | Let's talk. |
 | `home:contact.body` | Saya terbuka untuk peluang baru. Untuk pekerjaan, kolaborasi, atau sekadar menyapa, silakan kirim email. | I'm open to new opportunities. For a job, a collaboration, or just to say hello, feel free to send an email. |
 | `home:contact.email` | Kirim email | Send email |
-| `home:contact.copy` | Salin email | Copy email |
-| `home:contact.copied` | Email disalin | Email copied |
 | `project:back` | Semua project | All projects |
 | `project:next` | Project berikutnya | Next project |
 | `project:readStory` | Baca ceritanya | Read the story |
@@ -404,7 +404,7 @@ Catatan: `project:noEnglish` hanya muncul saat bahasa Inggris dipilih dan `en.md
 - [ ] AC6. Section Works menampilkan semua project dari `meta.json`: Money Tracker sebagai kartu besar, sisanya sebagai kartu biasa, urut sesuai `order`.
 - [ ] AC7. Setiap kartu hanya punya satu tautan utama ke halaman detail; tidak ada tautan bersarang; tautan eksternal membuka tab baru dengan `rel="noopener noreferrer"`.
 - [ ] AC8. Halaman detail menampilkan tautan kembali, kotak fakta, cerita, dan tautan project berikutnya; slug tak dikenal menampilkan 404.
-- [ ] AC9. Tombol "Salin email" menyalin alamat yang benar dan memberi umpan balik yang dibacakan screen reader.
+- [ ] AC9. Ikon mail di section Contact membuka `mailto:` ke alamat yang benar dengan subjek sesuai bahasa, dan punya nama aksesibel "Kirim email" / "Send email".
 - [ ] AC10. Footer menampilkan tahun berjalan otomatis.
 - [ ] AC11. Halaman 404 menampilkan pesan, tombol kembali ke beranda, serta langit, adegan, dan Contact seperti halaman lain, dan muncul untuk path yang tidak dikenal.
 - [ ] AC12. Hero tidak memuat foto profil, badge, atau maskot.
@@ -417,7 +417,8 @@ Catatan: `project:noEnglish` hanya muncul saat bahasa Inggris dipilih dan `en.md
 - [ ] AC19. Kartu PT Intramedika Global Digital hanya memuat organisasi, peran, dan periode.
 - [ ] AC20. Tidak ada nomor telepon di halaman situs mana pun maupun di teks kedua CV publik (hasil ekstraksi tautan ekspor).
 - [ ] AC21. Teks kedua CV publik tidak memuat kata kunci terlarang (`E-Klaim`, `INA-CBG`, `iDRG`, `SIMRS`, `BPJS`) dan rincian Intramedika sesuai versi ringkas.
-- [ ] AC22. Tombol "Lihat CV" di hero dan tautan CV di navbar membuka halaman `/cv`; di sana tautan unduh kedua bahasa menjawab 200 bertipe PDF.- [ ] AC23. `public/og-image.png` berukuran 1200x630 dan di bawah 300 KB; favicon (`favicon.svg`, `favicon-32.png`, `apple-touch-icon.png`) tersedia.
+- [ ] AC22. Tombol "Lihat CV" di hero dan tautan CV di navbar membuka halaman `/cv`; di sana tautan unduh kedua bahasa menjawab 200 bertipe PDF.
+- [ ] AC23. `public/og-image.png` berukuran 1200x630 dan di bawah 300 KB; favicon (`favicon.svg`, `favicon-32.png`, `apple-touch-icon.png`) tersedia.
 - [ ] AC24. Halaman `/cv` menampilkan iframe pratinjau dari `docs.google.com` sesuai bahasa aktif, dengan `title` yang sesuai bahasa; teks "Memuat pratinjau…" hilang setelah iframe dimuat; tidak ada scroll horizontal di 320px.
 - [ ] AC25. Hero menampilkan deretan tombol Lihat CV (satu-satunya tombol oranye), Pengalaman, Project, dan Kontak; di bawah 640px tersusun 2×2 dengan tinggi minimal 44px dan jarak minimal 8px.
 - [ ] AC26. Di beranda pada lebar 640px ke atas: saat deretan tombol hero terlihat, tautan navbar tidak terlihat dan tidak bisa diklik mouse, tetapi tetap ada di pohon aksesibilitas dan langsung terlihat saat difokus keyboard; setelah deretan tombol hero tergulir keluar, tautan navbar terlihat dan bisa diklik; saat digulir kembali ke atas, tautan memudar lagi.
@@ -462,6 +463,8 @@ Catatan: `project:noEnglish` hanya muncul saat bahasa Inggris dipilih dan `en.md
 - Q4.24. Maskot 404, favicon, dan gambar Open Graph dikerjakan dalam satu branch (owner, 2026-11-01), semuanya dari satu sprite di `src/components/beaver.ts`. 404 memakai pose Day duduk berkedip dan Night tidur dengan "z" melayang; favicon dan gambar Open Graph dibuat ulang dengan `npm run brand`. Bagian 404-nya dibatalkan oleh Q4.26.
 - Q4.25. Berang-berang di 404 memakai versi detail 40x34 supaya terlihat lebih halus di ukuran besar (owner, 2026-11-01). Versi ini dihitung dari sprite 20x17 (`beaverDetailRows` di `src/components/beaver.ts`), jadi bentuknya tetap sama dengan yang di adegan; adegan dan favicon tetap memakai 20x17. **Dibatalkan oleh Q4.26.**
 - Q4.26. Berang-berang besar di 404 dihapus (owner, 2026-11-01): sejak adegan tampil di semua halaman (Q7.9), dua berang-berang di satu layar terasa aneh. 404 cukup berisi pesan dan tombol kembali, dengan berang-berang di adegan di bawahnya. Komponen dan versi detail 40x34 ikut dihapus.
+- Q4.27. Tombol "Kirim email" dan "Salin email" di Contact diganti satu ikon mail di deretan ikon sosial (owner, 2026-11-01). Fitur salin email dihapus; pengunjung tanpa aplikasi email tetap bisa memakai LinkedIn atau melihat alamat email di CV.
+- Q4.28. Perpindahan halaman memakai animasi masuk yang ringan pada isi `<main>` saja (owner menanyakan animasi saat pindah dari beranda ke `/cv`, 2026-11-01). Dipilih animasi CSS, bukan View Transitions API, supaya berjalan di semua browser tanpa mengubah setiap tautan.
 - Maskot diganti dari kucing menjadi **berang-berang** (lihat `01-overview.md` dan `02-design-system.md`).
 
 ## Pertanyaan terbuka

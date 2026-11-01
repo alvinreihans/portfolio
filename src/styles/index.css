@@ -133,6 +133,23 @@
   }
 }
 
+/* A new page fades in and rises a little (specs/04-pages.md, Q4.28). Opacity and transform
+   only, so nothing shifts; off for reduced motion. */
+@keyframes page-enter {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+}
+
+.page-enter {
+  animation: page-enter 300ms ease-out;
+
+  @media (prefers-reduced-motion: reduce) {
+    animation: none;
+  }
+}
+
 /* Page-wide sky clouds drift left and right (specs/07-scenery.md); duration and delay are
    set per cloud. */
 @keyframes drift {
