@@ -39,8 +39,8 @@ URL tidak memuat bahasa, sedangkan bahasa ditentukan di browser (pilihan tersimp
 
 ```html
 <div id="root"></div>
-<template data-lang="id">…HTML halaman dalam bahasa Indonesia…</template>
-<template data-lang="en">…HTML halaman dalam bahasa Inggris…</template>
+<template data-lang="id">â€¦HTML halaman dalam bahasa Indonesiaâ€¦</template>
+<template data-lang="en">â€¦HTML halaman dalam bahasa Inggrisâ€¦</template>
 <script>/* memilih template sesuai bahasa, memindahkannya ke #root, mengisi <title> */</script>
 ```
 
@@ -86,14 +86,14 @@ Prerender pertama sudah benar secara fungsi (nol hydration mismatch), tetapi LCP
 
 ## Kriteria penerimaan
 
-- [ ] AC1. Setiap halaman di daftar (beranda, CV, ketujuh project, 404) disajikan sebagai HTML yang sudah berisi judul halaman dan teks utamanya, terlihat di "View Source" dalam kedua bahasa.
-- [ ] AC2. Dengan pilihan bahasa tersimpan atau bahasa browser apa pun, teks yang tampil sejak gambar pertama sudah dalam bahasa yang benar, dan `<html lang>` serta `<title>` cocok.
-- [ ] AC3. Tidak ada peringatan hydration mismatch di console pada semua halaman, kedua bahasa, dan kedua tema.
-- [ ] AC4. Path acak menampilkan halaman 404 (dengan `noindex`) sejak gambar pertama, tanpa sempat menampilkan beranda.
-- [ ] AC5. Semua kriteria penerimaan spec 01 sampai 07 tetap lulus (audit Playwright yang sama: matriks, perilaku, CLS).
-- [ ] AC6. Lighthouse mobile, diukur di preview (median dari tiga kali): Performance 90 ke atas di `/cv` dan 88 ke atas di `/` dan dua halaman project; LCP di bawah 2,0 detik di keempatnya. Sisa jarak ke 90 berasal dari biaya hydration React (TBT), yang baru bisa turun dengan arsitektur lain (owner, 2026-11-01).
-- [ ] AC7. Tidak ada dependency baru di `package.json`.
-- [ ] AC8. `npm run dev` tetap bekerja seperti sekarang (tanpa prerender).
+- [x] AC1. Setiap halaman di daftar (beranda, CV, ketujuh project, 404) disajikan sebagai HTML yang sudah berisi judul halaman dan teks utamanya, terlihat di "View Source" dalam kedua bahasa.
+- [x] AC2. Dengan pilihan bahasa tersimpan atau bahasa browser apa pun, teks yang tampil sejak gambar pertama sudah dalam bahasa yang benar, dan `<html lang>` serta `<title>` cocok.
+- [x] AC3. Tidak ada peringatan hydration mismatch di console pada semua halaman, kedua bahasa, dan kedua tema.
+- [x] AC4. Path acak menampilkan halaman 404 (dengan `noindex`) sejak gambar pertama, tanpa sempat menampilkan beranda.
+- [x] AC5. Semua kriteria penerimaan spec 01 sampai 07 tetap lulus (audit Playwright yang sama: matriks, perilaku, CLS).
+- [ ] AC6. Lighthouse mobile Performance 90 ke atas dan LCP di bawah 2,0 detik di `/`, `/cv`, dan dua halaman project, diukur dengan PageSpeed Insights di preview. Target sempat diturunkan ke 88 berdasarkan pengukuran dari mesin lokal, lalu dikembalikan setelah PageSpeed Insights (server Google) menunjukkan 95 sampai 100 (owner, 2026-11-01).
+- [x] AC7. Tidak ada dependency baru di `package.json`.
+- [x] AC8. `npm run dev` tetap bekerja seperti sekarang (tanpa prerender).
 
 ## Risiko
 

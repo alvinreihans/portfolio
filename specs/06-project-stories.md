@@ -77,7 +77,7 @@ Karena cerita bersifat naratif, recruiter yang hanya membaca sekilas tetap harus
 - Disimpan di `images/` dalam folder project, dirujuk dengan path relatif: `![Alt text](./images/ocr-flow.avif)`.
 - Format avif, lebar maksimum 1600px, target di bawah 200 KB per gambar.
 - `alt` wajib diisi dan deskriptif.
-- Dimuat dengan `loading="lazy"`, dan ukuran gambar (width/height) diketahui agar tidak terjadi layout shift. Ukurannya ditulis di akhir nama file, `<nama>-<lebar>x<tinggi>.avif` (mis. `beranda-desktop-1600x1000.avif`), lalu dipasang sebagai atribut `width` dan `height`.
+- Dimuat dengan `loading="lazy"`, kecuali gambar pertama cerita: gambar itu biasanya sudah terlihat saat halaman dibuka dan menjadi elemen terbesar (LCP), jadi dimuat langsung dengan prioritas tinggi (owner, 2026-11-01). Ukuran gambar (width/height) diketahui agar tidak terjadi layout shift. Ukurannya ditulis di akhir nama file, `<nama>-<lebar>x<tinggi>.avif` (mis. `beranda-desktop-1600x1000.avif`), lalu dipasang sebagai atribut `width` dan `height`.
 - Screenshot HP dan tablet (file selebar 800px atau kurang) ditampilkan paling lebar 380px di tengah kolom, supaya tidak memanjang satu layar penuh atau tampil lebih besar dari aslinya; screenshot desktop (1600px) memenuhi lebar kolom.
 - Base64 di dalam markdown tidak dipakai.
 
@@ -128,7 +128,7 @@ Tidak ada library untuk frontmatter karena memang tidak dipakai. Konten dimuat d
 - [ ] AC1. Menambah project baru cukup dengan menambah satu folder di `src/content/projects/` tanpa mengubah kode komponen.
 - [ ] AC2. Kartu di section works dan halaman detail dibuat dari `meta.json` (urutan mengikuti `order`).
 - [ ] AC3. Memilih bahasa Inggris memuat `en.md`; jika tidak ada, memuat `id.md` dengan pemberitahuan. Memilih bahasa Indonesia memuat `id.md`.
-- [ ] AC4. Gambar relatif di markdown tampil, punya `alt`, lazy loading, dan tanpa layout shift. Selama cerita dimuat, tempatnya dicadangkan setinggi satu layar, sehingga adegan dan Contact di bawahnya tidak terdorong saat cerita tiba (CLS di bawah 0,1 juga saat halaman project dibuka langsung).
+- [ ] AC4. Gambar relatif di markdown tampil, punya `alt`, lazy loading (kecuali gambar pertama), dan tanpa layout shift. Selama cerita dimuat, tempatnya dicadangkan setinggi satu layar, sehingga adegan dan Contact di bawahnya tidak terdorong saat cerita tiba (CLS di bawah 0,1 juga saat halaman project dibuka langsung).
 - [ ] AC5. Code block `flow` dirender sebagai flowchart atas ke bawah (setiap node sekali, percabangan dan pertemuan terlihat sebagai panah) yang mengikuti tema Day/Night dan bisa dibaca screen reader.
 - [ ] AC6. HTML mentah di dalam markdown tidak dirender.
 - [ ] AC7. Slug yang tidak ada menampilkan halaman 404.
