@@ -151,14 +151,14 @@ Skrip Playwright kecil dijalankan terhadap URL preview dan, setelah cutover, ter
 - [x] AC12. Push ke branch selain `main` dan `react-rewrite` tidak menjalankan build di Vercel (status dilewati), sedangkan CI GitHub Actions tetap berjalan di PR-nya.
 - [x] AC2. Membuka langsung `/projects/<slug>` dan path acak di preview dan di produksi tidak menghasilkan 404 dari platform.
 - [x] AC3. Berkas di `/assets/`, `robots.txt`, `sitemap.xml`, favicon, dan gambar OG disajikan sebagai berkas aslinya, bukan `index.html`.
-- [ ] AC4. `alvinreihans.web.id` melayani situs, dan `www.alvinreihans.web.id` dialihkan permanen ke domain tanpa `www`.
-- [ ] AC5. Header keamanan dan `Cache-Control` di `vercel.json` terpasang pada respons produksi.
+- [x] AC4. `alvinreihans.web.id` melayani situs, dan `www.alvinreihans.web.id` dialihkan permanen ke domain tanpa `www`.
+- [x] AC5. Header keamanan dan `Cache-Control` di `vercel.json` terpasang pada respons produksi.
 - [x] AC6. `sitemap.xml` memuat `/`, `/cv`, dan setiap project dari `meta.json`, dan `robots.txt` menunjuk ke sitemap itu.
 - [x] AC7. Halaman 404 memuat `noindex`.
 - [x] AC8. JavaScript awal (gzip) di bawah 170 KB.
 - [x] AC9. CI menjalankan lint, pengecekan tipe, `check-i18n`, dan build, dan gagal jika salah satunya gagal.
-- [ ] AC10. Seluruh prasyarat cutover terpenuhi sebelum PR ke `main` di-merge, dan pemeriksaan asap lulus setelah deployment produksi.
-- [ ] AC11. Rollback ke situs lama dapat dilakukan dalam hitungan menit (jalur Vercel atau jalur git sudah diverifikasi sebelum cutover).
+- [x] AC10. Seluruh prasyarat cutover terpenuhi sebelum PR ke `main` di-merge, dan pemeriksaan asap lulus setelah deployment produksi.
+- [x] AC11. Rollback ke situs lama dapat dilakukan dalam hitungan menit (jalur Vercel atau jalur git sudah diverifikasi sebelum cutover).
 
 ## Di luar cakupan
 
