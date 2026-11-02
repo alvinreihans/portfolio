@@ -1,0 +1,500 @@
+{
+  "branches": [
+    {
+      "id": "intramedika",
+      "kind": "work",
+      "ongoing": true,
+      "label": {
+        "id": "kerja/intramedika",
+        "en": "work/intramedika"
+      }
+    },
+    {
+      "id": "harisenin",
+      "kind": "training",
+      "label": {
+        "id": "pelatihan/harisenin",
+        "en": "training/harisenin"
+      }
+    },
+    {
+      "id": "thesis",
+      "kind": "thesis",
+      "label": {
+        "id": "kuliah/skripsi",
+        "en": "education/thesis"
+      },
+      "parent": "kuliah"
+    },
+    {
+      "id": "aws-backend",
+      "kind": "training",
+      "label": {
+        "id": "pelatihan/aws-backend",
+        "en": "training/aws-backend"
+      }
+    },
+    {
+      "id": "mbkm",
+      "kind": "internship",
+      "label": {
+        "id": "magang/mbkm",
+        "en": "internship/mbkm"
+      },
+      "parent": "kuliah"
+    },
+    {
+      "id": "bangkit",
+      "kind": "training",
+      "label": {
+        "id": "pelatihan/bangkit",
+        "en": "training/bangkit"
+      },
+      "parent": "kuliah"
+    },
+    {
+      "id": "kuliah",
+      "kind": "education",
+      "label": {
+        "id": "kuliah",
+        "en": "education"
+      }
+    }
+  ],
+  "events": [
+    {
+      "date": "2026-05",
+      "end": "2026-08",
+      "branch": "harisenin",
+      "type": "training",
+      "org": "Harisenin",
+      "title": {
+        "id": "FullStack Developer Academy (bootcamp)",
+        "en": "FullStack Developer Academy (bootcamp)"
+      },
+      "summary": {
+        "id": "Proyek akhir Video Belajar: platform kursus online berbentuk monorepo dengan SPA React (Vite, Tailwind CSS, Redux) dan REST API Express.js dengan MySQL.",
+        "en": "Final project Video Belajar: an online course platform structured as a monorepo, with a React SPA (Vite, Tailwind CSS, Redux) and an Express.js and MySQL REST API."
+      },
+      "links": [
+        {
+          "kind": "github",
+          "href": "https://github.com/alvinreihans/videobelajar-react",
+          "label": "videobelajar-react"
+        }
+      ]
+    },
+    {
+      "date": "2026-02",
+      "branch": "intramedika",
+      "type": "work",
+      "current": true,
+      "org": "PT Intramedika Global Digital",
+      "title": {
+        "id": "Junior Software Developer",
+        "en": "Junior Software Developer"
+      }
+    },
+    {
+      "date": "2025-10",
+      "branch": "kuliah",
+      "type": "education",
+      "org": "Universitas Lampung",
+      "title": {
+        "id": "Lulus Sarjana Teknik Informatika",
+        "en": "Graduated in Informatics Engineering (Bachelor)"
+      },
+      "summary": {
+        "id": "Sarjana Teknik Informatika, IPK 3,88/4,00.",
+        "en": "Bachelor of Engineering in Informatics Engineering, GPA 3.88/4.00."
+      }
+    },
+    {
+      "date": "2025-05",
+      "end": "2025-10",
+      "branch": "thesis",
+      "type": "education",
+      "org": "Universitas Lampung",
+      "title": {
+        "id": "Skripsi: backend pemantauan Smart Stick IoT real-time",
+        "en": "Thesis: backend for real-time IoT Smart Stick monitoring"
+      },
+      "summary": {
+        "id": "Backend aplikasi pemantauan Smart Stick IoT real-time berbasis MQTT dan Node.js: data perangkat masuk tiap 5 detik lewat MQTT, disimpan ke database, dan status terkininya disimpan di Redis.",
+        "en": "Backend for a real-time IoT Smart Stick monitoring app built on MQTT and Node.js: device data arrives every 5 seconds over MQTT, is stored in a database, and its latest state is kept in Redis."
+      },
+      "links": [
+        {
+          "kind": "github",
+          "href": "https://github.com/alvinreihans/teman-jalan",
+          "label": "teman-jalan"
+        }
+      ]
+    },
+    {
+      "date": "2025-04",
+      "end": "2025-12",
+      "branch": "aws-backend",
+      "type": "training",
+      "org": "Dicoding × AWS",
+      "title": {
+        "id": "AWS Back-End Academy",
+        "en": "AWS Back-End Academy"
+      },
+      "summary": {
+        "id": "Membangun layanan backend forum obrolan gim dengan clean architecture dan TDD, pipeline CI/CD GitHub Actions, serta deployment ke Amazon EC2 dan Amazon RDS.",
+        "en": "Built a backend service for a gaming chat forum using clean architecture and TDD, a GitHub Actions CI/CD pipeline, and deployment to Amazon EC2 and Amazon RDS."
+      },
+      "links": [
+        {
+          "kind": "github",
+          "href": "https://github.com/alvinreihans/dicoding-garuda-games-chat-forum",
+          "label": "dicoding-garuda-games-chat-forum"
+        }
+      ],
+      "certifications": [
+        {
+          "title": "Menjadi Back-End Developer Expert dengan JavaScript",
+          "issuer": "Dicoding",
+          "date": "2025-12",
+          "highlight": true,
+          "href": "https://www.dicoding.com/certificates/6RPNGJ1G9Z2M"
+        },
+        {
+          "title": "Architecting on AWS (Membangun Arsitektur Cloud di AWS)",
+          "issuer": "Dicoding",
+          "date": "2025-09",
+          "highlight": true,
+          "href": "https://www.dicoding.com/certificates/98XWOG2V9ZM3"
+        },
+        {
+          "title": "Belajar Fundamental Back-End dengan JavaScript",
+          "issuer": "Dicoding",
+          "date": "2025-08",
+          "highlight": true,
+          "href": "https://www.dicoding.com/certificates/0LZ053MO3X65"
+        },
+        {
+          "title": "Belajar Dasar Cloud dan Gen AI di AWS",
+          "issuer": "Dicoding",
+          "date": "2025-06",
+          "href": "https://www.dicoding.com/certificates/NVP75MKOVXR0"
+        },
+        {
+          "title": "Belajar Back-End Pemula dengan JavaScript",
+          "issuer": "Dicoding",
+          "date": "2025-06",
+          "href": "https://www.dicoding.com/certificates/1RXYE59LQZVM"
+        },
+        {
+          "title": "Belajar Dasar Pemrograman Web",
+          "issuer": "Dicoding",
+          "date": "2025-06",
+          "href": "https://www.dicoding.com/certificates/N9ZO9WQO6XG5"
+        }
+      ]
+    },
+    {
+      "date": "2024-07",
+      "end": "2024-08",
+      "branch": "mbkm",
+      "type": "internship",
+      "org": "Gita Persada Butterfly Park",
+      "title": {
+        "id": "Riset MBKM & Magang",
+        "en": "MBKM research and internship"
+      },
+      "summary": {
+        "id": "Menerapkan ilmu dari Bangkit ke riset: RESTful API Flask untuk klasifikasi tanaman dengan model CNN, di-deploy di Google Compute Engine dengan Cloud SQL dan Cloud Storage. Hasil risetnya terbit di tiga publikasi.",
+        "en": "Applied what I learned at Bangkit to research: a Flask RESTful API for plant classification with a CNN model, deployed on Google Compute Engine with Cloud SQL and Cloud Storage. The research was published in three papers."
+      },
+      "links": [
+        {
+          "kind": "github",
+          "href": "https://github.com/alvinreihans/ImageClassificationAPI-MBKMP",
+          "label": "ImageClassificationAPI-MBKMP"
+        },
+        {
+          "kind": "orcid",
+          "href": "https://orcid.org/0009-0005-6629-9783",
+          "label": "ORCID"
+        }
+      ]
+    },
+    {
+      "date": "2024-03",
+      "branch": "bangkit",
+      "type": "certification",
+      "org": "Google Cloud",
+      "title": {
+        "id": "Google Cloud Associate Cloud Engineer",
+        "en": "Google Cloud Associate Cloud Engineer"
+      },
+      "summary": {
+        "id": "Sertifikasi profesional Google Cloud dari program Bangkit. Berlaku sampai Maret 2027.",
+        "en": "Professional Google Cloud certification through the Bangkit program. Valid until March 2027."
+      },
+      "links": [
+        {
+          "kind": "credential",
+          "href": "https://www.credly.com/badges/c4cab7ce-a105-497e-a3e3-64cfe42a4f55",
+          "label": "Credly"
+        }
+      ]
+    },
+    {
+      "date": "2023-08",
+      "end": "2024-01",
+      "branch": "bangkit",
+      "type": "training",
+      "org": "Bangkit Academy · Studi Independen MBKM · Google, GoTo, Traveloka",
+      "title": {
+        "id": "Mulai: Bangkit Academy Cloud Computing",
+        "en": "Started: Bangkit Academy Cloud Computing"
+      },
+      "summary": {
+        "id": "Studi independen Kampus Merdeka selama satu semester di jalur Cloud Computing (Google Cloud). Proyek akhir CropOptima: layanan backend untuk aplikasi Android pertanian yang terhubung dengan model machine learning, di-deploy di Compute Engine dan Cloud SQL.",
+        "en": "A one-semester Kampus Merdeka independent study on the Cloud Computing path (Google Cloud). Final project CropOptima: a backend service for an agriculture Android app connected to machine learning models, deployed on Compute Engine and Cloud SQL."
+      },
+      "links": [
+        {
+          "kind": "github",
+          "href": "https://github.com/panduwjaya/CropOptima-Fullteam",
+          "label": "CropOptima-Fullteam"
+        }
+      ],
+      "certifications": [
+        {
+          "title": "Menjadi Google Cloud Engineer",
+          "issuer": "Dicoding",
+          "date": "2023-10",
+          "highlight": true,
+          "href": "https://www.dicoding.com/certificates/53XE4KN7KZRN"
+        },
+        {
+          "title": "System Administration and IT Infrastructure Services",
+          "issuer": "Coursera",
+          "date": "2023-10",
+          "highlight": true,
+          "href": "https://coursera.org/share/a864e42d5f918cb474d7887b39a5310a"
+        },
+        {
+          "title": "Serverless Cloud Run Development",
+          "issuer": "Google Cloud Skills Boost",
+          "date": "2023-11",
+          "href": "https://www.cloudskillsboost.google/public_profiles/706b8fef-faa4-4fc4-b101-d2b0a7f7a989/badges/6249519"
+        },
+        {
+          "title": "Advanced ML: ML Infrastructure",
+          "issuer": "Google Cloud Skills Boost",
+          "date": "2023-11",
+          "href": "https://www.cloudskillsboost.google/public_profiles/706b8fef-faa4-4fc4-b101-d2b0a7f7a989/badges/6235605"
+        },
+        {
+          "title": "Cloud SQL",
+          "issuer": "Google Cloud Skills Boost",
+          "date": "2023-11",
+          "href": "https://www.cloudskillsboost.google/public_profiles/706b8fef-faa4-4fc4-b101-d2b0a7f7a989/badges/6180461"
+        },
+        {
+          "title": "Deploy to Kubernetes in Google Cloud",
+          "issuer": "Google Cloud Skills Boost",
+          "date": "2023-11",
+          "href": "https://www.cloudskillsboost.google/public_profiles/706b8fef-faa4-4fc4-b101-d2b0a7f7a989/badges/6139528"
+        },
+        {
+          "title": "Hybrid Cloud Modernizing Applications with Anthos",
+          "issuer": "Google Cloud Skills Boost",
+          "date": "2023-11",
+          "href": "https://www.cloudskillsboost.google/public_profiles/706b8fef-faa4-4fc4-b101-d2b0a7f7a989/badges/6066090"
+        },
+        {
+          "title": "Application Development with Cloud Run",
+          "issuer": "Google Cloud Skills Boost",
+          "date": "2023-11",
+          "href": "https://www.cloudskillsboost.google/public_profiles/706b8fef-faa4-4fc4-b101-d2b0a7f7a989/badges/6025485"
+        },
+        {
+          "title": "Automating Infrastructure on Google Cloud with Terraform",
+          "issuer": "Google Cloud Skills Boost",
+          "date": "2023-10",
+          "href": "https://www.cloudskillsboost.google/public_profiles/706b8fef-faa4-4fc4-b101-d2b0a7f7a989/badges/5893893"
+        },
+        {
+          "title": "Getting Started with Terraform for Google Cloud",
+          "issuer": "Google Cloud Skills Boost",
+          "date": "2023-10",
+          "href": "https://www.cloudskillsboost.google/public_profiles/706b8fef-faa4-4fc4-b101-d2b0a7f7a989/badges/5874205"
+        },
+        {
+          "title": "Logging and Monitoring in Google Cloud",
+          "issuer": "Google Cloud Skills Boost",
+          "date": "2023-10",
+          "href": "https://www.cloudskillsboost.google/public_profiles/706b8fef-faa4-4fc4-b101-d2b0a7f7a989/badges/5863922"
+        },
+        {
+          "title": "Getting Started with Google Kubernetes Engine",
+          "issuer": "Google Cloud Skills Boost",
+          "date": "2023-10",
+          "href": "https://www.cloudskillsboost.google/public_profiles/706b8fef-faa4-4fc4-b101-d2b0a7f7a989/badges/5830929"
+        },
+        {
+          "title": "Elastic Google Cloud Infrastructure: Scaling and Automation",
+          "issuer": "Google Cloud Skills Boost",
+          "date": "2023-10",
+          "href": "https://www.cloudskillsboost.google/public_profiles/706b8fef-faa4-4fc4-b101-d2b0a7f7a989/badges/5820474"
+        },
+        {
+          "title": "Essential Google Cloud Infrastructure: Core Services",
+          "issuer": "Google Cloud Skills Boost",
+          "date": "2023-10",
+          "highlight": true,
+          "href": "https://www.cloudskillsboost.google/public_profiles/706b8fef-faa4-4fc4-b101-d2b0a7f7a989/badges/5782369"
+        },
+        {
+          "title": "Set Up and Configure a Cloud Environment in Google Cloud",
+          "issuer": "Google Cloud Skills Boost",
+          "date": "2023-10",
+          "href": "https://www.cloudskillsboost.google/public_profiles/706b8fef-faa4-4fc4-b101-d2b0a7f7a989/badges/5763251"
+        },
+        {
+          "title": "Essential Google Cloud Infrastructure: Foundation",
+          "issuer": "Google Cloud Skills Boost",
+          "date": "2023-10",
+          "href": "https://www.cloudskillsboost.google/public_profiles/706b8fef-faa4-4fc4-b101-d2b0a7f7a989/badges/5707197"
+        },
+        {
+          "title": "Google Cloud Fundamentals: Core Infrastructure",
+          "issuer": "Google Cloud Skills Boost",
+          "date": "2023-10",
+          "href": "https://www.cloudskillsboost.google/public_profiles/706b8fef-faa4-4fc4-b101-d2b0a7f7a989/badges/5691627"
+        },
+        {
+          "title": "Preparing for Your Associate Cloud Engineer Journey",
+          "issuer": "Google Cloud Skills Boost",
+          "date": "2023-10",
+          "href": "https://www.cloudskillsboost.google/public_profiles/706b8fef-faa4-4fc4-b101-d2b0a7f7a989/badges/5656324"
+        },
+        {
+          "title": "Perform Foundational Data, ML, and AI Tasks in Google Cloud",
+          "issuer": "Google Cloud Skills Boost",
+          "date": "2023-09",
+          "href": "https://www.cloudskillsboost.google/public_profiles/706b8fef-faa4-4fc4-b101-d2b0a7f7a989/badges/4970896"
+        },
+        {
+          "title": "Build and Secure Networks in Google Cloud",
+          "issuer": "Google Cloud Skills Boost",
+          "date": "2023-09",
+          "href": "https://www.cloudskillsboost.google/public_profiles/706b8fef-faa4-4fc4-b101-d2b0a7f7a989/badges/4967615"
+        },
+        {
+          "title": "Perform Foundational Infrastructure Tasks in Google Cloud",
+          "issuer": "Google Cloud Skills Boost",
+          "date": "2023-09",
+          "href": "https://www.cloudskillsboost.google/public_profiles/706b8fef-faa4-4fc4-b101-d2b0a7f7a989/badges/4957020"
+        },
+        {
+          "title": "Create and Manage Cloud Resources",
+          "issuer": "Google Cloud Skills Boost",
+          "date": "2023-08",
+          "href": "https://www.cloudskillsboost.google/public_profiles/706b8fef-faa4-4fc4-b101-d2b0a7f7a989/badges/4952028"
+        },
+        {
+          "title": "Google Cloud Computing Foundations: Data, ML, and AI in Google Cloud",
+          "issuer": "Google Cloud Skills Boost",
+          "date": "2023-08",
+          "href": "https://www.cloudskillsboost.google/public_profiles/706b8fef-faa4-4fc4-b101-d2b0a7f7a989/badges/4947012"
+        },
+        {
+          "title": "Google Cloud Computing Foundations: Infrastructure in Google Cloud",
+          "issuer": "Google Cloud Skills Boost",
+          "date": "2023-08",
+          "href": "https://www.cloudskillsboost.google/public_profiles/706b8fef-faa4-4fc4-b101-d2b0a7f7a989/badges/4906212"
+        },
+        {
+          "title": "Google Cloud Computing Foundations: Cloud Computing Fundamentals",
+          "issuer": "Google Cloud Skills Boost",
+          "date": "2023-08",
+          "href": "https://www.cloudskillsboost.google/public_profiles/706b8fef-faa4-4fc4-b101-d2b0a7f7a989/badges/4894227"
+        },
+        {
+          "title": "Google Cloud Computing Foundations: Networking",
+          "issuer": "Google Cloud Skills Boost",
+          "date": "2023-08",
+          "href": "https://www.cloudskillsboost.google/public_profiles/706b8fef-faa4-4fc4-b101-d2b0a7f7a989/badges/4931226"
+        },
+        {
+          "title": "The Bits and Bytes of Computer Networking",
+          "issuer": "Coursera",
+          "date": "2023-08",
+          "href": "https://www.coursera.org//verify/QY5P28ZLQAUJ"
+        },
+        {
+          "title": "Belajar Membuat Aplikasi Back-End untuk Pemula dengan Google Cloud",
+          "issuer": "Dicoding",
+          "date": "2023-08",
+          "href": "https://www.dicoding.com/certificates/N9ZO6KDE0XG5"
+        },
+        {
+          "title": "Belajar Dasar Pemrograman JavaScript",
+          "issuer": "Dicoding",
+          "date": "2023-08",
+          "href": "https://www.dicoding.com/certificates/MRZMQ0VYLPYQ"
+        }
+      ]
+    },
+    {
+      "date": "2021-08",
+      "branch": "kuliah",
+      "type": "education",
+      "org": "Universitas Lampung",
+      "title": {
+        "id": "Mulai kuliah Teknik Informatika",
+        "en": "Started Informatics Engineering"
+      }
+    }
+  ],
+  "otherCertifications": [
+    {
+      "title": "JavaScript (Basic)",
+      "issuer": "HackerRank",
+      "date": "2026-01",
+      "href": "https://www.hackerrank.com/certificates/58af8b263c2c"
+    },
+    {
+      "title": "English Proficiency Test",
+      "issuer": "Language Center Universitas Lampung",
+      "date": "2025-06"
+    },
+    {
+      "title": "SQL (Basic)",
+      "issuer": "HackerRank",
+      "date": "2024-03",
+      "href": "https://www.hackerrank.com/certificates/193f3e435903"
+    },
+    {
+      "title": "Python (Basic)",
+      "issuer": "HackerRank",
+      "date": "2024-03",
+      "href": "https://www.hackerrank.com/certificates/ddee98adbeb2"
+    },
+    {
+      "title": "React (Basic)",
+      "issuer": "HackerRank",
+      "date": "2023-03",
+      "href": "https://www.hackerrank.com/certificates/751c03a920f0"
+    },
+    {
+      "title": "EF SET English Certificate 72/100 (C2 Proficient)",
+      "issuer": "EF SET",
+      "date": "2022-08",
+      "href": "https://www.efset.org/cert/3nBo26"
+    },
+    {
+      "title": "Responsive Web Design",
+      "issuer": "freeCodeCamp",
+      "date": "2022-04",
+      "href": "https://freecodecamp.org/certification/arma008/responsive-web-design"
+    }
+  ]
+}

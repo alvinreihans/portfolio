@@ -1,22 +1,66 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html lang="en" data-theme="day">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>alvinreihans</title>
+    <title>Alvin Reihansyah Makarim · Full-Stack Developer</title>
+    <meta
+      name="description"
+      content="Full-stack developer focused on reliable backend systems. Works with Node.js, React, and PostgreSQL, with production deployment experience on AWS and Google Cloud."
+    />
+    <link rel="canonical" href="https://alvinreihans.web.id/" />
+    <!-- Icons and link previews from the beaver sprite (npm run brand, specs/04-pages.md). -->
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="icon" href="/favicon-32.png" type="image/png" sizes="32x32" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Alvin Reihansyah Makarim · Full-Stack Developer" />
+    <meta
+      property="og:description"
+      content="Full-stack developer focused on reliable backend systems. Works with Node.js, React, and PostgreSQL, with production deployment experience on AWS and Google Cloud."
+    />
+    <meta property="og:url" content="https://alvinreihans.web.id/" />
+    <meta property="og:image" content="https://alvinreihans.web.id/og-image.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta
+      property="og:image:alt"
+      content="A pixel beaver beside the name Alvin Reihansyah Makarim, Full-Stack Developer, and the address alvinreihans.web.id"
+    />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:locale:alternate" content="id_ID" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <script>
+      // Sets the theme before first paint so there is no flash of the wrong theme.
+      // Same rules as src/theme/theme.ts: saved choice, then the system preference, then Day.
+      (function () {
+        var saved = null;
+        try {
+          saved = localStorage.getItem('theme');
+        } catch (e) {}
+        var prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        document.documentElement.dataset.theme =
+          saved === 'day' || saved === 'night' ? saved : prefersDark ? 'night' : 'day';
 
-    <link rel="stylesheet" href="assets/css/main.css" />
-    <link rel="stylesheet" href="assets/css/navbar.css" />
-    <link rel="stylesheet" href="assets/css/footer.css" />
-    <link rel="stylesheet" href="assets/css/home.css" />
+        // One scene per visit, picked here so prerendered pages reserve its height before
+        // first paint (specs/07-scenery.md, specs/08-prerender.md). Same rules as pick() in
+        // src/components/home/scenery.ts, which reads this choice.
+        var scenes = ['park', 'beach', 'city', 'mountain'];
+        var params = new URLSearchParams(location.search);
+        var scene = params.get('scene');
+        var seed = parseInt(params.get('seed') || '', 10);
+        if (scenes.indexOf(scene) < 0) scene = scenes[Math.floor(Math.random() * scenes.length)];
+        if (!isFinite(seed)) seed = Math.floor(Math.random() * 1e9);
+        window.__visit = { scene: scene, seed: seed };
+        document.documentElement.style.setProperty(
+          '--scene-height',
+          (scene === 'city' ? 88 : 64) * 4 + 'px',
+        );
+      })();
+    </script>
   </head>
   <body>
-    <div id="navbar"></div>
-    <div id="content"></div>
-    <div id="footer"></div>
-
-    <script src="assets/js/navbar.js"></script>
-    <script src="assets/js/main.js"></script>
-    <script src="assets/js/router.js"></script>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>

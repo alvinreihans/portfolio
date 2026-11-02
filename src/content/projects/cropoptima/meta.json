@@ -1,0 +1,25 @@
+{
+  "slug": "cropoptima",
+  "order": 6,
+  "tags": [
+    "Python",
+    "Flask",
+    "Google App Engine",
+    "Cloud SQL",
+    "Firebase Authentication",
+    "Docker",
+    "Cloud Storage",
+    "LightGBM"
+  ],
+  "links": {
+    "repo": "https://github.com/panduwjaya/CropOptima-Fullteam"
+  },
+  "title": {
+    "id": "CropOptima",
+    "en": "CropOptima"
+  },
+  "summary": {
+    "id": "Capstone Bangkit 2023 yang menyarankan satu dari 22 tanaman dari kondisi tanah dan cuaca lokasi; saya membangun backend cloud-nya.",
+    "en": "A Bangkit 2023 capstone that suggests one of 22 crops from soil and local weather; I built its cloud backend."
+  }
+}

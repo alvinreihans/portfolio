@@ -1,0 +1,92 @@
+{
+  "hero": {
+    "titleLine1": "Membangun sistem backend",
+    "titleLine2": "yang andal.",
+    "lead": "Saya Alvin, full-stack developer lulusan Teknik Informatika Universitas Lampung. Saya tertarik pada perancangan sistem backend yang andal, teruji, dan mudah diaudit, dengan Node.js, TypeScript, React, Express.js, dan PostgreSQL, serta pengalaman men-deploy ke produksi di AWS dan Google Cloud melalui CI/CD terotomatisasi.",
+    "cv": "Lihat CV",
+    "actions": "Navigasi cepat"
+  },
+  "stack": {
+    "heading": "Tech stack",
+    "groups": {
+      "languages": "Bahasa & Frontend",
+      "backend": "Backend",
+      "data": "Database & Storage",
+      "ai": "AI & OCR",
+      "cloud": "Cloud & DevOps"
+    },
+    "items": {
+      "llm": "Integrasi LLM"
+    }
+  },
+  "experience": {
+    "heading": "Pengalaman",
+    "type": {
+      "education": "Kuliah",
+      "work": "Pekerjaan",
+      "internship": "Magang",
+      "training": "Pelatihan",
+      "certification": "Sertifikasi"
+    },
+    "present": "Sekarang",
+    "certifications": "Sertifikasi",
+    "otherCertifications": "Sertifikat lainnya",
+    "allOnLinkedIn": "Lihat semua {{count}} sertifikat di LinkedIn",
+    "showMore": "Lihat {{count}} lainnya",
+    "showLess": "Sembunyikan"
+  },
+  "works": {
+    "heading": "Project"
+  },
+  "contact": {
+    "heading": "Mari berdiskusi.",
+    "body": "Saya terbuka untuk peluang baru. Untuk pekerjaan, kolaborasi, atau sekadar menyapa, silakan hubungi saya.",
+    "email": "Kirim email"
+  },
+  "scene": {
+    "greet": "Sapa berang-berang",
+    "lines": {
+      "park": {
+        "day": {
+          "1": "Santai dulu, ngoding nanti.",
+          "2": "Kopinya hangat banget...",
+          "3": "Hai! Lagi istirahat nih."
+        },
+        "night": {
+          "1": "Zzz...",
+          "2": "Lima menit lagi..."
+        }
+      },
+      "beach": {
+        "day": {
+          "1": "Istana pasirku hampir jadi!",
+          "2": "Panas, tapi seru!"
+        },
+        "night": {
+          "1": "Zzz...",
+          "2": "Ombaknya bikin ngantuk..."
+        }
+      },
+      "city": {
+        "day": {
+          "1": "Butuh kopi dulu.",
+          "2": "Yuk, ngoding!"
+        },
+        "night": {
+          "1": "Lembur lagi, ya?",
+          "2": "Kopi malam paling enak."
+        }
+      },
+      "mountain": {
+        "day": {
+          "1": "Marshmallow-nya hampir matang!",
+          "2": "Udara gunung segar!"
+        },
+        "night": {
+          "1": "Hangat dan nyaman...",
+          "2": "Lihat bintangnya!"
+        }
+      }
+    }
+  }
+}

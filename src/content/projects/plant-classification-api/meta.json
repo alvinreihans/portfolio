@@ -1,0 +1,16 @@
+{
+  "slug": "plant-classification-api",
+  "order": 5,
+  "tags": ["Python", "Flask", "TensorFlow", "Keras", "Gunicorn"],
+  "links": {
+    "repo": "https://github.com/alvinreihans/ImageClassificationAPI-MBKMP"
+  },
+  "title": {
+    "id": "Plant Classification API",
+    "en": "Plant Classification API"
+  },
+  "summary": {
+    "id": "API Flask yang menyajikan model Keras untuk mengenali batang, daun, atau ranting Micromelum minutum dari foto, dari riset MBKM.",
+    "en": "A Flask API serving a Keras model that tells the stem, leaf, or twig of Micromelum minutum apart in a photo, from MBKM research."
+  }
+}

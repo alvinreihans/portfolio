@@ -1,0 +1,17 @@
+{
+  "slug": "notes-app",
+  "order": 7,
+  "tags": ["React", "JavaScript", "React Hooks", "localStorage", "GitHub Pages"],
+  "links": {
+    "repo": "https://github.com/alvinreihans/note-app",
+    "demo": "https://alvinreihans.github.io/note-app/"
+  },
+  "title": {
+    "id": "Notes App",
+    "en": "Notes App"
+  },
+  "summary": {
+    "id": "Aplikasi catatan pribadi berbasis React dengan pencarian, arsip, dan penyimpanan di localStorage.",
+    "en": "A personal notes app in React with search, archiving, and storage in localStorage."
+  }
+}

@@ -1,0 +1,36 @@
+# Design references (local only)
+mockups/
+
+# Dependencies
+node_modules/
+
+# Build output
+dist/
+dist-prerender/
+*.tsbuildinfo
+
+# Test output
+playwright-report/
+test-results/
+coverage/
+
+# Environment variables
+.env
+.env.*
+!.env.example
+
+# Vercel
+.vercel/
+
+# Logs
+*.log
+npm-debug.log*
+
+# Editor / OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# Generated before each build (scripts/generate-sitemap.mjs)
+public/sitemap.xml

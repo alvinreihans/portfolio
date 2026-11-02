@@ -1,0 +1,341 @@
+@import 'tailwindcss';
+
+/* `night:` styles apply under the Night theme (data-theme on <html>). */
+@custom-variant night (&:where([data-theme='night'], [data-theme='night'] *));
+
+/* Design tokens from specs/02-design-system.md. Contrast ratios are verified there. */
+:root,
+[data-theme='day'] {
+  --bg: #e3f1fe;
+  --nav: #ffffff;
+  --band: #ffffff;
+  --card: #ffffff;
+  --card-band: #f4f9fe;
+  --ink: #232629;
+  --muted: #5c6066;
+  --line: #e3f1fe;
+  --chip: #e3f1fe;
+  --accent: #ff5e24;
+  --on-accent: #101828;
+  --accent-text: #b83a08;
+  --accent-display: #d4430c;
+  --footer: #6c3200;
+  --footer-ink: #f5e6dc;
+  --focus: #b83a08;
+  --cloud-outline: var(--muted);
+  /* Card shadow from specs/02-design-system.md: four thin layers of dark blue. */
+  --shadow: 0 2px 4px #0f223408, 0 6px 12px #0f223408, 0 14px 24px #0f22340a, 0 27px 40px #0f22340a;
+  color-scheme: light;
+}
+
+[data-theme='night'] {
+  --bg: #0b1226;
+  --nav: #0f1730;
+  --band: #0f1830;
+  --card: #141e3b;
+  --card-band: #131d3a;
+  --ink: #e8edf7;
+  --muted: #a3afcb;
+  --line: #26335a;
+  --chip: #1e2a50;
+  --accent: #ff5e24;
+  --on-accent: #101828;
+  --accent-text: #ff8a5c;
+  --accent-display: #ff5e24;
+  --footer: #1d0e03;
+  --footer-ink: #f5e6dc;
+  --focus: #ff5e24;
+  --cloud-outline: var(--line);
+  /* Night: three layers of transparent black. */
+  --shadow: 0 2px 4px #00000030, 0 8px 16px #00000030, 0 20px 36px #00000035;
+  color-scheme: dark;
+}
+
+@theme inline {
+  --color-bg: var(--bg);
+  --color-nav: var(--nav);
+  --color-band: var(--band);
+  --color-card: var(--card);
+  --color-card-band: var(--card-band);
+  --color-ink: var(--ink);
+  --color-muted: var(--muted);
+  --color-line: var(--line);
+  --color-chip: var(--chip);
+  --color-accent: var(--accent);
+  --color-on-accent: var(--on-accent);
+  --color-accent-text: var(--accent-text);
+  --color-accent-display: var(--accent-display);
+  --color-footer: var(--footer);
+  --color-footer-ink: var(--footer-ink);
+
+  /* Mascot colors stay the same in both themes */
+  --color-mascot-body: #6c3200;
+  --color-mascot-light: #f5e6dc;
+  --color-mascot-dark: #232629;
+
+  --font-display: 'Jersey 10', 'Jersey 10 Fallback', ui-monospace, monospace;
+  --font-sans: 'Manrope Variable', 'Manrope Fallback', system-ui, sans-serif;
+}
+
+@layer base {
+  /* Keeps keyboard focus and #section targets clear of the 64px sticky navbar
+     (WCAG 2.2 Focus Not Obscured). */
+  html {
+    scroll-padding-top: 5rem;
+  }
+
+  body {
+    @apply theme-fade bg-bg font-sans text-ink antialiased;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--focus);
+    outline-offset: 2px;
+  }
+
+  /* Sections, headings, and <main> receive focus only from script (useRouteFocus and the
+     skip link) so screen readers announce them. They are not controls, so no ring;
+     buttons and links keep theirs. */
+  [tabindex='-1']:focus-visible {
+    outline: none;
+  }
+}
+
+/* Fallback faces sized like the real fonts (specs/02-design-system.md), so text drawn before
+   the fonts arrive takes the same room and nothing shifts when they swap in. Measured against
+   Arial in the browser; Liberation Sans has the same metrics, Roboto is close. */
+@font-face {
+  font-family: 'Manrope Fallback';
+  src: local('Arial'), local('Liberation Sans'), local('Roboto');
+  size-adjust: 103.06%;
+  ascent-override: 103.83%;
+  descent-override: 29.11%;
+  line-gap-override: 0%;
+}
+
+@font-face {
+  font-family: 'Jersey 10 Fallback';
+  src: local('Arial'), local('Liberation Sans'), local('Roboto');
+  size-adjust: 79.67%;
+  ascent-override: 100.42%;
+  descent-override: 33.89%;
+  line-gap-override: 0%;
+}
+
+/* One shadow set per card (specs/02-design-system.md, "Spasi, radius, bayangan"). */
+@utility shadow-card {
+  box-shadow: var(--shadow);
+}
+
+/* Day/Night color change; switched off for visitors who prefer reduced motion. */
+@utility theme-fade {
+  transition:
+    background-color 0.4s,
+    color 0.4s,
+    border-color 0.4s;
+
+  @media (prefers-reduced-motion: reduce) {
+    transition: none;
+  }
+}
+
+/* Night stars blink in two steps; they stay still for reduced motion. */
+@keyframes twinkle {
+  50% {
+    opacity: 0.25;
+  }
+}
+
+.star {
+  animation: twinkle 3s steps(2) infinite;
+
+  @media (prefers-reduced-motion: reduce) {
+    animation: none;
+  }
+}
+
+/* Project stories rendered from markdown (ProjectStory, specs/06-project-stories.md). Manrope
+   only: Jersey 10 stays for headings of 36px and up (specs/02-design-system.md). */
+.story {
+  & > * + * {
+    margin-top: 1rem;
+  }
+
+  & p,
+  & li {
+    line-height: 1.7;
+  }
+
+  & h2 {
+    margin-top: 2.25rem;
+    font-size: 1.5rem;
+    font-weight: 800;
+    line-height: 1.25;
+  }
+
+  & h3 {
+    margin-top: 1.75rem;
+    font-size: 1.2rem;
+    font-weight: 700;
+  }
+
+  & ul {
+    list-style: square;
+    padding-left: 1.25rem;
+  }
+
+  & ol {
+    list-style: decimal;
+    padding-left: 1.25rem;
+  }
+
+  & li::marker {
+    color: var(--accent);
+  }
+
+  & a {
+    color: var(--accent-text);
+    text-decoration: underline;
+    text-decoration-thickness: 2px;
+    text-underline-offset: 4px;
+  }
+
+  & strong {
+    font-weight: 800;
+  }
+
+  & code {
+    border-radius: 4px;
+    background: var(--chip);
+    padding: 0.1em 0.35em;
+    font-size: 0.9em;
+  }
+
+  & pre {
+    overflow-x: auto;
+    border-radius: 8px;
+    background: var(--chip);
+    padding: 1rem;
+
+    & code {
+      background: none;
+      padding: 0;
+    }
+  }
+
+  & img {
+    display: block;
+    height: auto;
+    max-width: 100%;
+    margin-inline: auto;
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    box-shadow: var(--shadow);
+  }
+
+  & img.narrow {
+    max-width: min(100%, 380px);
+  }
+  /* Flow diagrams sit on a card: their node colour (--chip) matches the Day page background. */
+  & figure {
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    background: var(--card);
+    padding: 1rem;
+    box-shadow: var(--shadow);
+  }
+}
+
+/* A new page fades in and rises a little (specs/04-pages.md, Q4.28). Opacity and transform
+   only, so nothing shifts; off for reduced motion. */
+@keyframes page-enter {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+}
+
+.page-enter {
+  animation: page-enter 300ms ease-out;
+
+  @media (prefers-reduced-motion: reduce) {
+    animation: none;
+  }
+}
+
+/* Switching language fades the page text out and back in (specs/03-i18n.md, Q3.8). Opacity
+   only; LanguageToggle skips it for reduced motion. The navbar links fade back with their own
+   transition, which this rule must not override (it would keep them fading for reduced
+   motion too). */
+@media (prefers-reduced-motion: no-preference) {
+  main {
+    transition: opacity 200ms ease-out;
+  }
+}
+
+:root[data-lang-switch='out'] :is(main, header ul) {
+  opacity: 0;
+  transition-duration: 120ms;
+  transition-timing-function: ease-in;
+}
+
+/* Page-wide sky clouds drift left and right (specs/07-scenery.md); duration and delay are
+   set per cloud. */
+@keyframes drift {
+  from {
+    transform: translateX(calc(var(--range) * -1));
+  }
+  to {
+    transform: translateX(var(--range));
+  }
+}
+
+.cloud {
+  animation: drift 25s ease-in-out infinite alternate;
+
+  @media (prefers-reduced-motion: reduce) {
+    animation: none;
+  }
+}
+
+/* Pixel speech bubble above the beaver (specs/07-scenery.md): a 7x7-cell 9-slice with
+   stepped corners (3px per cell) and a stepped tail pointing down at the beaver. */
+.pixel-bubble {
+  position: absolute;
+  transform: translate(-50%, -100%);
+  white-space: nowrap;
+  pointer-events: none;
+  /* `@theme inline` tokens are not emitted as CSS variables, so the family is spelled out. */
+  font-family: 'Jersey 10', 'Jersey 10 Fallback', ui-monospace, monospace;
+  font-size: 20px;
+  line-height: 1;
+  color: #232629;
+  padding: 1px 4px 2px;
+  border: 9px solid transparent;
+  border-image-source: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='7' height='7' viewBox='0 0 7 7' shape-rendering='crispEdges'%3E%3Cpath fill='%23232629' d='M2 0h3v1h1v1h1v3H6v1H5v1H2V6H1V5H0V2h1V1h1z'/%3E%3Cpath fill='%23fff' d='M2 1h3v1h1v3H5v1H2V5H1V2h1z'/%3E%3C/svg%3E");
+  border-image-slice: 3 fill;
+  border-image-width: 9px;
+  filter: drop-shadow(3px 3px 0 rgb(35 38 41 / 0.25));
+}
+
+.pixel-bubble::after {
+  content: '';
+  position: absolute;
+  /* The bubble may move sideways to stay on screen; the tail still points at the beaver. */
+  left: calc(50% - 6px + var(--tail-shift, 0px));
+  bottom: -18px;
+  width: 12px;
+  height: 12px;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='4' height='4' viewBox='0 0 4 4' shape-rendering='crispEdges'%3E%3Cpath fill='%23232629' d='M0 0h1v1h1V0h2v1H3v1H2v1H1v1H0z'/%3E%3Cpath fill='%23fff' d='M1 0h2v1H2v1H1z'/%3E%3C/svg%3E")
+    0 0 / 100% 100%;
+}
+
+/* The caret sits over the next letter's place while the line types out. */
+.pixel-caret {
+  position: absolute;
+}
+
+/* Static mode (slow device or connection) stops the whole sky. */
+[data-still] :is(.cloud, .star) {
+  animation: none;
+}

@@ -1,0 +1,9 @@
+dist
+node_modules
+package-lock.json
+mockups
+playwright-report
+test-results
+
+# Documents are formatted by hand
+*.md

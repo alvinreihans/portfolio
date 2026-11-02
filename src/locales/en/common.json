@@ -1,0 +1,27 @@
+{
+  "nav": {
+    "experience": "Experience",
+    "projects": "Projects",
+    "contact": "Contact",
+    "cv": "CV",
+    "label": "Main navigation",
+    "openMenu": "Open menu",
+    "closeMenu": "Close menu"
+  },
+  "skipToContent": "Skip to content",
+  "externalLink": "(external link)",
+  "language": {
+    "switch": "Switch to Indonesian"
+  },
+  "theme": {
+    "switchToNight": "Switch to Night theme",
+    "switchToDay": "Switch to Day theme"
+  },
+  "contact": {
+    "mailSubject": "Hello Alvin, I would like to get in touch"
+  },
+  "title": {
+    "home": "Alvin Reihansyah Makarim · Full-Stack Developer",
+    "page": "{{page}} · alvinreihans"
+  }
+}

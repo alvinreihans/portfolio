@@ -1,0 +1,25 @@
+{
+  "slug": "teman-jalan",
+  "order": 2,
+  "tags": [
+    "Node.js",
+    "Express.js",
+    "MQTT",
+    "Redis",
+    "MySQL",
+    "Socket.IO",
+    "Firebase Cloud Messaging",
+    "JWT"
+  ],
+  "links": {
+    "repo": "https://github.com/alvinreihans/teman-jalan"
+  },
+  "title": {
+    "id": "Teman Jalan: Real-Time IoT Monitoring",
+    "en": "Teman Jalan: Real-Time IoT Monitoring"
+  },
+  "summary": {
+    "id": "Backend real-time untuk tongkat pintar IoT bagi penyandang tunanetra: MQTT, sesi perjalanan di Redis, dan notifikasi darurat lewat FCM. Proyek skripsi saya.",
+    "en": "A real-time backend for an IoT smart cane for visually impaired people: MQTT, trip sessions in Redis, and emergency alerts through FCM. My thesis project."
+  }
+}

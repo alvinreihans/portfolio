@@ -1,0 +1,17 @@
+{
+  "slug": "video-belajar",
+  "order": 4,
+  "tags": ["React", "Vite", "Tailwind CSS", "Redux Toolkit", "React Router", "Express.js", "MySQL"],
+  "links": {
+    "repo": "https://github.com/alvinreihans/videobelajar-react",
+    "demo": "https://videobelajar-react-eight.vercel.app"
+  },
+  "title": {
+    "id": "Video Belajar",
+    "en": "Video Belajar"
+  },
+  "summary": {
+    "id": "Aplikasi kursus online dari bootcamp Harisenin: SPA React dengan Redux Toolkit, dan REST API Express dengan MySQL untuk 15 resource.",
+    "en": "An online course app from the Harisenin bootcamp: a React SPA with Redux Toolkit, and an Express REST API with MySQL for 15 resources."
+  }
+}
