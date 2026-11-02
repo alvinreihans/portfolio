@@ -12,20 +12,21 @@ Working agreement for the portfolio rewrite (alvinreihans.web.id): a React SPA r
 6. **Definition of done.** Every feature has acceptance criteria in its spec. Verify with Playwright (EN/ID, Day/Night, mobile and desktop) before calling it done. Report failures faithfully.
 7. **Accessibility is part of the spec.** WCAG AA contrast, keyboard navigation, visible focus, `prefers-reduced-motion` respected, `<html lang>` follows the selected language.
 8. **Performance.** Optimized images (avif), preloaded fonts, Lighthouse 90+ for Performance and Accessibility.
-9. **Do not touch the live site.** `main` is deployed to alvinreihans.web.id via Vercel. All rewrite work targets the `react-rewrite` branch and its preview deployments.
+9. **Protect the live site.** `main` is deployed to alvinreihans.web.id via Vercel (version 1.0.0 went live on 2026-11-02). Every change reaches `main` only through a reviewed PR with green CI, and is checked locally (`npm run build`, then the Playwright checks) before merging, because merging deploys to production at once.
 10. **No private data in code** beyond what is already public (email in the footer). The contact form approach is decided in a spec first.
 11. **Content comes from the owner.** Numbers, claims, and project stories are only used when the owner confirms them. Placeholders are marked clearly (`TODO(owner)`).
 12. **Language.** Indonesian first. UI copy is written in Indonesian (source and fallback language) and translated to English, both living in the locale files (see `specs/03-i18n.md`). Code comments and identifiers are in English. Specs in `specs/` are written in Indonesian (technical terms stay in English).
 
-## Git workflow (GitHub Flow with an integration branch)
+## Git workflow (GitHub Flow)
 
 ```
 main (live site)
- └── react-rewrite (integration branch, Vercel preview)
-       └── feat/<name>, fix/<name>, chore/<name>  (short-lived, PR into react-rewrite)
+ └── feat/<name>, fix/<name>, docs/<name>, chore/<name>  (short-lived, PR into main)
 ```
 
-- Never merge into `main` until the rewrite is complete; that deploys to production.
+- The rewrite used a `react-rewrite` integration branch until the 1.0.0 cutover; it is no longer used.
+- Merging into `main` deploys to production, so each PR is small, reviewed, and has passing CI.
+- Releases are tagged on `main` as `vX.Y.Z` after the production smoke check (see `specs/05-deployment.md`).
 - Commit messages follow Conventional Commits: `<type>(<scope>): <imperative summary>` with types `feat`, `fix`, `docs`, `style`, `refactor`, `test`, `chore`.
 - One commit, one purpose. Keep commits small.
 - Every user-visible change adds a line under `[Unreleased]` in `CHANGELOG.md` (Keep a Changelog format).
